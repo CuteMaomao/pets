@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>玖宠-登录注册</title>
+    <link rel="stylesheet" href="../util/layui/css/layui.css">
+    <script src="../util/jquery-1.12.4.js"></script>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <header class="header">
+      <h3 style="font-size: 1.75em">玖宠-最懂你的宝贝</h3>
+    </header>
+    <section class="content">
+        <div class="contentBox">
+            <br>
+            <!------------------几个按钮------------------>
+            <button class="navbtn" type="button" style="color:black">账户密码登录</button>
+            <button class="navbtn" type="button"  style="color:#999999">手机验证码登录</button>
+            <button class="navbtn" type="button"  style="color:#999999">注册</button>
+            <!------------------内容们---------------------->
+            <div class="content">
+              <div style="display: block" class="loginDiv"  class="login1">
+                    <form action="/login1" method="post" enctype="application/x-www-form-urlencoded">
+                        <br>
+                        <br>
+                        <br>
+                        <label for="user1">账户:
+                            <input type="text" id="user1" name="user1" placeholder="请输入账户/手机号" />
+                        </label>
+                        <hr>
+                        <br>
+                        <br>
+                        <label for="pass1">密码:
+                            <input type="password" id="pass1" name="pass1" placeholder="请输入密码" />
+                        </label>
+                        <hr>
+                        <br>
+                        <br>
+                        <input type="submit" class="login11" value="登录">
+                    </form>
+                </div>
+              <div style="display:none" class="loginDiv" class="login2">
+                    <form action="/login2" method="post" enctype="application/x-www-form-urlencoded">
+                        <br>
+                        <br>
+                        <br>
+                        <label for="tel2">手机:
+                            <input type="text" id="tel2" name="tel2" placeholder="请输入手机号" />
+                        </label>
+                        <hr>
+                        <br>
+                        <br>
+                        <input type="password" id="pass2" name="pass2" placeholder="请输入验证码" />
+                        <button id="yanzhengma1">发送验证码</button>
+                        <hr>
+                        <br>
+                        <br>
+                        <input type="submit" class="login22" value="登录">
+                    </form>
+                </div>
+              <div style="display:none" class="loginDiv" class="login3">
+                    <form action="/login3" method="post" enctype="application/x-www-form-urlencoded">
+                        <br>
+                        <label for="user3">账户:
+                            <input type="text" id="user3" name="user3" placeholder="请输入账户" />
+                        </label>
+                        <hr>
+                        <label for="name3">昵称:
+                            <input type="text" id="name3" name="name3" placeholder="请输入昵称" />
+                        </label>
+                        <hr>
+                        <label for="name3">手机:
+                            <input type="text" id="tel3" name="tel3" placeholder="请输入手机号" />
+                        </label>
+                        <hr>
+                        <input type="text" id="yzm3" name="yzm3" placeholder="请输入验证码" />
+                        <button id="yanzhengma2">发送验证码</button>
+                        <hr>
+                        <label for="pass3">密码:
+                            <input type="password" id="pass3" name="pass3" placeholder="请输入密码" />
+                        </label>
+                        <hr>
+                        <label for="pass4">确认密码:
+                            <input type="password" id="pass4" name="pass4" placeholder="请输入密码" />
+                        </label>
+                        <hr>
+                        <input style="margin-top: 9px;" type="submit" class="login33" value="注册">
+                    </form>
+                </div>
+        </div>
+        </div>
+    </section>
+</body>
+<script src="../js/wuqin_js/login.js"></script>
+</html>
