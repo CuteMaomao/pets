@@ -57,11 +57,11 @@ a {
 .personmsg-head {
   float: left;
 }
-h2 {
+.personmsg h2 {
   border-bottom: 1px solid #D5D5D5;
   height: 40px;
 }
-h2 span {
+.personmsg h2 span {
   padding: 10px;
   border-left: 1px solid #D5D5D5;
   border-right: 1px solid #D5D5D5;
@@ -117,7 +117,7 @@ h5 {
 .personmsg-year {
   width: 80px;
 }
-select {
+.personmsg-date select {
   height: 25px;
   color: #555;
   background: #fff;
@@ -128,7 +128,7 @@ select {
 .personmsg-day {
   width: 40px;
 }
-h5 {
+.personmsg-form h5 {
   font-weight: lighter;
   margin-top: 10px;
 }
@@ -136,7 +136,8 @@ h5 {
 .personmsg-year {
   margin-left: 83px;
 }
-.personmsg-girl {
+.personmsg-girl,
+.personmsg-secret {
   margin-left: 30px;
 }
 .personmsg-phone {
@@ -172,6 +173,6 @@ h5 {
   background: #33CA97;
   color: #fff;
 }
-.active {
+.personmsg .active {
   border-top: 5px solid #33CA97;
 }
