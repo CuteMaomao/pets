@@ -385,7 +385,10 @@ ul.classLi li a:hover{
     padding-left: 5px;
     font-size: 12px;
 }
-.twoMenu{
+/*.twoMenu{
+    display: none;
+}*/
+.one,.two,.three,.four,.five,.six{
     display: none;
 }
 
