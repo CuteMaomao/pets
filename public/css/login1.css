@@ -1,0 +1,96 @@
+body{
+  margin:0;
+  padding:0;
+  user-select: none;
+}
+.header{
+  width:100%;
+  height:75px;
+  background-color:#e2e2e2;
+  }
+h3{
+  line-height: 75px;
+  margin:0;
+  color:rgb(69,157,54);
+  margin-left: 10%;
+  letter-spacing: 5px;
+}
+section.content{
+  width:100%;
+  height:581px;
+  background-image: url("../images/wuqin_image/bg8.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top:1px solid #e2e2e2;
+}
+section.content>div{
+  width:330px;
+  height:391px;
+  background-color: #FFFFFF;
+  margin-top:95px;
+  margin-left:140px;
+  padding:0;
+}
+.contentBox button{
+  background-color: #FFFFFF;
+  outline: none;
+  font-size: 18px;
+  border:none;
+  color:#999999;
+}
+
+.contentBox button:nth-of-type(1){
+margin-left:12px;
+}
+.contentBox button:nth-of-type(2){
+  margin-left:13px;
+  margin-right:13px;
+}
+.contentBox button:nth-of-type(3){
+  margin-right:12px;
+}
+.contentBox button:nth-of-type(1):hover,.contentBox button:nth-of-type(2):hover,.contentBox button:nth-of-type(3):hover{
+  color:black;
+}
+
+form{
+  padding-left:45px;
+  padding-right:45px;
+  font-size: 16px;
+
+}
+input{
+  outline: none;
+  border: none;
+}
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px white inset;
+}
+
+
+.login11,.login22,.login33{
+  width:100%;
+  height:35px;
+  background-color: rgba(69,157,54,0.6);
+  color:white;
+  border-radius: 10px;
+}
+#pass2,#yzm3{
+  width:120px;
+}
+#yanzhengma1,#yanzhengma2{
+  color:#000000;
+  margin-left:15px;
+  font-size: 16px;
+}
+#pass4{
+  width:160px;
+}
+
+
+
+
+
+
+
