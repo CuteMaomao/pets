@@ -23,6 +23,21 @@ server.set('view engine','html');
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 //设置路由
+server.get("/home",function(req,res){
+    res.render("home");
+});
+server.get("/productdetails",function(req,res){
+    res.render("productdetails");
+});
+server.get("/wjy_detailsimg",function(req,res){
+    res.render("wjy_detailsimg");
+});
+server.get("/wjy_detailscomment",function(req,res){
+    res.render("wjy_detailscomment");
+});
+server.get("/goodslist",function(req,res){
+    res.render("goodslist");
+});
 server.get("/personhome",function(req,res){
     res.render("personhome");
 });
@@ -37,6 +52,12 @@ server.get("/personmsg_edit_phone_two",function(req,res){
 });
 server.get("/personmsg_edit_head",function(req,res){
     res.render("personmsg_edit_head");
+});
+server.get("/orderpage",function(req,res){
+    res.render("orderpage");
+});
+server.get("/orderdetails",function(req,res){
+    res.render("orderdetails");
 });
 //给服务配置端口号
 server.listen(893);

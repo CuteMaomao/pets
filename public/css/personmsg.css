@@ -41,7 +41,7 @@ a {
   display: block;
 }
 .personmsg {
-  width: 62%;
+  width: 840px;
   padding: 30px 20px;
   background: #fff;
   margin-left: 285px;
@@ -87,7 +87,7 @@ h2 span {
 .personmsg-head-edit {
   width: 80px;
   position: absolute;
-  top: 69%;
+  top: 35%;
   left: 0;
   height: 25px;
   line-height: 25px;
@@ -96,6 +96,8 @@ h2 span {
   text-align: center;
   border-bottom-left-radius: 50%;
   border-bottom-right-radius: 50%;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
 }
 .personmsg-head-edit a {
   font-size: 14px;

@@ -1,6 +1,6 @@
 @import "demo";
-header{
-    width: @wid1;
+.personnav-header{
+    min-width: @wid1;
     height: @heig1;
     background: @col3;
     color: @col1;
@@ -9,7 +9,7 @@ header{
     }
 }
 .person-box{
-    width: @wid2;
+    width: 1060px;
     margin: 0 auto;
     height: @heig1;
 }
@@ -70,7 +70,11 @@ header{
         height: @heig1;
     }
 }
-section{
+.personnav-section ul,
+li {
+    text-align: center;
+}
+.personnav-section{
     width: @wid3;
     margin: 0 @heig1 0;
     nav {

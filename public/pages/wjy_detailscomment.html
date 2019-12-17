@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            outline: none;
+            text-decoration: none;
+            list-style-type: none;
+        }
+        body{
+            width: 980px;
+        }
+        header{
+            width: 918px;
+            height: 40px;
+            margin: 20px auto 0px;
+            border-bottom:1px solid #ddd;
+            padding: 20px 20px;
+        }
+        header span{
+            font-size: 14px;
+        }
+        #grade{
+            font-size: 25px;
+            font-weight: 700;
+            color: #F60;
+        }
+        #comment_list{
+            width: 100%;
+        }
+        #comment_list li{
+            display: block;
+            width: 958px;
+            height: 130px;
+            margin: 0 auto ;
+            border-bottom:1px solid #ddd;
+        }
+        .comment_top{
+            padding: 20px 30px 0px;
+            display: inline-block;
+            width: 898px;
+            height: 70px;
+        }
+        .comment_icon{
+            float: left;
+            width: 50px;
+            margin-right: 20px;
+        }
+        .comment_icon img{
+            width: 50px;
+            height: 50px;
+            border-radius: 3px;
+        }
+        .comment_msg{
+            float: left;
+            width: 500px;
+        }
+        #userId{
+            font-size: 12px;
+            color:#666;
+        }
+        #userCom{
+            font-size: 12px;
+        }
+        .comment_grade{
+            width: 75px;
+            float: right;
+        }
+        #comment_grade{
+            color:#F60 ;
+            font-size: 20px;
+            font-weight: bolder;
+        }
+        .comment_bottom{
+            margin-left: 100px;
+            font-size: 12px;
+        }
+        .comment_bottom .timebox{
+            float: right;
+            margin-right: 30px;
+            color:#666;
+        }
+        #res_box{
+            display: none;
+            clear: both;
+            width: 530px;
+            height: 100px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <span>评分:</span>
+        <span id="grade">xxx分</span>
+    </header>
+    <section>
+        <ul id="comment_list">
+            <li class="comment_item">
+                <div class="comment_top">
+                    <div class="comment_icon">
+                        <img src="../images/wjy_imgs/163203_336489.jpg">
+                    </div>
+                    <div class="comment_msg">
+                        <p id="userId">用户id</p>
+                        <span id="userCom">用户评价写在这里宝贝很好</span>
+                    </div>
+                    <div class="comment_grade">
+                        <span id="comment_grade">9.0</span><span>分</span>
+                    </div>
+                </div>
+                <div class="comment_bottom">
+                    <a href="javascript:;" id="user_res">回复：（0）</a>
+                    <a href="javascript:;">点赞：（0）</a>
+                    <div class="timebox">2019-12-17 15:20</div>
+                    <div id="res_box">
+                        <input type="text">
+                        <button>提交回复</button>
+                    </div>
+                </div>
+
+            </li>
+        </ul>
+    </section>
+</body>
+<script src="../util/jquery-1.12.4.js"></script>
+<script>
+    // $('#user_res').click(function () {
+    //     $(this).parent.parent.css({'height':'260px'});
+    //     $(this).parent.chidren('.res_box').css({'display':'block'});
+    // })
+</script>
+</html>

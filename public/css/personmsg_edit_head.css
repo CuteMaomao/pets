@@ -56,8 +56,64 @@ h2 {
 .btn-style {
   text-align: center;
   border-radius: 10px;
-  color: #fff;
+  color: #555;
 }
 .personmsg-edit-head-box {
+  height: 540px;
+  padding: 20px 30px;
+}
+#c1,
+#c2,
+#c3 {
+  border: 1px solid #D5D5D5;
+  background: #D5D5D5;
+}
+#c1 img {
+  width: 150px;
+}
+.personmsg-edit-head-big {
+  float: left;
+  padding-right: 70px;
+  border-right: 1px solid #D5D5D5;
+  position: relative;
+}
+.personmsg-edit-head-big button {
+  width: 100px;
+  height: 30px;
+  border: #9a9a9b;
+  background: #D5D5D5;
+  margin-left: 100px;
+  margin-top: 20px;
+}
+.personmsg-edit-head-look {
+  padding-left: 70px;
+  float: left;
+}
+.personmsg-edit-head-look h5 {
+  margin-bottom: 20px;
+}
+.personmsg-edit-head-look div {
+  margin-top: 30px;
+}
+.personmsg-edit-head-look div h5 {
+  font-weight: lighter;
+}
+#uploadimg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
   height: 300px;
+  opacity: 0;
+}
+.personmsg-edit-head-info {
+  margin-top: 20px;
+}
+.personmsg-edit-head-info div {
+  width: 300px;
+  margin-top: 10px;
+}
+.personmsg-edit-head-info div img {
+  width: 55px;
+  margin-right: 16px;
 }

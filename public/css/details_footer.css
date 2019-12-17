@@ -1,0 +1,89 @@
+footer * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+footer a {
+  text-decoration: none;
+  display: block;
+}
+footer ul, footer li {
+  text-align: center;
+}
+footer button, input {
+  outline: none;
+}
+footer .btn-style {
+  text-align: center;
+  background: #33CA97;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+}
+footer .input-style {
+  display: block;
+  width: 200px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #555;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+footer {
+  clear: both;
+  margin: 50px auto 0;
+  width: 1200px;
+  height: 355px;
+  background: #F8F6F6;
+}
+footer .top {
+  width: 100%;
+  height: 240px;
+}
+footer .top-left {
+  width: 20%;
+  float: left;
+  margin-top: 2%;
+  margin-left: 2%;
+}
+footer .bottom {
+  width: 100%;
+  height: 80px;
+}
+footer nav {
+  float: left;
+  width: 78%;
+}
+footer nav ul {
+  float: left;
+  width: 18%;
+  text-align: center;
+}
+footer nav ul li {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+}
+footer nav ul li a {
+  color: #000;
+}
+footer .footer-nav {
+  margin: 6% 0 2%;
+}
+footer .footer-nav ul > li > a:hover {
+  color: red;
+}
+footer .part-title {
+  font-weight: bolder;
+  margin-bottom: 6%;
+}
+footer .bottom > div {
+  width: 417px;
+  margin: 0 auto;
+}
+footer .bottom-text {
+  font-size: 14px;
+  color: #9a9a9b;
+}
