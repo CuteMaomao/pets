@@ -24,15 +24,25 @@
             display: block;
             clear: both;
         }
-        body{
-            width: 1200px;
-            margin: 0 auto;
-            padding-left: 158px;
-            padding-top: 77px;
+        .clearfixright:after{
+            content: '';
+            display: block;
+            clear: right;
         }
-        header{
-            padding-left: 80px;
+        body{
+            /*width: 1200px;*/
+            margin: 0 auto;
+        }
+        #addressContent{
+            background-color: white;
+            /*overflow: hidden;*/
+            width: 900px;
+            margin: 20px 0 20px 300px;
+        }
+        #addressContent header{
+            padding-left: 30px;
             height: 60px;
+            padding-top: 20px;
             padding-right: 80px;
         }
         .headerTitle h3{
@@ -48,20 +58,20 @@
         .headerNewBtn button span{
             font-size: 18px;
         }
-        section{
-            padding-left: 80px;
-            background-color: cyan;
+        #addressContent section{
+            padding-left: 30px;
+            /*background-color: cyan;*/
             margin-top: 30px;
         }
         .addressPage{
-            width: 400px;
+            width: 380px;
             height: 180px;
             border: 1px solid #666666;
             border-radius: 5px;
             margin-bottom: 30px;
         }
         .addressLeft{
-            margin-right: 150px;
+            margin-right: 50px;
         }
         .addressPage .content{
             height: 130px;
@@ -101,86 +111,91 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="fl headerTitle">
-            <h3>收货地址</h3>
-        </div>
-        <div class="fr headerNewBtn">
-            <div>
-                <button>
-                    <span>新增地址</span>
-                    <span>+</span>
-                </button>
+    <%-include ('header.html')-%>
+    <%-include ('personnav.html')-%>
+    <div id="addressContent" class="clearfix">
+        <header>
+            <div class="fl headerTitle">
+                <h3>收货地址</h3>
             </div>
-        </div>
-    </header>
-    <section>
-        <div class="addressPage addressLeft fl">
-            <div class="content">
-                <div class="clearfix">
-                    <div class="nameBox fl">
-                        <span class="receiptName">收货人姓名</span>
-                        <span class="shou">收</span>
+            <div class="fr headerNewBtn">
+                <div>
+                    <button>
+                        <span>新增地址</span>
+                        <span>+</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        <section class="clearfix">
+            <div class="addressPage addressLeft fl">
+                <div class="content">
+                    <div class="clearfix">
+                        <div class="nameBox fl">
+                            <span class="receiptName">收货人姓名</span>
+                            <span class="shou">收</span>
+                        </div>
+                        <div class="lableBox fl"><span>默认地址</span></div>
                     </div>
-                    <div class="lableBox fl"><span>默认地址</span></div>
-                </div>
-                <div class="addressbox">
-                    <span>四川省成都市成华区二仙桥东三路一号成都理工大学XXXXXXXXXXXXXXXX</span>
-                </div>
-                <div class="addressbox">
-                    <span><span>15680980000</span></span>
-                </div>
-            </div>
-            <div class="adressBtn">
-                <button class="fr delBtn">删除</button>
-                <button class="fr editBtn">编辑</button>
-                <!--<button class="fr defaultAddress">设为默认地址</button>-->
-            </div>
-        </div>
-        <div class="addressPage addressLeft fl">
-            <div class="content">
-                <div class="clearfix">
-                    <div class="nameBox fl">
-                        <span class="receiptName">收货人姓名</span>
-                        <span class="shou">收</span>
+                    <div class="addressbox">
+                        <span>四川省成都市成华区二仙桥东三路一号成都理工大学XXXXXXXXXXXXXXXX</span>
                     </div>
-                    <!--<div class="lableBox fl"><span>默认地址</span></div>-->
-                </div>
-                <div class="addressbox">
-                    <span>四川省成都市成华区二仙桥东三路一号成都理工大学XXXXXXXXXXXXXXXX</span>
-                </div>
-                <div class="addressbox">
-                    <span><span>15680980000</span></span>
-                </div>
-            </div>
-            <div class="adressBtn">
-                <button class="fr delBtn">删除</button>
-                <button class="fr editBtn">编辑</button>
-                <button class="fr defaultAddress">设为默认地址</button>
-            </div>
-        </div>
-        <div class="addressPage addressLeft fl">
-            <div class="content">
-                <div class="clearfix">
-                    <div class="nameBox fl">
-                        <span class="receiptName">收货人姓名</span>
-                        <span class="shou">收</span>
+                    <div class="addressbox">
+                        <span><span>15680980000</span></span>
                     </div>
-                    <!--<div class="lableBox fl"><span>默认地址</span></div>-->
                 </div>
-                <div class="addressbox">
-                    <span>四川省成都市成华区二仙桥东三路一号成都理工大学XXXXXXXXXXXXXXXX</span>
-                </div>
-                <div class="addressbox">
-                    <span><span>15680980000</span></span>
+                <div class="adressBtn">
+                    <button class="fr delBtn">删除</button>
+                    <button class="fr editBtn">编辑</button>
+                    <!--<button class="fr defaultAddress">设为默认地址</button>-->
                 </div>
             </div>
-            <div class="adressBtn">
-                <button class="fr delBtn">删除</button>
-                <button class="fr editBtn">编辑</button>
-                <button class="fr defaultAddress">设为默认地址</button>
+            <div class="addressPage addressLeft fl">
+                <div class="content">
+                    <div class="clearfix">
+                        <div class="nameBox fl">
+                            <span class="receiptName">收货人姓名</span>
+                            <span class="shou">收</span>
+                        </div>
+                        <!--<div class="lableBox fl"><span>默认地址</span></div>-->
+                    </div>
+                    <div class="addressbox">
+                        <span>四川省成都市成华区二仙桥东三路一号成都理工大学XXXXXXXXXXXXXXXX</span>
+                    </div>
+                    <div class="addressbox">
+                        <span><span>15680980000</span></span>
+                    </div>
+                </div>
+                <div class="adressBtn">
+                    <button class="fr delBtn">删除</button>
+                    <button class="fr editBtn">编辑</button>
+                    <button class="fr defaultAddress">设为默认地址</button>
+                </div>
             </div>
-        </div>
-    </section>
+            <div class="addressPage addressLeft fl">
+                <div class="content">
+                    <div class="clearfix">
+                        <div class="nameBox fl">
+                            <span class="receiptName">收货人姓名</span>
+                            <span class="shou">收</span>
+                        </div>
+                        <!--<div class="lableBox fl"><span>默认地址</span></div>-->
+                    </div>
+                    <div class="addressbox">
+                        <span>四川省成都市成华区二仙桥东三路一号成都理工大学XXXXXXXXXXXXXXXX</span>
+                    </div>
+                    <div class="addressbox">
+                        <span><span>15680980000</span></span>
+                    </div>
+                </div>
+                <div class="adressBtn">
+                    <button class="fr delBtn">删除</button>
+                    <button class="fr editBtn">编辑</button>
+                    <button class="fr defaultAddress">设为默认地址</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <%-include ('footer.html')-%>
 </body>
 </html>
