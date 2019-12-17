@@ -2,19 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>个人中心-首页-修改绑定电话</title>
+    <title>个人中心-首页-修改头像</title>
     <link rel="stylesheet" href="../css/personmsg_edit_head.css">
 </head>
 <body>
+<%-include ('header.html')-%>
 <%-include ('personnav.html')-%>
 <div class="personmsg-edit-head">
     <h2>
         修改头像
     </h2>
     <div class="personmsg-edit-head-box">
-
+        <div class="personmsg-edit-head-big">
+            <canvas id="c1" width="300" height="300">
+                <span>不支持操作</span>
+            </canvas>
+            <input id="uploadimg" type="file">
+            <div class="personmsg-edit-head-info">
+                <h5>推荐头像</h5>
+                <div>
+                    <img src="../images/huangqian/bh1.jpg">
+                    <img src="../images/huangqian/bh2.jpg">
+                    <img src="../images/huangqian/bh3.jpg">
+                    <img src="../images/huangqian/bh4.jpg">
+                </div>
+                <div>
+                    <img src="../images/huangqian/gh1.jpg">
+                    <img src="../images/huangqian/gh2.jpg">
+                    <img src="../images/huangqian/gh3.jpg">
+                    <img src="../images/huangqian/gh4.jpg">
+                </div>
+            </div>
+            <button id="saveHeadBtn">保存</button>
+        </div>
+        <div class="personmsg-edit-head-look">
+            <h5>效果预览</h5>
+            <div>
+                <canvas id="c2" width="100" height="100"></canvas>
+                <h5>100*100</h5>
+            </div>
+            <div>
+                <canvas id="c3" width="200" height="200"></canvas>
+                <h5>200*200</h5>
+            </div>
+        </div>
     </div>
 </div>
 <%-include ('footer.html')-%>
 </body>
+<script>
+    var c1=document.getElementById('c1');
+    var gd=c1.getContext('2d');
+    var oImg=new Image();
+    oImg.src='../images/huangqian/no-head.png';
+    oImg.onload = function(){
+        gd.drawImage(oImg,80,80);
+    }
+</script>
 </html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>orderDetails</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        button,input{
+            border: 1px solid #666666;
+            outline: none;
+            margin: 0;
+            padding: 0;
+        }
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+        .clearfix:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        table{
+            border-collapse: collapse;  /* 边框模式，合并的模式 */
+        }
+        th,td{
+            padding: 0;
+        }
+        .red{
+            color: red;
+        }
+        .green{
+            color: green;
+        }
+        .blue{
+            color: blue;
+        }
+        .gray{
+            color: gray;
+        }
+        .trans{
+            opacity: 0;
+        }
+        body{
+            /*width: 1200px;*/
+            margin: 0 auto;
+        }
+        #detailsPageContent header{
+            margin-left: 70px;
+            padding-left: 80px;
+            height: 60px;
+            padding-right: 80px;
+            /*background-color: red;*/
+            padding-top: 20px;
+            margin-bottom: 20px;
+        }
+        #detailsPageContent .headerTitle h3{
+            font-size: 24px;
+            color: #666666;
+        }
+        #orderStep{
+            height: 100px;
+        }
+        .orderStep{
+            width: 20%;
+            /*background-color: blue;*/
+            height: 100px;
+        }
+        .orderStep div{
+            text-align: center;
+        }
+        .stepName{
+            font-weight: 600;
+            color: #888888;
+        }
+        .stepTime{
+            color: #999999;
+            font-size: 14px;
+        }
+        .stepState{
+            position: relative;
+        }
+        .circleOut{
+            margin-left: 50%;
+            width: 36px;
+            height: 36px;
+            background-color: #D7D7D7;
+            position: absolute;
+            border-radius: 50%;
+            left: -18px;
+            top: 6px;
+        }
+        .circleIn{
+            width: 28px;
+            height: 28px;
+            background-color: green;
+            border-radius: 50%;
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            z-index: 99;
+        }
+        .before .circleIn{
+            background-color: #D7D7D7;
+        }
+        .lineOutleft{
+            width: 50%;
+            background-color: #D7D7D7;
+            height: 10px;
+            margin: 20px 0 20px;
+            display: inline-block;
+            position: relative;
+        }
+        .lineOutRight{
+            width: 50%;
+            background-color: #D7D7D7;
+            height: 10px;
+            margin: 20px 0 20px;
+            display: inline-block;
+            position: relative;
+        }
+        .lineOutRightAfter,.lineOutLeftAfter{
+            width: 100%;
+            background-color: green;
+            height: 6px;
+            position: absolute;
+            top: 2px;
+            left: 0;
+            opacity: 0;
+        }
+        .stepState .circleIn span{
+            line-height: 28px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            display: none;
+        }
+        /*步骤*/
+        .stepState.before .circleIn span.before,.stepState.now .circleIn span.before{
+            display: block;
+        }
+        .stepState.after .circleIn span.after{
+            display: block;
+        }
+        .stepState.now .lineOutLeftAfter{
+            opacity: 1;
+        }
+        .stepState.after .lineOutLeftAfter,.stepState.after .lineOutRightAfter{
+            opacity: 1;
+        }
+        .information{
+            margin-top: 25px;
+            height: 220px;
+            margin-left: 150px;
+            border: 1px solid #999999;
+            overflow: hidden;
+        }
+        .information .left{
+            width: 250px;
+            height: 100%;
+            /*background-color: red;*/
+            border-right: 1px solid #999999;
+        }
+        .information .left .title{
+            background-color: #F3F3F3;
+            font-size: 18px;
+            line-height: 26px;
+            border-bottom: 1px solid #999999;
+            padding-left: 5px;
+        }
+        .information .left .content{
+            padding-left: 5px;
+            padding-top: 10px;
+        }
+        .siteTitle,.orderNumTitle{
+            width: 80px;
+        }
+        .siteContent,.orderNumContent{
+            padding-left: 90px;
+            margin-bottom: 10px;
+        }
+        .information .right{
+            padding: 20px 20px 0 300px;
+            height: 100%;
+            /*background-color: #D7D7D7;*/
+        }
+        .information .right .orderState{
+            font-size: 24px;
+            font-weight: 600;
+            color: #3D4245;
+            margin-bottom: 10px;
+        }
+        .tips{
+            height: 80px;
+            padding: 0 10px 10px 30px;
+            font-size: 14px;
+        }
+        .tips ul li span{
+            color: red;
+        }
+        .operation{
+            font-size: 16px;
+        }
+        .operation button{
+            padding: 0 5px;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-right: 5px;
+        }
+        .commodityDetails{
+            margin-top: 25px;
+            margin-left: 150px;
+            overflow: hidden;
+        }
+        .commodityDetails .title{
+            background-color: #E3EEFF;
+        }
+        .commodityDetails .title h3{
+            font-size: 24px;
+            color: #333333;
+        }
+        .commodityDetails .contentTable{
+            /*height: 800px;*/
+            /*background-color: red;*/
+            padding: 10px 30px;
+        }
+        table{
+            width: 100%;
+            margin-top: 10px;
+        }
+        table tr td{
+            padding: 10px 20px 10px 20px;
+        }
+        table tr.titleTr{
+            background-color: #F1F1F1;
+        }
+        .goodsPhoto{
+            width: 50px;
+        }
+        .goodsName{
+            width: 450px;
+        }
+        .goodsPrice{
+            width: 50px;
+        }
+        .goodsNum{
+            width: 50px;
+        }
+        table .imgBox{
+            width: 70px;
+            margin: 0 auto;
+        }
+        table .nameBox{
+            width: 700px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        table .imgBox img{
+            width: 70px;
+        }
+        table .priceSingle{
+            color: red;
+            font-weight: 600;
+        }
+
+        .paymentDetails{
+            margin-top: 25px;
+            margin-left: 150px;
+            overflow: hidden;
+        }
+        .paymentDetails .title{
+            background-color: #E3EEFF;
+        }
+        .paymentDetails .title h3{
+            font-size: 24px;
+            color: #333333;
+        }
+        .paymentDetails .content{
+            padding: 20px 0 50px 50px;
+        }
+        .paymentDetails .content > div > span.label{
+            display: inline-block;
+            width: 100px;
+        }
+        .payMoney{
+            color: red;
+        }
+        .paymentDetails .payBtnBox{
+            margin-right: 30px;
+        }
+        .paymentDetails .payBtnBox button{
+            padding: 10px ;
+            border: 5px;
+        }
+    </style>
+</head>
+<body>
+<%-include ('header.html')-%>
+<%-include ('personnav.html')-%>
+    <div id="detailsPageContent">
+        <header>
+            <div class="fl headerTitle">
+                <h3>订单详情</h3>
+            </div>
+        </header>
+        <section>
+            <div id="orderStep">
+                <div class="orderStep orderStep-01-box fl">
+                    <div class="stepName">拍下商品</div>
+                    <div class="stepState after">
+                        <div class="circleOut">
+                            <div class="circleIn">
+                                <span class="before">1</span>
+                                <span class="after">√</span>
+                            </div>
+                        </div>
+                        <div class="lineOutleft trans">
+                            <div class="lineOutLeftAfter"></div>
+
+                        </div><div class="lineOutRight">
+                        <div class="lineOutRightAfter"></div>
+                    </div>
+                    </div>
+                    <div class="stepTime">2019-12-12 23:58:32</div>
+                </div>
+                <div class="orderStep orderStep-02-box fl">
+                    <div class="stepName">付款</div>
+                    <div class="stepState   after">
+                        <div class="circleOut">
+                            <div class="circleIn">
+                                <span class="before">2</span>
+                                <span class="after">√</span>
+                            </div>
+                        </div>
+                        <div class="lineOutleft">
+                            <div class="lineOutLeftAfter"></div>
+                        </div><div class="lineOutRight">
+                        <div class="lineOutRightAfter"></div>
+                    </div>
+                    </div>
+                    <div class="stepTime">2019-12-12 23:58:32</div>
+                </div>
+                <div class="orderStep orderStep-03-box fl">
+                    <div class="stepName">卖家发货</div>
+                    <div class="stepState  now ">
+                        <div class="circleOut">
+                            <div class="circleIn">
+                                <span class="before">3</span>
+                                <span class="after">√</span>
+                            </div>
+                        </div>
+                        <div class="lineOutleft">
+                            <div class="lineOutLeftAfter"></div>
+
+                        </div><div class="lineOutRight">
+                        <div class="lineOutRightAfter"></div>
+                    </div>
+                    </div>
+                    <div class="stepTime">2019-12-12 23:58:32</div>
+                </div>
+                <div class="orderStep orderStep-04-box fl">
+                    <div class="stepName">确认收货</div>
+                    <div class="stepState before">
+                        <div class="circleOut">
+                            <div class="circleIn">
+                                <span class="before">4</span>
+                                <span class="after">√</span>
+                            </div>
+                        </div>
+                        <div class="lineOutleft">
+                            <div class="lineOutLeftAfter"></div>
+
+                        </div><div class="lineOutRight">
+                        <div class="lineOutRightAfter"></div>
+                    </div>
+                    </div>
+                    <div class="stepTime">2019-12-12 23:58:32</div>
+                </div>
+                <div class="orderStep orderStep-05-box fl">
+                    <div class="stepName">评价</div>
+                    <div class="stepState before">
+                        <div class="circleOut">
+                            <div class="circleIn">
+                                <span class="before">5</span>
+                                <span class="after">√</span>
+                            </div>
+                        </div>
+                        <div class="lineOutleft">
+                            <div class="lineOutLeftAfter"></div>
+
+                        </div><div class="lineOutRight trans">
+                        <div class="lineOutRightAfter"></div>
+                    </div>
+                    </div>
+                    <div class="stepTime">2019-12-12 23:58:32</div>
+                </div>
+            </div>
+
+        </section>
+        <section>
+            <div class="information">
+                <div class="left fl">
+                    <div class="title">
+                        <span>订单信息</span>
+                    </div>
+                    <div class="content">
+                        <div class="site">
+                            <div class="siteTitle fl">收货地址：</div>
+                            <div class="siteContent">四川省成都市成华区二仙桥东三路一号成都理工大学啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊阿</div>
+                        </div>
+                        <div class="orderNum">
+                            <div class="orderNumTitle fl">订单编号：</div>
+                            <div class="orderNumContent">10000000</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="orderState">订单状态: <span></span></div>
+                    <div class="tips">
+                        <ul>
+                            <li>您还有 <span>11天8小时26分11秒</span>来确认收货，超时订单将自动确认收货</li>
+                        </ul>
+                    </div>
+                    <div class="operation operationState">
+                        <span>您可以：</span>
+                        <button>付款</button>
+                        <button>确认收货</button>
+                        <button>取消订单</button>
+                        <button>申请售后</button>
+                        <button>延长收货时间</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="commodityDetails">
+                <div class="title">
+                    <h3>商品详情</h3>
+                </div>
+                <div class="contentTable">
+                    <table border="0">
+                        <tr class="titleTr">
+                            <th class="goodsPhoto">照片</th>
+                            <th class="goodsName">商品名称</th>
+                            <th class="goodsPrice">单价</th>
+                            <th class="goodsNum">数量</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="imgBox">
+                                    <img src="../images/xy/adimg_02.jpg" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="nameBox">商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称</div>
+                            </td>
+                            <td class="priceSingle">￥<span>123</span></td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="imgBox">
+                                    <img src="../images/xy/adimg_02.jpg" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="nameBox">商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称</div>
+                            </td>
+                            <td class="priceSingle">￥<span>123</span></td>
+                            <td>100</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="paymentDetails">
+                <div class="title">
+                    <h3>付款信息</h3>
+                </div>
+                <div class="content">
+                    <div class="total"><span class="label">商品总额： </span><span>￥1200.00</span></div>
+                    <div class="freight"><span class="label">运费： </span><span>￥0.00</span></div>
+                    <div class="freight"><span class="label">优惠金额： </span><span>￥600.00</span></div>
+                    <div class="freight"><span class="label">实付金额： </span><span class="payMoney">￥600.00</span></div>
+                    <div class="payBtnBox fr" >
+                        <button>去付款</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <%-include ('footer.html')-%>
+</body>
+</html>

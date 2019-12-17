@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>address</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        button{
+            border: 1px solid;
+            outline: none;
+        }
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+        .clearfix:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        body{
+            width: 1200px;
+            margin: 0 auto;
+            padding-left: 158px;
+            padding-top: 77px;
+        }
+        header{
+            padding-left: 80px;
+            height: 60px;
+            padding-right: 80px;
+        }
+        .headerTitle h3{
+            font-size: 30px;
+            color: #666666;
+        }
+        .headerNewBtn button{
+            height: 40px;
+            padding: 5px 15px;
+            margin-top: 8px;
+            border-radius: 5px;
+        }
+        .headerNewBtn button span{
+            font-size: 18px;
+        }
+        section{
+            padding-left: 80px;
+            background-color: cyan;
+            margin-top: 30px;
+        }
+        .addressPage{
+            width: 400px;
+            height: 180px;
+            border: 1px solid #666666;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .addressLeft{
+            margin-right: 150px;
+        }
+        .addressPage .content{
+            height: 130px;
+            padding: 10px 15px 0 15px;
+            border-bottom: 1px dashed #666666;
+        }
+        .nameBox{
+            height: 40px;
+            margin-right: 20px;
+        }
+        .nameBox .receiptName{
+            font-size: 22px;
+        }
+        .lableBox{
+            /*width: 70px;*/
+            padding-left: 2px;
+            padding-right: 2px;
+            /*border-radius: 30%;*/
+            height: 25px;
+            background-color: red;
+            color: #fff;
+        }
+        .addressbox{
+            height: 55px;
+            overflow: hidden;
+        }
+        .adressBtn button{
+            height: 30px;
+            padding-left: 5px;
+            padding-right: 5px;
+            margin-right: 5px;
+            margin-top: 5px;
+            border: 1px solid #666666;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="fl headerTitle">
+            <h3>收货地址</h3>
+        </div>
+        <div class="fr headerNewBtn">
+            <div>
+                <button>
+                    <span>新增地址</span>
+                    <span>+</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="addressPage addressLeft fl">
+            <div class="content">
+                <div class="clearfix">
+                    <div class="nameBox fl">
+                        <span class="receiptName">收货人姓名</span>
+                        <span class="shou">收</span>
+                    </div>
+                    <div class="lableBox fl"><span>默认地址</span></div>
+                </div>
+                <div class="addressbox">
+                    <span>四川省成都市成华区二仙桥东三路一号成都理工大学XXXXXXXXXXXXXXXX</span>
+                </div>
+                <div class="addressbox">
+                    <span><span>15680980000</span></span>
+                </div>
+            </div>
+            <div class="adressBtn">
+                <button class="fr delBtn">删除</button>
+                <button class="fr editBtn">编辑</button>
+                <!--<button class="fr defaultAddress">设为默认地址</button>-->
+            </div>
+        </div>
+        <div class="addressPage addressLeft fl">
+            <div class="content">
+                <div class="clearfix">
+                    <div class="nameBox fl">
+                        <span class="receiptName">收货人姓名</span>
+                        <span class="shou">收</span>
+                    </div>
+                    <!--<div class="lableBox fl"><span>默认地址</span></div>-->
+                </div>
+                <div class="addressbox">
+                    <span>四川省成都市成华区二仙桥东三路一号成都理工大学XXXXXXXXXXXXXXXX</span>
+                </div>
+                <div class="addressbox">
+                    <span><span>15680980000</span></span>
+                </div>
+            </div>
+            <div class="adressBtn">
+                <button class="fr delBtn">删除</button>
+                <button class="fr editBtn">编辑</button>
+                <button class="fr defaultAddress">设为默认地址</button>
+            </div>
+        </div>
+        <div class="addressPage addressLeft fl">
+            <div class="content">
+                <div class="clearfix">
+                    <div class="nameBox fl">
+                        <span class="receiptName">收货人姓名</span>
+                        <span class="shou">收</span>
+                    </div>
+                    <!--<div class="lableBox fl"><span>默认地址</span></div>-->
+                </div>
+                <div class="addressbox">
+                    <span>四川省成都市成华区二仙桥东三路一号成都理工大学XXXXXXXXXXXXXXXX</span>
+                </div>
+                <div class="addressbox">
+                    <span><span>15680980000</span></span>
+                </div>
+            </div>
+            <div class="adressBtn">
+                <button class="fr delBtn">删除</button>
+                <button class="fr editBtn">编辑</button>
+                <button class="fr defaultAddress">设为默认地址</button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

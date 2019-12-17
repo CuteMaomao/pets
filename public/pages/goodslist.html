@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+
+        .header-list li {
+            float: left;
+            width: 16.6%;
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            box-sizing: border-box;
+            font-weight: 600;
+        }
+
+        .header-list li:hover {
+            color: #459d36;
+            cursor: pointer;
+        }
+
+        section {
+            background: #f5f5f5;
+            min-width: 1200px;
+        }
+
+        .list-body {
+            width: 1200px;
+            margin: auto;
+            padding-top: 10px;
+            clear: both;
+        }
+
+        .type {
+            border: 1px silver solid;
+            position: absolute;
+            top: 23px;
+            left: -1px;
+            z-index: 99;
+            display: none;
+            background-color: white;
+            width: 120px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            box-sizing: border-box;
+        }
+
+        .type-menu {
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            float: left;
+            background: white;
+            border: 1px silver solid;
+            box-sizing: border-box;
+            font-size: 13px;
+            position: relative;
+            cursor: pointer;
+            width: 120px;
+        }
+
+        .type-menu:hover .type {
+            display: block;
+        }
+
+        .type li {
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background: white;
+            cursor: pointer;
+            box-sizing: border-box;
+            margin: auto;
+            border-bottom: 1px silver dotted;
+        }
+
+        .type li:hover {
+            background-color: rgb(246, 246, 246);
+        }
+
+        .type-arrow {
+            position: absolute;
+            right: 10px;
+            font-size: 14px !important;
+        }
+
+        .arrow {
+            float: left;
+            margin: 0 10px 0 10px;
+        }
+
+        .menu {
+            border: 1px solid silver;
+            border-bottom: none;
+            box-sizing: border-box;
+            width: 200px;
+            background: white;
+            float: left;
+        }
+
+        .menu li {
+            padding-left: 10px;
+            border-bottom: 1px silver solid;
+            box-sizing: border-box;
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .menu li:hover {
+            color: rgb(36, 141, 204);
+        }
+
+        .act {
+            color: #ff6600;
+            font-weight: bold;
+        }
+
+        .menu-first {
+            font-weight: bold;
+            font-size: 16px !important;
+        }
+
+        .option {
+            float: left;
+            margin-left: 50px;
+            width: 950px;
+            background: white;
+            border: 1px silver solid;
+            box-sizing: border-box;
+            padding: 30px;
+        }
+
+        .option-class {
+            margin-top: 10px;
+            overflow: hidden;
+            padding-bottom: 13px;
+            border-bottom: 1px silver dotted;
+        }
+
+        .brand {
+            margin-left: 10px;
+            float: left;
+            width: 80%;
+            border-top: #dddddd 1px solid;
+            border-left: #dddddd 1px solid;
+        }
+
+        .brand tr > td {
+            width: 15%;
+            height: 35px;
+            border-bottom: #dddddd 1px solid;
+            border-right: #dddddd 1px solid;
+            box-sizing: border-box;
+            text-align: center;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .sel {
+            background: #fff6ef;
+            color: #ff6302;
+        }
+
+        .brand tr > td:hover {
+            background: #fff6ef;
+            color: #ff6302;
+        }
+
+        .option-title {
+            margin-left: 5px;
+            float: left;
+            font-size: 14px;
+            color: #999999;
+            font-weight: 600;
+        }
+
+        .formula {
+            margin-left: 20px;
+            width: 60px;
+            display: block;
+            float: left;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .formula:hover {
+            color: white;
+            background: rgb(255, 99, 0);
+            cursor: pointer;
+        }
+
+        .condition li {
+            float: left;
+            border: 1px silver solid;
+            box-sizing: border-box;
+            width: 190px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: white;
+            position: relative;
+        }
+
+        .condition-sel {
+            background: #459d36 !important;
+            color: white;
+        }
+
+        .condition li:hover {
+            background: #459d36;
+            color: white;
+            cursor: pointer;
+        }
+
+        .jiantou-top {
+            position: absolute;
+            top: -8px;
+            color: silver;
+            font-size: 18px !important;
+            left: 115px;
+        }
+
+        .jiantou-down {
+            position: absolute;
+            top: 6px;
+            color: silver;
+            font-size: 18px !important;
+            left: 115px;
+        }
+
+        .total {
+            width: 250px !important;
+        }
+
+        .good {
+            width: 230px;
+            margin: 5px 10px 10px 0;
+            background: white;
+            border: 1px silver solid;
+            box-sizing: border-box;
+            float: left;
+            padding-right: 10px;
+            padding-bottom: 10px;
+        }
+
+        .good:hover {
+            border: 1px solid rgb(83, 170, 91);
+        }
+
+        .activity {
+            background: darkorange;
+            color: white;
+            font-size: 12px;
+        }
+
+        .good-tit {
+            margin-left: 10px;
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .price {
+            color: silver;
+            text-decoration: line-through;
+            font-size: 14px;
+        }
+
+        .symbol {
+            position: absolute;
+            color: darkorange;
+            font-size: 14px;
+            font-weight: bold;
+            top: 3px;
+            left: 150px;
+        }
+
+        .discount {
+            color: darkorange;
+            font-size: 14px;
+            font-weight: bold;
+            margin-left: 100px;
+        }
+
+        .unit-price {
+            color: silver;
+            font-size: 14px;
+            float: right;
+        }
+
+        a {
+            text-decoration: none;
+            out-line: none;
+            color: black;
+        }
+
+        a:active {
+            text-decoration: none;
+        }
+
+        .page {
+            margin: auto;
+            height: 40px;
+            width: 255px;
+        }
+
+        .page li {
+            float: left;
+            border: 1px solid silver;
+            text-align: center;
+            background: white;
+            height: 30px;
+            line-height: 30px;
+            margin-right: 5px;
+            padding-right: 10px;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+
+        .page li:hover {
+            background: #ff9900;
+            color: white;
+        }
+
+        .this {
+            background: #ff9900 !important;
+            color: white;
+            font-weight: bold;
+        }
+
+        .name:hover {
+            color: rgb(36, 141, 204);
+        }
+    </style>
+</head>
+<link rel="stylesheet" href="../fonts/wangqian/font/font_99iyapq3uis/iconfont.css">
+<body>
+<%-include('header.html')-%>
+<%-include('index.html')-%>
+<section>
+    <div>
+        <div class="list-body">
+            <div class="type-menu">
+                <span>狗狗</span>
+                <span class="iconfont icon-down_defalut type-arrow"></span>
+                <ul class="type">
+                    <li>狗狗</li>
+                    <li>猫猫</li>
+                    <li>仓鼠</li>
+                    <li>猪猪</li>
+                    <li>乌龟</li>
+                </ul>
+            </div>
+
+            <span class="arrow">
+                <span class="iconfont icon-icon-rightarrow "></span>
+            </span>
+            <div class="type-menu">
+                <span>狗狗主粮</span>
+                <span class="iconfont icon-down_defalut type-arrow"></span>
+                <ul class="type">
+                    <li>主粮</li>
+                    <li>零食</li>
+                    <li>玩具</li>
+                    <li>清洁</li>
+                    <li>服饰</li>
+                    <li>生活</li>
+                </ul>
+            </div>
+
+            <span class="arrow">
+                 <span class="iconfont icon-icon-rightarrow"></span>
+            </span>
+            <div class="type-menu">
+                <span>进口狗粮</span>
+                <span class="iconfont icon-down_defalut type-arrow"></span>
+                <ul class="type">
+                    <li>进口</li>
+                    <li>国产</li>
+                    <li>冻干</li>
+                    <li>功能</li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="list-body">
+            <ul class="menu">
+                <li class="menu-first">狗狗主粮</li>
+                <li class="act">进口主粮</li>
+                <li>国产主粮</li>
+                <li>功能主粮</li>
+                <li>冻干主粮</li>
+            </ul>
+            <div class="option">
+                <div class="option-class">
+                    <span class="option-title">品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌：</span>
+                    <table class="brand" cellspacing="0" cellpadding="0">
+                        <tbody>
+                        <tr class="brand-border">
+                            <td class="sel">全部</td>
+                            <td>品牌1</td>
+                            <td>品牌2</td>
+                            <td>品牌3</td>
+                            <td>品牌4</td>
+                            <td>品牌5</td>
+                        </tr>
+                        <tr>
+                            <td>品牌6</td>
+                            <td>品牌7</td>
+                            <td>品牌8</td>
+                            <td>品牌9</td>
+                            <td>品牌10</td>
+                            <td>品牌11</td>
+                        </tr>
+                        <tr>
+                            <td>品牌12</td>
+                            <td>品牌13</td>
+                            <td>品牌14</td>
+                            <td>品牌15</td>
+                            <td>品牌16</td>
+                            <td>品牌17</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="option-class">
+                    <span class="option-title">配&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方：</span>
+                    <span class="formula">鸡肉</span>
+                    <span class="formula">鱼肉</span>
+                    <span class="formula">羊肉</span>
+                    <span class="formula">牛肉</span>
+                    <span class="formula">鸭肉</span>
+                    <span class="formula">其他</span>
+                </div>
+                <div class="option-class">
+                    <span class="option-title">重量区间：</span>
+                    <span class="formula">小包</span>
+                    <span class="formula">中包</span>
+                    <span class="formula">大包</span>
+                </div>
+                <div class="option-class">
+                    <span class="option-title">颗粒大小：</span>
+                    <span class="formula">标准粒</span>
+                    <span class="formula">小颗粒</span>
+                    <span class="formula">大颗粒</span>
+                </div>
+            </div>
+        </div>
+        <div class="list-body">
+            <ul class="condition">
+                <li class="condition-sel">默认</li>
+                <li>销量
+                    <span class="iconfont icon-jiantou0101 jiantou-down"></span>
+                </li>
+                <li>人气
+                    <span class="iconfont icon-jiantou0101 jiantou-down"></span>
+                </li>
+                <li>新品
+                    <span class="iconfont icon-jiantou0101 jiantou-down"></span>
+                </li>
+                <li>价格
+                    <span class="iconfont icon-jiantou-copy1 jiantou-top"></span>
+                    <span class="iconfont icon-jiantou0101 jiantou-down"></span>
+                </li>
+                <li class="total">共找到xx件</li>
+            </ul>
+        </div>
+        <div class="list-body">
+            <!--第一个-->
+            <div class="good">
+                <a href="">
+                    <div>
+                        <img src="../images/wangqian/goods.jpg">
+                    </div>
+                    <div class="good-tit">
+                        <span class="activity">活动</span>
+                        <span class="name">商品名</span>
+                    </div>
+                    <div class="good-tit">
+                        <span class="price">具体价格</span>
+                        <span class="symbol">￥</span>
+                        <span class="discount">价格</span>
+                    </div>
+                    <div class="good-tit">
+                    <span class="unit-price">
+                        已售<span>xxx</span>件
+                    </span>
+                    </div>
+                </a>
+            </div>
+            <div class="good">
+                <a href="">
+                    <div>
+                        <img src="../images/wangqian/goods.jpg">
+                    </div>
+                    <div class="good-tit">
+                        <span class="activity">活动</span>
+                        <span class="name">商品名</span>
+                    </div>
+                    <div class="good-tit">
+                        <span class="price">具体价格</span>
+                        <span class="symbol">￥</span>
+                        <span class="discount">价格</span>
+                    </div>
+                    <div class="good-tit">
+                    <span class="unit-price">
+                        已售<span>xxx</span>件
+                    </span>
+                    </div>
+                </a>
+            </div>
+            <div class="good">
+                <a href="">
+                    <div>
+                        <img src="../images/wangqian/goods.jpg">
+                    </div>
+                    <div class="good-tit">
+                        <span class="activity">活动</span>
+                        <span class="name">商品名</span>
+                    </div>
+                    <div class="good-tit">
+                        <span class="price">具体价格</span>
+                        <span class="symbol">￥</span>
+                        <span class="discount">价格</span>
+                    </div>
+                    <div class="good-tit">
+                    <span class="unit-price">
+                        已售<span>xxx</span>件
+                    </span>
+                    </div>
+                </a>
+            </div>
+            <div class="good">
+                <a href="">
+                    <div>
+                        <img src="../images/wangqian/goods.jpg">
+                    </div>
+                    <div class="good-tit">
+                        <span class="activity">活动</span>
+                        <span class="name">商品名</span>
+                    </div>
+                    <div class="good-tit">
+                        <span class="price">具体价格</span>
+                        <span class="symbol">￥</span>
+                        <span class="discount">价格</span>
+                    </div>
+                    <div class="good-tit">
+                    <span class="unit-price">
+                        已售<span>xxx</span>件
+                    </span>
+                    </div>
+                </a>
+            </div>
+            <div class="good">
+                <a href="">
+                    <div>
+                        <img src="../images/wangqian/goods.jpg">
+                    </div>
+                    <div class="good-tit">
+                        <span class="activity">活动</span>
+                        <span class="name">商品名</span>
+                    </div>
+                    <div class="good-tit">
+                        <span class="price">具体价格</span>
+                        <span class="symbol">￥</span>
+                        <span class="discount">价格</span>
+                    </div>
+                    <div class="good-tit">
+                    <span class="unit-price">
+                        已售<span>xxx</span>件
+                    </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="list-body">
+            <ol class="page">
+                <li class="this">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>下一页</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<%-include ('footer.html')-%>
+</body>
+</html>
