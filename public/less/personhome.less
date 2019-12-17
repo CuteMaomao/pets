@@ -93,10 +93,25 @@ a{
 }
 .order-box{
     padding: @fon3 @fon5;
-    img{
-        width: @heig2;
-        height: @heig3;
-        vertical-align: middle;
+    .home-no-orderbox{
+        height: @heig1*3;
+        padding: 50px;
+        img{
+            width: @heig1*3;
+        }
+        div{
+            float: left;
+            height: @heig1*3;
+            line-height: @heig1*3;
+            span{
+                text-decoration: underline;
+                cursor: pointer;
+                &:hover{
+                    color: @col3;
+                }
+            }
+        }
+
     }
     ul>li{
         height: @heig1;
@@ -110,6 +125,11 @@ a{
             a:hover{
                 color: @col3;
             }
+        }
+        img{
+            width: @heig2;
+            height: @heig3;
+            vertical-align: middle;
         }
     }
 }

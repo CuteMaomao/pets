@@ -59,5 +59,8 @@ server.get("/orderpage",function(req,res){
 server.get("/orderdetails",function(req,res){
     res.render("orderdetails");
 });
+server.get("/address",function(req,res){
+    res.render("address");
+});
 //给服务配置端口号
 server.listen(893);
