@@ -153,10 +153,15 @@ a {
   line-height: 300px;
 }
 .order-box .home-no-orderbox div span {
-  text-decoration: underline;
-  cursor: pointer;
+  float: left;
 }
-.order-box .home-no-orderbox div span:hover {
+.order-box .home-no-orderbox div a {
+  float: left;
+  width: 20px;
+  height: 20px;
+  text-decoration: underline;
+}
+.order-box .home-no-orderbox div a:hover {
   color: #33CA97;
 }
 .order-box ul > li {
