@@ -17,19 +17,6 @@ oJc.mouseleave(function () {
     oJc.css('color','#444444');
 });
 
-/*oJc.mouseleave(function () {
-    setInterval(test,500);
-});
-function test(event) {
-    if(event.clientX>1005 && event.clientX<1105 && event.clientY<150){
-        alert(1);
-        oJc1.css('display','block');
-        oJc.css('color','skyblue');
-    }else{
-        oJc1.css('display','none');
-        oJc.css('color','#444444');
-    }
-}*/
 var oSc=$('.sc');
 var oSc1=$('#scxiala');
 
@@ -39,7 +26,6 @@ oSc.mouseenter(function () {
 oSc.mouseleave(function () {
     oSc1.css('display','none');
 });
-
 
 
 // ---------------------------轮播图
@@ -76,8 +62,8 @@ $('.clsfyCt2').mouseout(function(){
     timer=setInterval(move,2000);
 });
 timer=setInterval(move,2000);
-//----------------------移入左移
 
+//-------------------------------------移入左移
 $('.adAll').mouseenter(function () {
     $(this).css('marginLeft','10px')
 });
@@ -98,15 +84,10 @@ $('.clAll').mouseenter(function () {
 $('.clAll').mouseleave(function () {
     $(this).css('marginLeft','20px')
 });
-// -------------------悬浮在li上下边框变色
+// ---------------------------------------悬浮在li上下边框变色
 var aTwoMenuChildren=$('.twoMenu>div');
-$('#ul li').mouseover(function () {
-  /*  for(var i=0;i<$(this).siblings().length;i++){
-        aTwoMenuChildren.css('display','none');
-        if($(this).index()==aTwoMenuChildren.eq(i)){
-            aTwoMenuChildren.eq(i).css('display','block');
-        }
-    }*/
+$('#ul1 li').mouseover(function () {
+    aTwoMenuChildren.eq($(this).index()).css('display','block');
     if($(this).index()==0){
         $(this).css({
             'border-bottom':'0.1px solid green',
@@ -129,11 +110,11 @@ $('#ul li').mouseover(function () {
 
         }
     }
+
 });
-
-
-$('#ul li').mouseout(function () {
-
+// -------------------------------------移出li时li的样式恢复，二级菜单消失
+$('#ul1 li').mouseout(function () {
+    aTwoMenuChildren.eq($(this).index()).css('display','none');
     if($(this).index()==$(this).siblings().length){
         $(this).css({
             'border-top':'none',

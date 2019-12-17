@@ -200,6 +200,7 @@ section.nav{
     color:white;
     font-size: 35px;
     border-radius:12px;
+    line-height: 35px;
 }
 .cart>p span{
     color:red;
@@ -288,6 +289,7 @@ ul.classLi li a:hover{
     position:absolute;
     left:75px;
     top:0;
+    z-index: 999;
     border-left: 1px solid #e0e0e0;
     border-right: 1px solid #e0e0e0;
     border-bottom: 1px solid #e0e0e0;
@@ -334,12 +336,12 @@ ul.classLi li a:hover{
 .twoMenu{
     width:570px;
     position: absolute;
-    left:227px;
+    left:225px;
     top:0;
-    z-index:2;
+    z-index:1;
     background-color: #FFFFFF;
-    border: 1px solid green;
-    box-shadow: 0 0 3px green;
+    border: 0.1px solid green;
+    box-shadow: 1px 1px 3px green;
 }
 .part1{
     padding-left:10px;
@@ -385,7 +387,10 @@ ul.classLi li a:hover{
     padding-left: 5px;
     font-size: 12px;
 }
-.twoMenu{
+/*.twoMenu{
+    display: none;
+}*/
+.one,.two,.three,.four,.five,.six{
     display: none;
 }
 
@@ -645,7 +650,7 @@ ul.classLi li a:hover{
     background-image: url("../images/wuqin_image/k9.jpg");
 }
 .pt4rightDown3{
-    background-image: url("../wimages/uqin_image/lbiyaya.jpg");
+    background-image: url("../images/wuqin_image/lbiyaya.jpg");
 }
 .pt5rightDown3{
     background-image: url("../images/wuqin_image/ouweihua.jpg");
