@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心-首页-修改绑定电话</title>
+    <link rel="stylesheet" href="../css/personmsg_edit_phone.css">
+</head>
+<body>
+<%-include ('personnav.html')-%>
+<div class="personmsg-edit-phone">
+    <h2>
+        修改绑定电话
+    </h2>
+    <form>
+        <div class="personmsg-edit-phone-all">
+            <label>新手机号码：</label>
+            <input type="number" class="input-style">
+            <div class="getcode">
+                <a class="btn-style" href="#">获取验证码</a>
+            </div>
+        </div>
+        <div class="code">
+            <label>验证码：</label>
+            <input type="text" class="input-style" style="margin-left: 96px">
+        </div>
+        <div class="next" style="margin-left: 96px">
+            <a class="btn-style" href="/personmsg">确定</a>
+        </div>
+    </form>
+</div>
+<%-include ('footer.html')-%>
+</body>
+</html>

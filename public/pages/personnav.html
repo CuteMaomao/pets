@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="../css/personnav.css">
+    <link rel="stylesheet" href="../fonts/hq/iconfont.css">
+</head>
+<body>
+<header>
+    <div class="person-box">
+        <div class="person-logo">
+            <a href="#">
+                <img src="../images/huangqian/title_white.png">
+                <h6>
+                    <span class="iconfont icon-yixianshi-"></span>
+                    <span>返回玖宠首页</span>
+                </h6>
+            </a>
+        </div>
+        <div class="person-top-nav">
+            <a href="/personhome">
+                首页
+            </a>
+        </div>
+        <div class="person-search">
+            <input type="text" placeholder="狗粮">
+            <span class="iconfont icon-sousuo"></span>
+        </div>
+        <div class="person-car">
+            <a href="#">
+                <div class="cart-icon-all">
+                    <span class="cart-icon iconfont icon-icon22fuzhi"></span>
+                </div>
+                <div class="cart-mn">
+                    <span class="car-msg iconfont icon-xiaoxi"></span>
+                    <span class="car-num">2</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</header>
+<section>
+    <nav>
+        <ul id="personnav-ul">
+            <li class="personnav-li-before">
+                <a href="#">我的订单</a>
+            </li>
+            <li class="personnav-li-before">
+                <a href="#">我的评价</a>
+            </li>
+            <li class="personnav-li-before">
+                <a href="#">我的收藏</a>
+            </li>
+            <li class="personnav-li-before">
+                <a href="/personmsg">个人信息</a>
+            </li>
+            <li class="personnav-li-before">
+                <a href="#">收货地址</a>
+            </li>
+<!--            <li class="personnav-li-before">-->
+<!--                <a href="#">我的售后</a>-->
+<!--            </li>-->
+        </ul>
+    </nav>
+</section>
+</body>
+<script src="../util/jquery-3.4.1.min.js"></script>
+<script>
+    //导航点击效果
+    var aLi=$('#personnav-ul li');
+    var aA=$('#personnav-ul li a');
+    var n=0;
+    aLi.click(function () {
+        n=$(this).index();
+        for (var i=0;i<aLi.length;i++){
+            aLi.removeClass('personnav-li-after');
+            aLi.removeClass('personnav-li-before');
+            aA.removeClass('personnav-li-a-after');
+            aA.removeClass('personnav-li-a-before');
+        }
+        aLi.eq(n).addClass('personnav-li-after').siblings().addClass('personnav-li-before');
+        console.log(aA.eq(n).parent().siblings())
+        aA.eq(n).addClass('personnav-li-a-after').parent().siblings().children(0).addClass('personnav-li-a-before');
+    });
+</script>
+</html>

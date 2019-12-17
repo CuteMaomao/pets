@@ -1,0 +1,132 @@
+@import "demo";
+a{
+    display: block;
+}
+.personmsg{
+    width: 62%;
+    padding: @pad3;
+    background: @col1;
+    margin-left: 285px;
+    margin-top: 20px;
+}
+.personmsg-form{
+    margin: 20px 180px;
+    div{
+        margin-bottom: @fon5;
+    }
+}
+.personmsg-form label,.personmsg-head{
+    float: left;
+}
+h2{
+    border-bottom: 1px solid @col9;
+    height: @heig2/2;
+    span{
+        padding: 10px;
+        border-left: 1px solid @col9;
+        border-right: 1px solid @col9;
+        border-top: 1px solid @col9;
+        margin-left: @fon3;
+    }
+}
+.form-head{
+    height: @heig2;
+}
+.personmsg-head{
+    position: relative;
+    width: @heig2;
+    margin-left: @wid5;
+    &:hover .personmsg-head-edit{
+        display: block;
+    }
+}
+.personmsg-head-img {
+    width: @heig2;
+    vertical-align: top;
+    border-radius: 50%;
+}
+.personmsg-head-edit{
+    width: @heig2;
+    position: absolute;
+    top: 69%;
+    left: 0;
+    height: @heig6;
+    line-height: @heig6;
+    background: @bgcol2;
+    display: none;
+    text-align: center;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    a{
+        font-size: @fon2;
+        font-family: '幼圆';
+        color: @col1;
+    }
+}
+.personmsg-name,.personmsg-othername,h5{
+    margin-left: 130px;
+}
+.personmsg-date>span{
+    font-size: @fon2;
+    margin-right: @fon8;
+    margin-left: @fon8;
+}
+.personmsg-year{
+    width: @heig2;
+}
+select{
+    height: @heig6;
+    color: @col7;
+    background: @col1;
+    border: 1px solid @col5;
+    box-shadow: @boxsha;
+}
+.personmsg-month,.personmsg-day{
+    width: @heig2/2;
+}
+h5{
+    font-weight: lighter;
+    margin-top: @fon8;
+}
+.personmsg-boy,.personmsg-year{
+    margin-left: 83px;
+}
+.personmsg-girl{
+    margin-left: @fon5;
+}
+.personmsg-phone{
+    width: @wid4/2;
+    float: left;
+    margin-left: 50px;
+}
+.personmsg-phone-edit{
+    width: 70px;
+    float: left;
+    margin-left: @fon3;
+    a{
+        width: @wid5;
+        font-size: @fon2;
+        height: 28px;
+        line-height: 28px;
+        color: @col1;
+    }
+}
+.personmsg-phone-all{
+    overflow: hidden;
+    line-height: @heig3/2;
+}
+.personmsg-btn-save{
+    width: @wid6;
+    margin-left: @heig1;
+    button{
+        width: @wid6;
+        height: 38px;
+        line-height: 38px;
+        font-size: @fon7;
+        background: @col3;
+        color: @col1;
+    }
+}
+.active{
+    border-top: 5px solid @col3;
+}

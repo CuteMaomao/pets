@@ -1,0 +1,133 @@
+@import "demo";
+header{
+    width: @wid1;
+    height: @heig1;
+    background: @col3;
+    color: @col1;
+    a{
+        color: @col1;
+    }
+}
+.person-box{
+    width: @wid2;
+    margin: 0 auto;
+    height: @heig1;
+}
+.person-logo{
+    width: @wid3;
+    text-align: center;
+    margin-top: @fon1;
+    float: left;
+    img{
+        width: @heig1;
+    }
+    h6{
+        font-size: @fon1;
+    }
+}
+.person-top-nav{
+    height: @heig1;
+    line-height: @heig1;
+    float: left;
+    margin-left: @heig1;
+    font-size: @fon4;
+}
+.person-search{
+    height: @heig1;
+    line-height: @heig1;
+    float: left;
+    margin-left: 340px;
+    position: relative;
+    span{
+        position: absolute;
+        top: 0;
+        left: 235px;
+        display: block;
+        color: @col4;
+        font-size: @fon3;
+    }
+    input{
+        outline: none;
+        display: block;
+        width: @wid4;
+        height: @fon3;
+        padding: 6px @fon1;
+        font-size: @fon2;
+        color: @col7;
+        background: @col1;
+        border: 1px solid @col5;
+        border-radius: 2px;
+        box-shadow: @boxsha;
+        margin: 33px;
+    }
+}
+.person-car{
+    float: left;
+    height: @heig1;
+    a{
+        position: relative;
+        display: block;
+        height: @heig1;
+    }
+}
+section{
+    width: @wid3;
+    margin: 0 @heig1 0;
+    nav {
+        width: @wid3;
+        background: @col1;
+        margin: 20px 0;
+        ul{
+            margin-top: 2%;
+            li{
+                width: @wid3;
+                height: @heig1/2;
+                line-height: @heig1/2;
+                &:hover{
+                    background: @bgcol1;
+                }
+                a{
+                    &:hover{
+                        color: @col1;
+                    }
+                }
+            }
+        }
+    }
+}
+.personnav-li-before{
+    background: @col1;
+}
+.personnav-li-after{
+    background: @bgcol1;
+}
+.personnav-li-a-before{
+    color: @col4;
+}
+.personnav-li-a-after{
+    color: @col1;
+}
+.cart-icon{
+    font-size: @fon5!important;
+    line-height: @heig1;
+}
+.cart-icon-all{
+    width: @fon5;
+}
+.cart-icon-all,.cart-mn{
+    float: left;
+}
+.cart-mn{
+    margin-top: @fon3;
+    position: relative;
+    .car-msg{
+        font-size: @fon4!important;
+    }
+    .car-num{
+        position: absolute;
+        top: 17%;
+        left: 34%;
+        color: @col6;
+        font-size: @fon2;
+    }
+}

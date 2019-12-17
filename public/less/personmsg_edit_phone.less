@@ -1,0 +1,78 @@
+@import "demo";
+a{
+    color: @col4;
+    display: block;
+}
+form{
+    margin: 60px 150px;
+    label{
+        float: left;
+        height: @heig3/2;
+        line-height: @heig3/2;
+    }
+}
+form>div{
+    margin-bottom: 30px;
+}
+.personmsg-edit-phone{
+    width: 62%;
+    padding: @pad2;
+    background: @col1;
+    margin-left: 285px;
+    margin-top: 20px;
+}
+h2{
+    padding: @pad2;
+    border-bottom: 1px solid @col9;
+    margin-left: @fon3;
+}
+.btn-style {
+    text-align: center;
+    border-radius: @fon8;
+    color: @col1;
+}
+.getcode{
+    width: @wid5*2;
+    float: left;
+    margin-left: @fon3;
+    a{
+        width: @wid5*2;
+        font-size: @fon2;
+        height: @heig2/2;
+        line-height: @heig2/2;
+        color: @col3;
+        border: 1px solid @col3;
+        background: @col2;
+    }
+}
+/*禁用滚轮事件*/
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
+    -webkit-appearance:textfield;
+}
+input[type="number"]{
+    -moz-appearance:textfield;
+}
+.personmsg-edit-phone-all{
+    overflow: hidden;
+    input{
+        float: left;
+        overflow: hidden;
+        height: @heig3/2;
+    }
+}
+.next{
+    width: @wid4/2;
+    margin-left: @heig2;
+    a,button{
+        width: @wid4/2;
+        height: @heig1/2;
+        line-height: @heig1/2;
+        font-size: @fon9;
+        background: @col3;
+        border: 1px solid @col5;
+    }
+}
+.code>input{
+    margin-left: @heig2;
+    height: @heig3/2;
+}

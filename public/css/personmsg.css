@@ -1,0 +1,175 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+body {
+  background: #F8F6F6;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  display: block;
+}
+ul,
+li {
+  text-align: center;
+}
+button,
+input {
+  outline: none;
+}
+.btn-style {
+  text-align: center;
+  background: #33CA97;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+}
+.input-style {
+  display: block;
+  width: 200px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #555;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+a {
+  display: block;
+}
+.personmsg {
+  width: 62%;
+  padding: 30px 20px;
+  background: #fff;
+  margin-left: 285px;
+  margin-top: 20px;
+}
+.personmsg-form {
+  margin: 20px 180px;
+}
+.personmsg-form div {
+  margin-bottom: 30px;
+}
+.personmsg-form label,
+.personmsg-head {
+  float: left;
+}
+h2 {
+  border-bottom: 1px solid #D5D5D5;
+  height: 40px;
+}
+h2 span {
+  padding: 10px;
+  border-left: 1px solid #D5D5D5;
+  border-right: 1px solid #D5D5D5;
+  border-top: 1px solid #D5D5D5;
+  margin-left: 20px;
+}
+.form-head {
+  height: 80px;
+}
+.personmsg-head {
+  position: relative;
+  width: 80px;
+  margin-left: 50px;
+}
+.personmsg-head:hover .personmsg-head-edit {
+  display: block;
+}
+.personmsg-head-img {
+  width: 80px;
+  vertical-align: top;
+  border-radius: 50%;
+}
+.personmsg-head-edit {
+  width: 80px;
+  position: absolute;
+  top: 69%;
+  left: 0;
+  height: 25px;
+  line-height: 25px;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  text-align: center;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+.personmsg-head-edit a {
+  font-size: 14px;
+  font-family: '幼圆';
+  color: #fff;
+}
+.personmsg-name,
+.personmsg-othername,
+h5 {
+  margin-left: 130px;
+}
+.personmsg-date > span {
+  font-size: 14px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.personmsg-year {
+  width: 80px;
+}
+select {
+  height: 25px;
+  color: #555;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+.personmsg-month,
+.personmsg-day {
+  width: 40px;
+}
+h5 {
+  font-weight: lighter;
+  margin-top: 10px;
+}
+.personmsg-boy,
+.personmsg-year {
+  margin-left: 83px;
+}
+.personmsg-girl {
+  margin-left: 30px;
+}
+.personmsg-phone {
+  width: 100px;
+  float: left;
+  margin-left: 50px;
+}
+.personmsg-phone-edit {
+  width: 70px;
+  float: left;
+  margin-left: 20px;
+}
+.personmsg-phone-edit a {
+  width: 50px;
+  font-size: 14px;
+  height: 28px;
+  line-height: 28px;
+  color: #fff;
+}
+.personmsg-phone-all {
+  overflow: hidden;
+  line-height: 30px;
+}
+.personmsg-btn-save {
+  width: 66px;
+  margin-left: 100px;
+}
+.personmsg-btn-save button {
+  width: 66px;
+  height: 38px;
+  line-height: 38px;
+  font-size: 16px;
+  background: #33CA97;
+  color: #fff;
+}
+.active {
+  border-top: 5px solid #33CA97;
+}
