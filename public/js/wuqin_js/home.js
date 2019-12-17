@@ -100,13 +100,8 @@ $('.clAll').mouseleave(function () {
 });
 // -------------------悬浮在li上下边框变色
 var aTwoMenuChildren=$('.twoMenu>div');
-$('#ul li').mouseover(function () {
-  /*  for(var i=0;i<$(this).siblings().length;i++){
-        aTwoMenuChildren.css('display','none');
-        if($(this).index()==aTwoMenuChildren.eq(i)){
-            aTwoMenuChildren.eq(i).css('display','block');
-        }
-    }*/
+$('#ul1 li').mouseover(function () {
+    aTwoMenuChildren.eq($(this).index()).css('display','block');
     if($(this).index()==0){
         $(this).css({
             'border-bottom':'0.1px solid green',
@@ -132,8 +127,8 @@ $('#ul li').mouseover(function () {
 });
 
 
-$('#ul li').mouseout(function () {
-
+$('#ul1 li').mouseout(function () {
+    aTwoMenuChildren.eq($(this).index()).css('display','none');
     if($(this).index()==$(this).siblings().length){
         $(this).css({
             'border-top':'none',
