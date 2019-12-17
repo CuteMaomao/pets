@@ -497,19 +497,19 @@ ul.classLi li a:hover{
     transition: 300ms background-position linear;
 }
 .pt1rightUpLeft{
-    background-image: url("../wuqin_image/biruiji.jpg");
+    background-image: url("../images/wuqin_image/biruiji.jpg");
 }
 .pt2rightUpLeft{
-    background-image: url("../wuqin_image/wanpi.jpg");
+    background-image: url("../images/wuqin_image/wanpi.jpg");
 }
 .pt3rightUpLeft{
-    background-image: url("../wuqin_image/chaokexin.jpg");
+    background-image: url("../images/wuqin_image/chaokexin.jpg");
 }
 .pt4rightUpLeft{
-    background-image: url("../wuqin_image/xuebao.jpg");
+    background-image: url("../images/wuqin_image/xuebao.jpg");
 }
 .pt5rightUpLeft{
-    background-image: url("../wuqin_image/kong.jpg");
+    background-image: url("../images/wuqin_image/kong.jpg");
 }
 /*-----------右侧上部分-右边------*/
 .pt1rightUpRight{
@@ -526,19 +526,19 @@ ul.classLi li a:hover{
     transition: 300ms background-position linear;
 }
 .pt1rightUpRightUp{
-    background-image: url("../wuqin_image/guanneng.jpg");
+    background-image: url("../images/wuqin_image/guanneng.jpg");
 }
 .pt2rightUpRightUp{
-     background-image: url("../wuqin_image/baolu.jpg");
+     background-image: url("../images/wuqin_image/baolu.jpg");
  }
 .pt3rightUpRightUp{
-    background-image: url("../wuqin_image/baier.jpg");
+    background-image: url("../images/wuqin_image/baier.jpg");
 }
 .pt4rightUpRightUp{
-    background-image: url("../wuqin_image/riyong.jpg");
+    background-image: url("../images/wuqin_image/riyong.jpg");
 }
 .pt5rightUpRightUp{
-    background-image: url("../wuqin_image/west.jpg");
+    background-image: url("../images/wuqin_image/west.jpg");
 }
 /*-----------右侧上部分-右边下部分------*/
 .pt1rightUpRightDown,.pt2rightUpRightDown,.pt3rightUpRightDown,.pt4rightUpRightDown,.pt5rightUpRightDown{
@@ -549,19 +549,19 @@ ul.classLi li a:hover{
     transition: 300ms background-position linear;
 }
 .pt1rightUpRightDown{
-    background-image: url("../wuqin_image/sibeiliang.jpg");
+    background-image: url("../images/wuqin_image/sibeiliang.jpg");
 }
 .pt2rightUpRightDown{
-    background-image: url("../wuqin_image/xianzhuan.jpg");
+    background-image: url("../images/wuqin_image/xianzhuan.jpg");
 }
 .pt3rightUpRightDown{
-    background-image: url("../wuqin_image/EHD.jpg");
+    background-image: url("../images/wuqin_image/EHD.jpg");
 }
 .pt4rightUpRightDown{
-    background-image: url("../wuqin_image/foOlee.jpg");
+    background-image: url("../images/wuqin_image/foOlee.jpg");
 }
 .pt5rightUpRightDown{
-    background-image: url("../wuqin_image/hongjiaoya.jpg");
+    background-image: url("../images/wuqin_image/hongjiaoya.jpg");
 }
 /*-----------右侧下部分*/
 .pt1rightDown{
@@ -596,39 +596,39 @@ ul.classLi li a:hover{
     transition: 300ms background-position linear;
 }
 .pt1rightDown1{
-    background-image: url("../wuqin_image/naijisi.jpg");
+    background-image: url("../images/wuqin_image/naijisi.jpg");
 }
 .pt2rightDown1{
-    background-image: url("../wuqin_image/mengbei.jpg");
+    background-image: url("../images/wuqin_image/mengbei.jpg");
 }
 .pt3rightDown1{
-    background-image: url("../wuqin_image/duola.jpg");
+    background-image: url("../images/wuqin_image/duola.jpg");
 }
 .pt4rightDown1{
-    background-image: url("../wuqin_image/duonisi.jpg");
+    background-image: url("../images/wuqin_image/duonisi.jpg");
 }
 .pt5rightDown1{
-    background-image: url("../wuqin_image/taiwan.jpg");
+    background-image: url("../images/wuqin_image/taiwan.jpg");
 }
 /*-----------右侧下部分,第二--------*/
 .pt1rightDown2{
-    background-image: url("../wuqin_image/chuncui.jpg");
+    background-image: url("../images/wuqin_image/chuncui.jpg");
 }
 
 .pt2rightDown2{
-    background-image: url("../wuqin_image/binggan.jpg");
+    background-image: url("../images/wuqin_image/binggan.jpg");
 }
 
 .pt3rightDown2{
-    background-image: url("../wuqin_image/maideshi.jpg");
+    background-image: url("../images/wuqin_image/maideshi.jpg");
 }
 
 .pt4rightDown2{
-    background-image: url("../wuqin_image/ailisi.jpg");
+    background-image: url("../images/wuqin_image/ailisi.jpg");
 }
 
 .pt5rightDown2{
-    background-image: url("../wuqin_image/kuji.jpg");
+    background-image: url("../images/wuqin_image/kuji.jpg");
 }
 /*-----------右侧下部分,第三*/
 
@@ -636,19 +636,19 @@ ul.classLi li a:hover{
     transition: 300ms background-position linear;
 }
 .pt1rightDown3{
-    background-image: url("../wuqin_image/niudun.jpg");
+    background-image: url("../images/wuqin_image/niudun.jpg");
 }
 .pt2rightDown3{
-    background-image: url("../wuqin_image/meiliya.jpg");
+    background-image: url("../images/wuqin_image/meiliya.jpg");
 }
 .pt3rightDown3{
-    background-image: url("../wuqin_image/k9.jpg");
+    background-image: url("../images/wuqin_image/k9.jpg");
 }
 .pt4rightDown3{
-    background-image: url("../wuqin_image/lbiyaya.jpg");
+    background-image: url("../wimages/uqin_image/lbiyaya.jpg");
 }
 .pt5rightDown3{
-    background-image: url("../wuqin_image/ouweihua.jpg");
+    background-image: url("../images/wuqin_image/ouweihua.jpg");
 }
 .t1{
     margin-left:10%;
@@ -678,6 +678,95 @@ ul.classLi li a:hover{
 .pt5rightDown3:hover
 {
     background-position-x: -5px;
+}
+footer {
+    background: #F8F6F6;
+    margin: 0;
+}
+footer a {
+    text-decoration: none;
+    display: block;
+}
+footer ul,
+footer li {
+    text-align: center;
+}
+footer button,
+footer input {
+    outline: none;
+}
+.btn-style {
+    text-align: center;
+    background: #33CA97;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+}
+.input-style {
+    display: block;
+    width: 200px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #555;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+footer {
+    padding-left:75px;
+    width: 100%;
+    height: 355px;
+    background: #F8F6F6;
+}
+.top {
+    width: 100%;
+    height: 240px;
+}
+.top-left {
+    width: 20%;
+    float: left;
+    margin-top: 2%;
+    margin-left: 2%;
+}
+.bottom {
+    width: 100%;
+    height: 80px;
+}
+nav {
+    float: left;
+    width: 78%;
+}
+nav ul {
+    float: left;
+    width: 18%;
+    text-align: center;
+}
+nav ul li {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+}
+nav ul li a {
+    color: #000;
+}
+.footer-nav {
+    margin: 6% 0 2%;
+}
+.footer-nav ul > li > a:hover {
+    color: red;
+}
+.part-title {
+    font-weight: bolder;
+    margin-bottom: 6%;
+}
+.bottom > div {
+    width: 417px;
+    margin: 0 auto;
+}
+.bottom-text {
+    font-size: 14px;
+    color: #9a9a9b;
 }
 
 
