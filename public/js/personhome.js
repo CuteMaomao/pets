@@ -20,3 +20,4 @@ leftBtn.click(function () {
         n=0;
     }
 });
+//获取当前用户信息

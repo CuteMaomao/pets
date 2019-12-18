@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>个人中心-首页-修改头像</title>
     <link rel="stylesheet" href="../css/personmsg_edit_head.css">
+    <script src="../js/personmsg_edit_head.js"></script>
 </head>
 <body>
 <%-include ('header.html')-%>
@@ -20,19 +21,18 @@
             <input id="uploadimg" type="file">
             <div class="personmsg-edit-head-info">
                 <h5>推荐头像</h5>
-                <div>
-                    <img src="../images/huangqian/bh1.jpg">
-                    <img src="../images/huangqian/bh2.jpg">
-                    <img src="../images/huangqian/bh3.jpg">
-                    <img src="../images/huangqian/bh4.jpg">
-                </div>
-                <div>
-                    <img src="../images/huangqian/gh1.jpg">
-                    <img src="../images/huangqian/gh2.jpg">
-                    <img src="../images/huangqian/gh3.jpg">
-                    <img src="../images/huangqian/gh4.jpg">
-                </div>
+                <ul id="infoHeadList">
+                    <li><img src="../images/huangqian/bh1.jpg"></li>
+                    <li><img src="../images/huangqian/bh2.jpg"></li>
+                    <li><img src="../images/huangqian/bh3.jpg"></li>
+                    <li><img src="../images/huangqian/bh4.jpg"></li>
+                    <li><img src="../images/huangqian/gh1.jpg"></li>
+                    <li><img src="../images/huangqian/gh2.jpg"></li>
+                    <li><img src="../images/huangqian/gh3.jpg"></li>
+                    <li><img src="../images/huangqian/gh4.jpg"></li>
+                </ul>
             </div>
+            <div id="mask"></div>
             <button id="saveHeadBtn">保存</button>
         </div>
         <div class="personmsg-edit-head-look">
@@ -50,13 +50,65 @@
 </div>
 <%-include ('footer.html')-%>
 </body>
-<script>
-    var c1=document.getElementById('c1');
-    var gd=c1.getContext('2d');
+<script type="text/javascript">
+    var canvas1=document.getElementById('c1');
+    var gd=canvas1.getContext('2d');
     var oImg=new Image();
     oImg.src='../images/huangqian/no-head.png';
+    oImg.setAttribute('width','150');
     oImg.onload = function(){
         gd.drawImage(oImg,80,80);
     }
+    var gd2 = canvas1.getContext('2d');
+    var oFile = document.getElementById('uploadimg');
+    oFile.addEventListener('change', function () {
+        var reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload = function(e) {
+            var oImg2 = new Image();
+            oImg2.src = e.target.result;
+            oImg2.onload = function(){
+                gd2.drawImage(oImg2,0,0,400,400);
+            }
+        };
+    });
+    //推荐头像
+    $("#infoHeadList li").each(function(){
+        $(this).click(function(){
+            var src=$(this).children(0).attr('src');
+            var gd3 = canvas1.getContext('2d');
+            oImg.src=src;
+            oImg.setAttribute('width','150');
+            oImg.onload = function(){
+                gd3.drawImage(oImg,0,0,400,400);
+            }
+        })
+    })
+
+    //上传图片之后出现裁剪工具
+    //判断canvas的图片
+    var oMark = document.getElementById("mark");
+    if (oImg.src!='../images/huangqian/no-head.png') {
+
+    }
+    //拖拽
+    var disX=0;
+    var disY=0;
+    function fnMove() {
+        oMark.style.left=event.clientX-disX+'px';
+        oMark.style.top=event.clientY-disY+'px';
+    }
+
+    function fnUp() {
+        $(document).off('mousemove',fnMove);
+        $(document).off('mouseup',fnUp);
+    }
+    oMark.onmousedown=function () {
+        disX=event.offsetX;
+        disY=event.offsetY;
+        $(document).on('mousemove',fnMove);
+        $(document).on('mouseup',fnUp);
+    }
+
 </script>
 </html>

@@ -68,9 +68,6 @@ h2 {
   border: 1px solid #D5D5D5;
   background: #D5D5D5;
 }
-#c1 img {
-  width: 150px;
-}
 .personmsg-edit-head-big {
   float: left;
   padding-right: 70px;
@@ -109,11 +106,24 @@ h2 {
 .personmsg-edit-head-info {
   margin-top: 20px;
 }
-.personmsg-edit-head-info div {
+.personmsg-edit-head-info ul {
   width: 300px;
   margin-top: 10px;
 }
-.personmsg-edit-head-info div img {
+.personmsg-edit-head-info ul li {
+  float: left;
+  margin: 2px;
+}
+.personmsg-edit-head-info ul li img {
   width: 55px;
   margin-right: 16px;
+}
+#mask {
+  width: 100px;
+  height: 100px;
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: move;
 }
