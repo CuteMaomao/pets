@@ -5,9 +5,9 @@
     <title>个人中心-首页-修改头像</title>
     <link rel="stylesheet" href="../css/personmsg_edit_head.css">
     <script src="../js/personmsg_edit_head.js"></script>
+    <script src="../util/jquery-3.4.1.min.js"></script>
 </head>
 <body>
-<%-include ('header.html')-%>
 <%-include ('personnav.html')-%>
 <div class="personmsg-edit-head">
     <h2>
@@ -32,7 +32,7 @@
                     <li><img src="../images/huangqian/gh4.jpg"></li>
                 </ul>
             </div>
-            <div id="mask"></div>
+            <div class="personmsg-edit-head-mask" id="mask"></div>
             <button id="saveHeadBtn">保存</button>
         </div>
         <div class="personmsg-edit-head-look">
@@ -50,7 +50,7 @@
 </div>
 <%-include ('footer.html')-%>
 </body>
-<script type="text/javascript">
+<script>
     var canvas1=document.getElementById('c1');
     var gd=canvas1.getContext('2d');
     var oImg=new Image();
@@ -87,28 +87,27 @@
 
     //上传图片之后出现裁剪工具
     //判断canvas的图片
-    var oMark = document.getElementById("mark");
+    var oMask = document.getElementById("mask");
     if (oImg.src!='../images/huangqian/no-head.png') {
 
     }
     //拖拽
-    var disX=0;
-    var disY=0;
-    function fnMove() {
-        oMark.style.left=event.clientX-disX+'px';
-        oMark.style.top=event.clientY-disY+'px';
-    }
+    oMask.onmousedown=function () {
+        var disX=event.clientX-oMask.offsetLeft;
+        var disY=event.clientY-oMask.offsetTop;
 
-    function fnUp() {
-        $(document).off('mousemove',fnMove);
-        $(document).off('mouseup',fnUp);
-    }
-    oMark.onmousedown=function () {
-        disX=event.offsetX;
-        disY=event.offsetY;
-        $(document).on('mousemove',fnMove);
-        $(document).on('mouseup',fnUp);
-    }
+        document.onmousemove=function () {
+            var l=event.clientX-disX;
+            var t=event.clientY-disY;
 
+            oMask.style.left=l+'px';
+            oMask.style.top=t+'px';
+        };
+
+        document.onmouseup=function () {
+            document.onmousemove=null;
+            document.onmouseup=null;
+        };
+    };
 </script>
 </html>

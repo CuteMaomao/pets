@@ -9,11 +9,7 @@ body {
 }
 a {
   text-decoration: none;
-  display: block;
-}
-ul,
-li {
-  text-align: center;
+  display: inline-block;
 }
 button,
 input {

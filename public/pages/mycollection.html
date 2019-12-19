@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        section {
+            width: 1200px;
+            height: 700px;
+            margin: 10px auto;
+            overflow: hidden;
+        }
+        section .right {
+            float: right;
+            width: 960px;
+            height: 700px;
+        }
+        section .right h2 {
+            color: #333333;
+            height: 44px;
+            line-height: 44px;
+        }
+        section .right div p {
+            border-top: solid 1px #b4e4c8;
+            border-bottom: solid 1px #b4e4c8;
+            height: 52px;
+            background: #e9f7f0;
+            line-height: 52px;
+            color: rgba(116, 117, 108, 0.6);
+        }
+        section .right div p input {
+            margin-left: 10px;
+        }
+        section .right div p button {
+            margin-left: 10px;
+            width: 56px;
+            height: 26px;
+            border: 1px solid #1fac75;
+            background: white;
+            text-align: center;
+            line-height: 26px;
+        }
+        section .right div p button a {
+            color: #1fac75;
+        }
+        section .right div p button a:hover {
+            color: #4c8fff;
+        }
+        section .right ul {
+            width: 960px;
+            height: 572px;
+        }
+        section .right ul li {
+            width: 200px;
+            height: 250px ;
+            float: left;
+            text-align: center;
+            margin: auto 10px;
+        }
+        section .right ul li span {
+            text-align: center;
+        }
+        section .right ul li p {
+            margin: 0 auto;
+            width: 170px ;
+            height: 22px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        section .right ul li p span {
+            text-overflow: ellipsis;
+        }
+        section .right ul li p span button {
+            width: 40px;
+            height: 20px;
+            border: 1px solid #cfcfcf;
+            background: white;
+            text-align: center;
+            line-height: 20px;
+        }
+        section .right ul li p span button a {
+            color: #444444;
+        }
+        section .right ul li p span button a:hover {
+            color: #4c8fff;
+        }
+        section .right ul li p img {
+            width: 135px;
+            height: 155px;
+        }
+        section .right a {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<%-include ('personnav.html') -%>
+    <section id="Collection">
+        <div class="right">
+            <h2><a href="">我的收藏</a></h2>
+            <div>
+                <p>
+                    <input type="checkbox">全选
+                    <button><a href="">删除</a></button>
+                </p>
+            </div>
+            <ul>
+                <li>
+                    <img src="dog_phone.gif" alt="">
+                    <br>
+                    <p><input type="checkbox"><span>小狗可可</span></p>
+                    <br>
+                    <span>￥3.00</span>
+                    <br>
+                    <p>加入购物车<span><button><a href="">删除</a></button></span></p>
+                </li>
+            </ul>
+        </div>
+    </section>
+<%- include ('footer.html') -%>
+</body>
+</html>

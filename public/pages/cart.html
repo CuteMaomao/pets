@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>玖宠</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/page-cart.css">
+    <link rel="stylesheet" href="../css/footer.css">
+</head>
+
+<body>
+    <!--页面顶部-->
+    <%-include('header.html')-%>
+    <%-include('index.html')-%>
+
+    <!--头部-->
+<!--    <div class="header">-->
+<!--        <div class="py-container">-->
+<!--            <div class="yui3-g Logo">-->
+<!--                <div class="yui3-u Left logoArea">-->
+<!--                    <a class="logo-bd" title="玖宠" href="home.html"></a>-->
+<!--                </div>-->
+<!--                <div class="yui3-u Center searchArea">-->
+<!--                    <div class="search">-->
+<!--                        <form action="" class="sui-form form-inline">-->
+<!--                            <div class="input-append">-->
+<!--                                <input type="text" id="autocomplete" class="input-error input-xxlarge">-->
+<!--                                <button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+<!--                <div class="yui3-u Right shopArea">-->
+<!--                    <div class="fr shopcar">-->
+<!--                        <div class="show-shopcar">-->
+<!--                            <span class="car"></span>-->
+<!--                            <a class="sui-btn btn-default btn-xlarge" href="cart.html">-->
+<!--                                <span>我的购物车</span>-->
+<!--                                <i class="shopnum">0</i>-->
+<!--                            </a>-->
+<!--                            <div class="clearfix shopcarlist"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="yui3-g NavList">-->
+<!--                <div class="all-sorts-list">-->
+<!--                    <div class="yui3-u Left all-sort">-->
+<!--                        <h4>全部商品分类</h4>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+
+    <div class="py-container">
+        <div class="allgoods">
+            <h4>全部商品
+                <span>2</span>
+            </h4>
+
+            <div class="cart-main">
+                <div class="cart-th clearfix">
+                    <div>
+                        <input type="checkbox">全选</div>
+                    <div class="">商品</div>
+                    <div class="">单价（元）</div>
+                    <div class="">数量</div>
+                    <div class="">小计（元）</div>
+                    <div class="">操作</div>
+                </div>
+                <div class="cart-title clearfix">
+
+                    <div class="yunfei fr">
+                        运费：￥6.00
+                        <span>还差￥99.00免运费</span>
+                    </div>
+                </div>
+                <div class="cart-item-list">
+                    <div class="cart-body">
+                        <div class="cart-list">
+                            <ul class="goods-list yui3-g">
+                                <li class="yui3-u-3-8">
+                                    <div class="good-item">
+                                        <div class="item-img">
+                                            <img src="">
+                                        </div>
+                                        <div class="item-msg">狗粮</div>
+                                    </div>
+                                </li>
+                                <li class="yui3-u-1-8">
+                                    <span>规格</span>
+                                    <br>
+                                    <span>规格</span>
+                                    <br>
+                                    <span>规格</span>
+                                    <br>
+                                    <span>规格</span>
+                                    <br>
+                                </li>
+                                <li class="yui3-u-1-8">
+                                    <span class="price">价格</span>
+                                </li>
+                                <li class="yui3-u-1-8">
+                                    <div class="clearfix">
+                                        <a href="#" class="increment mins">-</a>
+                                        <input autocomplete="off" type="text" value="1" minnum="1" class="itxt">
+                                        <a href="#" class="increment plus">+</a>
+                                    </div>
+                                    <div class="youhuo">有货</div>
+                                </li>
+                                <li class="yui3-u-1-8">
+                                    <span class="sum">价格</span>
+                                </li>
+                                <li class="yui3-u-1-8">
+                                    <div>
+                                        <a href="#none">删除</a>
+                                    </div>
+                                    <div>移到我的关注</div>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-title clearfix">
+
+                </div>
+            </div>
+            <div class="cart-item-list">
+                <div class="cart-body">
+                    <div class="cart-list">
+                        <ul class="goods-list yui3-g">
+                            <li class="yui3-u-1-2 huangou-li">
+                                <div class="good-item">
+                                    <div class="huangou">
+                                        <span>换购</span> 活动商品购满2888.00元，即可加价换购商品1件
+                                        <span class="huangou-product">查看换购品</span>去凑单
+                                    </div>
+                                    <div class="item-img ">
+                                        <img src="">
+                                    </div>
+                                    <div class="item-msg huangou-msg">狗粮</div>
+                                    <div class="fl huangou-color">
+                                        <span>规格</span>
+                                        <br>
+                                        <span>规格</span>
+                                        <br>
+                                        <span>规格</span>
+                                        <br>
+                                        <span>规格</span>
+                                        <br>
+                                    </div>
+
+                                </div>
+                            </li>
+
+                            <li class="yui3-u-1-8">
+                                <span class="price huangou-price">价格</span>
+                            </li>
+                            <li class="yui3-u-1-8">
+                                <div class="clearfix">
+                                    <a href="#" class="increment mins">-</a>
+                                    <input autocomplete="off" type="text" value="1" minnum="1" class="itxt">
+                                    <a href="#" class="increment plus">+</a>
+                                </div>
+                                <div class="youhuo">有货</div>
+                            </li>
+                            <li class="yui3-u-1-8">
+                                <span class="sum">价格</span>
+                            </li>
+                            <li class="yui3-u-1-8 huangou-del">
+                                <div>
+                                    <a href="#none">删除</a>
+                                </div>
+                                <div>移到我的关注</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-tool clearfix">
+                <div class="cart-tool-left clearfix fl">
+                    <ul>
+                        <li>
+                            <a href="javascript:;">全选</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">删除选中的商品</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">移到我的关注</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">清除下柜商品</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="money-box">
+                    <div class="sumprice">
+                        <div class="sumprice-top">
+                            <span>
+                                已选择
+                                <strong>0</strong> 件商品</span>
+                            <span>
+                                <em>总价（不含运费）：</em>
+                                <i class="summoney">¥1000</i>
+                            </span>
+                        </div>
+                        <div class="sumprice-bottom">
+                            已节省：￥20.00
+                        </div>
+                    </div>
+                    <div class="sumbtn">
+                        <a class="sum-btn" href="#">结算</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 尾部star --------------------------------------------------------------->
+    <footer class="py-container">
+        <div class="top">
+            <div class="top-left">
+                <img src="../images/hbc/footer.gif">
+            </div>
+            <nav class="footer-nav">
+                <ul>
+                    <li class="part-title">新手上路</li>
+                    <li><a href="#">新手指南</a></li>
+                    <li><a href="#">自助服务</a></li>
+                    <li><a href="#">用户协议</a></li>
+                </ul>
+                <ul>
+                    <li class="part-title">购买方式</li>
+                    <li><a href="#">现货购买</a></li>
+                    <li><a href="#">全款预订</a></li>
+                    <li><a href="#">预约购买</a></li>
+                </ul>
+                <ul>
+                    <li class="part-title">配送方式</li>
+                    <li><a href="#">外包快递</a></li>
+                    <li><a href="#">送货上门</a></li>
+                    <li><a href="#">配送说明</a></li>
+                </ul>
+                <ul>
+                    <li class="part-title">售后服务</li>
+                    <li><a href="#">退款说明</a></li>
+                    <li><a href="#">售后问题</a></li>
+                    <li><a href="#">自主服务</a></li>
+                </ul>
+                <ul>
+                    <li class="part-title">常见问题</li>
+                    <li><a href="#">新人优惠</a></li>
+                    <li><a href="#">购物问题</a></li>
+                    <li><a href="#">支付问题</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="bottom">
+            <div class="bottom-logo">
+                <img src="../images/hbc/foot_kx.png">
+                <img src="../images/hbc/foot_gs.png">
+                <img src="../images/hbc/foot_zx.png">
+                <img src="../images/hbc/foot_cx.png">
+                <div class="bottom-text">
+                    Copyrigh ©2019-2020 中国最大最具诚信的宠物地带商城
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- 尾部end -------------------------------------------------------->
+
+
+
+
+</body>
+
+</html>

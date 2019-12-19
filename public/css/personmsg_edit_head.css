@@ -9,11 +9,7 @@ body {
 }
 a {
   text-decoration: none;
-  display: block;
-}
-ul,
-li {
-  text-align: center;
+  display: inline-block;
 }
 button,
 input {
@@ -118,9 +114,9 @@ h2 {
   width: 55px;
   margin-right: 16px;
 }
-#mask {
-  width: 100px;
-  height: 100px;
+.personmsg-edit-head-mask {
+  width: 200px;
+  height: 200px;
   background: rgba(0, 0, 0, 0.4);
   position: absolute;
   top: 0;
