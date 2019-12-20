@@ -33,7 +33,7 @@
                 </ul>
             </div>
             <div class="personmsg-edit-head-mask" id="mask"></div>
-            <button id="saveHeadBtn">保存</button>
+            <button id="saveHeadBtn" onclick="jumpon()">保存</button>
         </div>
         <div class="personmsg-edit-head-look">
             <h5>效果预览</h5>
@@ -64,11 +64,10 @@
     oFile.addEventListener('change', function () {
         var reader = new FileReader();
         reader.readAsDataURL(event.target.files[0]);
-        reader.onload = function(e) {
-            var oImg2 = new Image();
-            oImg2.src = e.target.result;
-            oImg2.onload = function(){
-                gd2.drawImage(oImg2,0,0,400,400);
+        reader.onload = function() {
+            oImg.src = event.target.result;
+            oImg.onload = function(){
+                gd2.drawImage(oImg,0,0,400,400);
             }
         };
     });
@@ -109,5 +108,22 @@
             document.onmouseup=null;
         };
     };
+    //传图片参数
+    function getUrl() {
+        var url = decodeURI(location.search);
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            var strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+    var json=getUrl();
+    function jumpon(){
+        location.href='/personmsg?username='+json.username+'&headurl='+oImg.src+'&phone='+json.phone;
+    }
 </script>
 </html>

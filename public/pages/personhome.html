@@ -10,14 +10,14 @@
 <div class="personhome">
     <div class="personhome-msg">
         <div class="head">
-            <img class="head-img" src="../images/huangqian/girl.jpg">
+            <img class="head-img" src="">
             <div class="head-mask">
                 <a class="head-edit" href="/personmsg">编辑资料</a>
             </div>
         </div>
         <div class="personhome-name">
-            <a href="/personmsg">用户名
-                <span>（昵称）</span>
+            <a href="/personmsg"><span id="username"></span>
+                <span id="othername"></span>
             </a>
         </div>
         <div class="personhome-addr">
@@ -34,25 +34,27 @@
         </div>
         <div id="home-orderBox" class="order-box">
 <!--            有订单-->
-<!--            <ul>-->
-<!--                <li>-->
-<!--                    <ul>-->
-<!--                        <li>-->
-<!--                            <a href="#"><img src="../images/huangqian/girl.jpg"></a>-->
-<!--                        </li>-->
-<!--                        <li class="order-box-name">洪荒少女阿毛吃土大计</li>-->
-<!--                        <li>￥120.9</li>-->
-<!--                        <li class="order-box-info">-->
-<!--                            <a href="/orderdetails">订单详情</a>-->
-<!--                        </li>-->
-<!--                        <li class="order-box-pay">-->
-<!--                            <a href="#" class="btn-style">付款</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </li>-->
-<!--            </ul>-->
+            <ul id="hasOrder" style="display: none">
+                <li>
+                    <ul>
+                        <li>
+                            <ul id="orderImgBox">
+<!--                                <li><a href="#"><img id="orderImg" src="../images/huangqian/girl.jpg"></a></li>-->
+                            </ul>
+                        </li>
+                        <li id="orderUsername" class="order-box-name">洪荒少女阿毛吃土大计</li>
+                        <li id="orderTotal">￥120.9</li>
+                        <li class="order-box-info">
+                            <a href="/orderdetails">订单详情</a>
+                        </li>
+                        <li class="order-box-pay">
+                            <a href="#" class="btn-style">付款</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
 <!--            没有订单-->
-            <div class="home-no-orderbox">
+            <div id="noOrder" class="home-no-orderbox" style="display: none">
                 <div class="home-no-orderbox-img">
                     <img src="../images/huangqian/no-order.png">
                 </div>
@@ -138,13 +140,60 @@
             n=0;
         }
     });
+    //获取地址栏参数
+    function getUrlSearch(name) {
+        // 未传参，返回空
+        if (!name) return null;
+        // 查询参数：先通过search取值，如果取不到就通过hash来取
+        var after = window.location.search;
+        after = after.substr(1) || window.location.hash.split('?')[1];
+        // 地址栏URL没有查询参数，返回空
+        if (!after) return null;
+        // 如果查询参数中没有"name"，返回空
+        if (after.indexOf(name) === -1) return null;
+
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+        // 当地址栏参数存在中文时，需要解码，不然会乱码
+        var r = decodeURI(after).match(reg);
+        // 如果url中"name"没有值，返回空
+        if (!r) return null;
+
+        return r[2];
+    }
+    var username=getUrlSearch("username");
+    //跳转
+    function jumppersonmsg(){
+        location.href='/personmsg?username='+getUrlSearch("username");
+    }
     //获取页面数据
     $.ajax({
         url:'/getPersonHomeData',
-        data:{},
+        data:{
+            username:username
+        },
         success:function (res) {
-            console.log(res)
-
+            console.log(res.data)
+            //页面数据展示
+            $('.head img').attr('src',res.data[0].headurl);
+            $('#username').text(res.data[0].username);
+            $('#othername').text('('+res.data[0].othername+')');
+            //判断订单是否有 id是否为空
+            var orderIdArr=[];
+            console.log(res.data)
+            $.each(res.data,function () {
+                orderIdArr.push(this.id);
+            })
+            if (orderIdArr.length){
+                //显示订单 未完成
+                $('#hasOrder').css('display','block');
+                $.each(res.data,function () {
+                    $('<li><a href="#"><img src="'+this.pic+'"></a></li>').appendTo('#orderImgBox');
+                })
+                $('#noOrder').css('display','none');
+            }else {
+                $('#hasOrder').css('display','none');
+                $('#noOrder').css('display','block');
+            }
         }
     })
 </script>

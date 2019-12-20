@@ -120,8 +120,10 @@ a{
     }
     ul>li{
         height: @heig1;
-        ul>li:not(.order-box-pay){
+        ul>li{
             float: left;
+        }
+        ul>li:not(.order-box-pay){
             height: @heig1;
             line-height: @heig1;
             margin-right: @heig2;
@@ -131,6 +133,19 @@ a{
                 color: @col3;
             }
         }
+    }
+}
+#orderImgBox{
+    width: @heig2;
+    height: @heig1;
+    position: relative;
+    &>li{
+        width: @heig2;
+        height: @heig1;
+        line-height: @heig1;
+        position: absolute;
+        top: 0;
+        left: 0;
         img{
             width: @heig2;
             height: @heig3;

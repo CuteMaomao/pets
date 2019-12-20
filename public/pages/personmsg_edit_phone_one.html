@@ -14,7 +14,7 @@
     <form>
         <div class="personmsg-edit-phone-all">
             <label>手机号码：</label>
-            <input id="phoneInput" type="number" class="input-style" disabled value="18683305738">
+            <input id="phoneInput" type="text" class="input-style" disabled>
             <div class="getcode">
                 <button id="getCodeBtn" class="btn-style">获取验证码</button>
             </div>
@@ -24,10 +24,32 @@
             <input type="text" class="input-style">
         </div>
         <div class="next">
-            <a class="btn-style" href="/personmsg_edit_phone_two">下一步</a>
+            <a class="btn-style" href="javascript:void(0)" onclick="jumpon()">下一步</a>
         </div>
     </form>
 </div>
 <%-include ('footer.html')-%>
 </body>
+<script>
+    //获取地址栏参数
+    function getUrl() {
+        var url = decodeURI(location.search); //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            var strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+    var json=getUrl();
+    var username = json.username;
+    var phone = json.phone;
+    $("#phoneInput").val(phone.substring(0,3)+'*****'+phone.substring(8));
+    function jumpon(){
+        location.href='/personmsg_edit_phone_two?username='+username+'&headurl='+json.headurl+'&phone='+phone;
+    }
+</script>
 </html>
