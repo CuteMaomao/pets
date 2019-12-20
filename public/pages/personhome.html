@@ -138,5 +138,14 @@
             n=0;
         }
     });
+    //获取页面数据
+    $.ajax({
+        url:'/getPersonHomeData',
+        data:{},
+        success:function (res) {
+            console.log(res)
+
+        }
+    })
 </script>
 </html>

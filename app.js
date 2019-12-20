@@ -8,7 +8,8 @@ var ejs=require('ejs');
 //引入短信
 var AV = require('leanengine');
 //引入路由
-
+//引入路由
+var personhomeRouter=require('./routers/personhomeRouter');
 //创建服务
 var server=express();
 //配置浏览器访问的静态文件目录
@@ -23,6 +24,10 @@ server.set('view engine','html');
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 //设置路由
+server.use(personhomeRouter);
+server.get("/login",function(req,res){
+    res.render("login");
+});
 server.get("/home",function(req,res){
     res.render("home");
 });
