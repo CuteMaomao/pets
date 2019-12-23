@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>address</title>
+    <script src="../util/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="../util/bootstrap-3.3.7/dist/css/bootstrap.css">
+    <script src="../util/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
     <style>
         *{
             margin: 0;
@@ -50,23 +53,23 @@
             color: #666666;
         }
         .headerNewBtn button{
-            height: 40px;
+            height: 37px;
             padding: 5px 15px;
-            margin-top: 8px;
+            margin-top: 20px;
             border-radius: 5px;
         }
         .headerNewBtn button span{
-            font-size: 18px;
+            font-size: 16px;
         }
         #addressContent section{
             padding-left: 30px;
             /*background-color: cyan;*/
-            margin-top: 30px;
+            margin-top: 50px;
         }
         .addressPage{
             width: 380px;
             height: 180px;
-            border: 1px solid #666666;
+            border: 3px inset #595959;
             border-radius: 5px;
             margin-bottom: 30px;
         }
@@ -103,11 +106,23 @@
             padding-left: 5px;
             padding-right: 5px;
             margin-right: 5px;
-            margin-top: 5px;
-            border: 1px solid #666666;
+            margin-top: 8px;
             border-radius: 5px;
         }
-
+        /*模态框*/
+        .modal-content label{
+            display: inline-block;
+            width: 100px;
+        }
+        .modal-content input,.modal-content textarea{
+            display: inline-block;
+            width: 80%;
+        }
+        .modal-content .dropdown{
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -120,7 +135,7 @@
             </div>
             <div class="fr headerNewBtn">
                 <div>
-                    <button>
+                    <button id="btnNew" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                         <span>新增地址</span>
                         <span>+</span>
                     </button>
@@ -145,9 +160,11 @@
                     </div>
                 </div>
                 <div class="adressBtn">
-                    <button class="fr delBtn">删除</button>
-                    <button class="fr editBtn">编辑</button>
-                    <!--<button class="fr defaultAddress">设为默认地址</button>-->
+                    <button class="fr delBtn btn-danger">删除</button>
+                    <button type="button" class="fr editBtn btn-warning" data-toggle="modal" data-target="#myModal">
+                        <span>编辑</span>
+                    </button>
+                    <!--<button class="fr defaultAddress btn-default">设为默认地址</button>-->
                 </div>
             </div>
             <div class="addressPage addressLeft fl">
@@ -167,9 +184,11 @@
                     </div>
                 </div>
                 <div class="adressBtn">
-                    <button class="fr delBtn">删除</button>
-                    <button class="fr editBtn">编辑</button>
-                    <button class="fr defaultAddress">设为默认地址</button>
+                    <button class="fr delBtn btn-danger">删除</button>
+                    <button type="button" class="fr editBtn btn-warning" data-toggle="modal" data-target="#myModal">
+                        <span>编辑</span>
+                    </button>
+                    <button class="fr defaultAddress btn-default">设为默认地址</button>
                 </div>
             </div>
             <div class="addressPage addressLeft fl">
@@ -189,13 +208,114 @@
                     </div>
                 </div>
                 <div class="adressBtn">
-                    <button class="fr delBtn">删除</button>
-                    <button class="fr editBtn">编辑</button>
-                    <button class="fr defaultAddress">设为默认地址</button>
+                    <button class="fr delBtn btn-danger">删除</button>
+                    <button type="button" class="fr editBtn btn-warning" data-toggle="modal" data-target="#myModal">
+                        <span>编辑</span>
+                    </button>
+                    <button class="fr defaultAddress btn-default">设为默认地址</button>
                 </div>
             </div>
         </section>
     </div>
+    <!-- Button trigger modal -->
+
+
+    <!-- 模态框 新增地址 -->
+    <div class="modal fade fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">新增地址</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputName">收货人姓名：</label>
+                        <input type="text" class="form-control" id="inputName" placeholder="请输入2~10个字符">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputName">地址信息：</label>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                新疆维吾尔自治区新疆维吾尔自治
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="javascript:;">四川省</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown">
+                                --请选择--
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <li><a href="javascript:;">成都市</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown">
+                                --请选择--
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                                <li><a href="javascript:;">成华区</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--详细地址-->
+                    <div class="form-group">
+                        <label for="inputTel">详细地址：</label>
+                        <textarea class="form-control" rows="3" id="inputAddressDetail"></textarea>
+                    </div>
+                    <!--电话-->
+                    <div class="form-group">
+                        <label for="inputTel">电话：</label>
+                        <input type="text" class="form-control" id="inputTel" placeholder="请输入11位电话号码">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCancel">取消</button>
+                    <button type="button" class="btn btn-primary" id="btnConfirm">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <%-include ('footer.html')-%>
 </body>
+<script >
+    //模态框1对应的当前按钮状态（修改0/新增1）
+    var oModel1StyleNow
+    //当前用户的ID
+    var userIDNow
+    // 按钮
+    var oBtnNew = $('#btnNew')  //新增
+    var oBtnEdit = $('.editBtn') //编辑
+    var oBtnCancel = $('#btnCancel')    //取消
+    var oBtnConfirm = $('#btnConfirm')  //确定
+    oBtnNew.click(function () {
+        //新增按钮
+        oModel1StyleNow = 1;
+        alert(oModel1StyleNow)
+    })
+    oBtnEdit.click(function () {
+        //编辑按钮
+        oModel1StyleNow = 0;
+        alert(oModel1StyleNow)
+    })
+    oBtnConfirm.click(function () {
+        alert(1)
+    })
+    /*----------------------------------------------- 从数据库获取当前地址信息 ----------------------------------------*/
+    //函数 获取当前用户的ID
+    function getUserID() {
+        // userIDNow =
+    }
+    /*----------------------------------------------- 从数据库获取当前地址信息 ----------------------------------------*/
+    /*----------------------------------------------- 全国地址三级联动 ----------------------------------------*/
+    function get() {
+        
+    }
+    /*----------------------------------------------- 全国地址三级联动 ----------------------------------------*/
+</script>
 </html>
