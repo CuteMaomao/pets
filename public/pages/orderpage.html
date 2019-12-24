@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>order</title>
+    <script src="../util/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="../util/bootstrap-3.3.7/dist/css/bootstrap.css">
+    <script src="../util/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
     <style>
         *{
             margin: 0;
@@ -39,17 +42,18 @@
             color: gray;
         }
         body{
-            width: 1200px;
+            /*width: 1200px;*/
             /*margin: 0 auto;*/
             /*!*padding-left: 158px;*!*/
             /*padding-top: 77px;*/
+            background-color: #F8F6F6;
         }
         #orderPageContent{
-            width: 885px;
             /*background-color: red;*/
-            padding-left: 222px;
+            /*padding-left: 222px;*/
             /*margin-top: 20px;*/
-            margin-left: 61px;
+            width: 950px;
+            margin: 20px 0 20px 300px;
         }
         #orderPageContent .headerLabel{
             padding-left: 20px;
@@ -64,9 +68,12 @@
             background: #666666;
             border: 1px solid #666666;
             position: absolute;
-            width: 885px;
+            width: 900px;
             top: 66px;
             z-index: 0;
+        }
+        #orderPageContent .category{
+            width: 900px;
         }
         #orderPageContent .category .lableBox{
             border: 2px solid #666666;
@@ -74,7 +81,7 @@
             border-top-left-radius: 10px;
             display: inline-block;
             padding: 10px 20px;
-            font-size: 18px;
+            font-size: 16px;
             height: 24px;
             margin-right: 10px;
         }
@@ -227,9 +234,28 @@
         #orderPageContent .orderPage .btnBox button.confirmBtn{
             margin-top: 10px;
         }
+        .searchSingle{
+            height: 32px;
+            overflow: hidden;
+            position: relative;
+        }
+        .searchBtn{
+            /*background-color: red;*/
+            display: inline-block;
+            height: 100%;
+            border: 1px solid #fff;
+            position: absolute;
+        }
+        .searchIpt{
+            border: 1px solid green;
+            font-size: 16px;
+            padding-left: 10px;
+            /*background-color: green;*/
+        }
     </style>
 </head>
 <body>
+    <%-include ('header.html')-%>
     <%-include ('personnav.html')-%>
     <div id="orderPageContent">
         <div class="headerLabel">
@@ -246,8 +272,8 @@
         <section>
             <div class="searchBox">
                 <div class="searchSingle">
-                    <input type="text">
-                    <button>搜索</button>
+                    <input type="text" class="searchIpt">
+                    <div class="searchBtn">搜索</div>
                 </div>
             </div>
         </section>
@@ -356,4 +382,11 @@
     </div>
     <%-include ('footer.html')-%>
 </body>
+<script >
+    var oLabelBox = $('.category div')
+    oLabelBox.click(function () {
+        $(this).siblings().removeClass('active')
+        $(this).addClass('active')
+    })
+</script>
 </html>

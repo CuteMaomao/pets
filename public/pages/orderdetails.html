@@ -53,7 +53,7 @@
         }
         #detailsPageContent{
             background-color: white;
-            width: 860px;
+            width: 1000px;
             margin: 20px 0 20px 300px;
         }
         #detailsPageContent header{
@@ -264,7 +264,7 @@
             margin: 0 auto;
         }
         table .nameBox{
-            width: 450px;
+            width: 400px;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -307,9 +307,18 @@
             padding: 10px ;
             border: 5px;
         }
+        .operation{
+            text-align: center;
+        }
+        .operation a{
+            display: inline-block;
+            margin: 0 auto;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+<%-include ('header.html')-%>
 <%-include ('personnav.html')-%>
     <div id="detailsPageContent">
         <header>
@@ -458,6 +467,7 @@
                             <th class="goodsName">商品名称</th>
                             <th class="goodsPrice">单价</th>
                             <th class="goodsNum">数量</th>
+                            <th class="operation">操作</th>
                         </tr>
                         <tr>
                             <td>
@@ -482,6 +492,7 @@
                             </td>
                             <td class="priceSingle">￥<span>123</span></td>
                             <td>100</td>
+                            <td class="operation"><a href="">申请售后</a></td>
                         </tr>
                     </table>
                 </div>

@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>address</title>
     <script src="../util/jquery-3.4.1.min.js"></script>
+
     <link rel="stylesheet" href="../util/bootstrap-3.3.7/dist/css/bootstrap.css">
     <script src="../util/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+
     <style>
         *{
             margin: 0;
@@ -15,6 +17,9 @@
         button{
             border: 1px solid;
             outline: none;
+        }
+        i{
+            font-style: normal;
         }
         .fl{
             float: left;
@@ -35,6 +40,13 @@
         body{
             /*width: 1200px;*/
             margin: 0 auto;
+        }
+        .dropdown ul{
+            height: 200px;
+            overflow: auto;
+        }
+        .displayNone{
+            display: none;
         }
         #addressContent{
             background-color: white;
@@ -69,11 +81,9 @@
         .addressPage{
             width: 380px;
             height: 180px;
-            border: 3px inset #595959;
+            border: 3px inset #299E75;
             border-radius: 5px;
             margin-bottom: 30px;
-        }
-        .addressLeft{
             margin-right: 50px;
         }
         .addressPage .content{
@@ -92,9 +102,10 @@
             /*width: 70px;*/
             padding-left: 2px;
             padding-right: 2px;
-            /*border-radius: 30%;*/
             height: 25px;
-            background-color: red;
+            line-height: 25px;
+            border-radius: 25px;
+            background-color: #238966;
             color: #fff;
         }
         .addressbox{
@@ -124,8 +135,10 @@
             margin-bottom: 10px;
         }
     </style>
+
 </head>
 <body>
+    <%-include ('header.html')-%>
     <%-include ('personnav.html')-%>
     <div id="addressContent" class="clearfix">
         <header>
@@ -141,8 +154,8 @@
                 </div>
             </div>
         </header>
-        <section class="clearfix">
-            <div class="addressPage addressLeft fl">
+        <section class="clearfix" id="userAddressBox">
+            <div class="addressPage fl">
                 <div class="content">
                     <div class="clearfix">
                         <div class="nameBox fl">
@@ -166,7 +179,7 @@
                     <!--<button class="fr defaultAddress btn-default">设为默认地址</button>-->
                 </div>
             </div>
-            <div class="addressPage addressLeft fl">
+            <div class="addressPage fl">
                 <div class="content">
                     <div class="clearfix">
                         <div class="nameBox fl">
@@ -190,7 +203,7 @@
                     <button class="fr defaultAddress btn-default">设为默认地址</button>
                 </div>
             </div>
-            <div class="addressPage addressLeft fl">
+            <div class="addressPage fl">
                 <div class="content">
                     <div class="clearfix">
                         <div class="nameBox fl">
@@ -233,31 +246,31 @@
                         <input type="text" class="form-control" id="inputName" placeholder="请输入2~10个字符">
                     </div>
                     <div class="form-group">
-                        <label for="inputName">地址信息：</label>
-                        <div class="dropdown">
+                        <label for="dropdownMenu1">地址信息：</label>
+                        <div class="dropdown" id="provinceSel">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                                新疆维吾尔自治区新疆维吾尔自治
+                                <i>--请选择--</i>
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="javascript:;">四川省</a></li>
+                            <ul   id="provinceSelUl" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <!--<li><a href="javascript:;">四川省</a></li>-->
                             </ul>
                         </div>
-                        <div class="dropdown">
+                        <div class="dropdown" id="citySel">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown">
-                                --请选择--
+                                <i>--请选择--</i>
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <li><a href="javascript:;">成都市</a></li>
+                            <ul  id="citySelUl" class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <!--<li><a href="javascript:;">成都市</a></li>-->
                             </ul>
                         </div>
-                        <div class="dropdown">
+                        <div class="dropdown" id="areaSel">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown">
-                                --请选择--
+                                <i>--请选择--</i>
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                            <ul id="areaSelUl" class="dropdown-menu" aria-labelledby="dropdownMenu3">
                                 <li><a href="javascript:;">成华区</a></li>
                             </ul>
                         </div>
@@ -265,7 +278,7 @@
                     <!--详细地址-->
                     <div class="form-group">
                         <label for="inputTel">详细地址：</label>
-                        <textarea class="form-control" rows="3" id="inputAddressDetail"></textarea>
+                        <textarea class="form-control" rows="3" id="inputAddressDetail"  placeholder="请输入5~50个字符"></textarea>
                     </div>
                     <!--电话-->
                     <div class="form-group">
@@ -275,7 +288,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCancel">取消</button>
-                    <button type="button" class="btn btn-primary" id="btnConfirm">保存</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnConfirm">保存</button>
                 </div>
             </div>
         </div>
@@ -285,6 +298,8 @@
 <script >
     //模态框1对应的当前按钮状态（修改0/新增1）
     var oModel1StyleNow
+    //当前被修改的地址的index
+    var oModifyAddressNow
     //当前用户的ID
     var userIDNow
     // 按钮
@@ -292,29 +307,346 @@
     var oBtnEdit = $('.editBtn') //编辑
     var oBtnCancel = $('#btnCancel')    //取消
     var oBtnConfirm = $('#btnConfirm')  //确定
+    //获取省市区
+    var oUl = $('ul')   //获取三个下拉框的父元素ul
+    var oProvinceSel = $('#provinceSel')
+    var oCitySel = $('#citySel')
+    var oAreaSel = $('#areaSel')
+    var oProvinceSelUl = $('#provinceSelUl')
+    var oCitySelUl = $('#citySelUl')
+    var oAreaSelUl = $('#areaSelUl')
+    var oProvinceSelNow = $('#provinceSel button i')
+    var oCitySelNow = $('#citySel button i')
+    var oAreaSelNow = $('#areaSel button i')
+    //获取当前用户的地址信息
+    var oUserAddressBox = $('#userAddressBox');
+
     oBtnNew.click(function () {
         //新增按钮
         oModel1StyleNow = 1;
-        alert(oModel1StyleNow)
+        // alert(oModel1StyleNow)
     })
-    oBtnEdit.click(function () {
+    oUserAddressBox.on('click','.editBtn',function () {
         //编辑按钮
-        oModel1StyleNow = 0;
-        alert(oModel1StyleNow)
+        oModel1StyleNow = 2;
+        oModifyAddressNow = $(this).parents('.addressPage').attr('index')
     })
-    oBtnConfirm.click(function () {
-        alert(1)
+    oUserAddressBox.on('click','.defaultAddress',function () {
+        //设置默认地址按钮
+        oModifyAddressNow = $(this).parents('.addressPage').attr('index')
+
+        modifyAddressDefault(oUserID,oModifyAddressNow)
+        getUserAddress(oUserID);
     })
-    /*----------------------------------------------- 从数据库获取当前地址信息 ----------------------------------------*/
+    oUserAddressBox.on('click','.delBtn',function () {
+        //删除按钮
+        oModifyAddressNow = $(this).parents('.addressPage').attr('index')
+
+        removeAddress(oUserID,oModifyAddressNow)
+        getUserAddress(oUserID);
+    })
+
+    /*----------------------------------------------- 当前用户操作本人地址信息 ----------------------------------------*/
+    var oUserID = 12345678
     //函数 获取当前用户的ID
     function getUserID() {
-        // userIDNow =
     }
-    /*----------------------------------------------- 从数据库获取当前地址信息 ----------------------------------------*/
-    /*----------------------------------------------- 全国地址三级联动 ----------------------------------------*/
-    function get() {
-        
+    //创建当前用户的地址条数创建地址并插入
+    function createAddress(res) {
+        oUserAddressBox.html('')
+        for (var i = 0; i < res.userData.length; i ++){
+
+            var oLi = document.createElement('div');
+
+            if (res.userData[i].isDefault){
+                oLi.innerHTML = '<div class="content">\n' +
+                    '                    <div class="clearfix">\n' +
+                    '                        <div class="nameBox fl">\n' +
+                    '                            <span class="receiptName">'+ res.userData[i].consigneeID +'</span>\n' +
+                    '                            <span class="shou">收</span>\n' +
+                    '                        </div>\n' +
+                    '                        <div class="lableBox fl"><span>默认地址</span></div>\n' +
+                    '                    </div>\n' +
+                    '                    <div class="addressbox addDetails">\n' +
+                    '                        <span>'+ res.userData[i].province + res.userData[i].city + res.userData[i].area + res.userData[i].detail+'</span>\n' +
+                    '                    </div>\n' +
+                    '                    <div class="addressbox">\n' +
+                    '                        <span><span>'+ res.userData[i].telNum +'</span></span>\n' +
+                    '                    </div>\n' +
+                    '                </div>\n' +
+                    '                <div class="adressBtn">\n' +
+                    '                    <button class="fr delBtn btn-danger">删除</button>\n' +
+                    '                    <button type="button" class="fr editBtn btn-warning" data-toggle="modal" data-target="#myModal">\n' +
+                    '                        <span>编辑</span>\n' +
+                    '                    </button>\n' +
+                    '                </div>';
+            }else{
+                oLi.innerHTML = '<div class="content">\n' +
+                    '                    <div class="clearfix">\n' +
+                    '                        <div class="nameBox fl">\n' +
+                    '                            <span class="receiptName">'+ res.userData[i].consigneeID +'</span>\n' +
+                    '                            <span class="shou">收</span>\n' +
+                    '                        </div>\n' +
+                    '                    </div>\n' +
+                    '                    <div class="addressbox addDetails">\n' +
+                    '                        <span>'+ res.userData[i].province + res.userData[i].city + res.userData[i].area + res.userData[i].detail+'</span>\n' +
+                    '                    </div>\n' +
+                    '                    <div class="addressbox">\n' +
+                    '                        <span><span>'+ res.userData[i].telNum +'</span></span>\n' +
+                    '                    </div>\n' +
+                    '                </div>\n' +
+                    '                <div class="adressBtn">\n' +
+                    '                    <button class="fr delBtn btn-danger">删除</button>\n' +
+                    '                    <button type="button" class="fr editBtn btn-warning" data-toggle="modal" data-target="#myModal">\n' +
+                    '                        <span>编辑</span>\n' +
+                    '                    </button>\n' +
+                    '                    <button class="fr defaultAddress btn-default">设为默认地址</button>\n' +
+                    '                </div>';
+            }
+            $(oLi).addClass('addressPage fl')
+            $(oLi).attr('index',res.userData[i].addressID)
+            oUserAddressBox.append(oLi);
+        }
     }
+
+    //获取数据库中当前用户的所有地址信息     render
+    function getUserAddress(oUserID){
+        $.ajax({
+            url:'/getUserAddress',
+            data:{
+                "oUserID":oUserID
+            },
+            success:function (res) {
+                if (res.error) {
+                    alert('获取用户地址信息失败！')
+                }else{
+                    //将当前用户的地址信息传出
+                    createAddress(res)
+                }
+            }
+        })
+    }
+    getUserAddress(oUserID);
+
+    //-------------------------------- 增 --------------------------------
+    //获取当前输入框中的值
+    function getAddressContent(){
+        //获得输入框中的收获地址信息
+        var data = {
+            consigneeID: $('#inputName').val(),
+            province: oProvinceSelNow.html(),
+            city: oCitySelNow.html(),
+            area: oAreaSelNow.html(),
+            detail: $('#inputAddressDetail').val(),
+            telNum: $('#inputTel').val()
+        }
+        return data;
+    }
+    // 新增地址函数
+    function createNewAddress(oUserID,consigneeID,province,city,area,detail,telNum){
+        $.ajax({
+            url:'/createNewAddress',
+            data:{
+                "oUserID":oUserID,
+                "consigneeID":consigneeID,
+                "province":province,
+                "city":city,
+                "area":area,
+                "detail":detail,
+                "telNum":telNum
+            },
+            success:function (res) {
+                if (res.error) {
+                    alert('创建地址数据失败！')
+                }else{
+                    //刷新页面数据
+                    getUserAddress(oUserID);
+                    alert('创建地址数据成功！')
+                }
+            }
+        })
+    }
+    // 弹出框中确认按钮的点击事件
+    oBtnConfirm.click(function () {
+        if(oModel1StyleNow == 1){
+            //向数据库添加数据
+            createNewAddress(oUserID,getAddressContent().consigneeID,getAddressContent().province,getAddressContent().city,getAddressContent().area,getAddressContent().detail,getAddressContent().telNum)
+        }else if (oModel1StyleNow == 2){
+            //改
+            modifyOldAddress(oUserID,getAddressContent().consigneeID,getAddressContent().province,getAddressContent().city,getAddressContent().area,getAddressContent().detail,getAddressContent().telNum,oModifyAddressNow)
+        }
+    })
+    //-------------------------------- 改 --------------------------------
+    function modifyOldAddress(oUserID,consigneeID,province,city,area,detail,telNum,index){
+        $.ajax({
+            url:'/modifyOldAddress',
+            data:{
+                "oUserID":oUserID,
+                "consigneeID":consigneeID,
+                "province":province,
+                "city":city,
+                "area":area,
+                "detail":detail,
+                "telNum":telNum,
+                "index":index
+            },
+            success:function (res) {
+                if (res.error) {
+                    alert('修改地址数据失败！')
+                }else{
+                    //刷新页面数据
+                    getUserAddress(oUserID);
+                    alert('修改地址成功！')
+                }
+            }
+        })
+    }
+    function modifyAddressDefault(oUserID,index){
+        $.ajax({
+            url:'/modifyAddressDefault',
+            data:{
+                "oUserID":oUserID,
+                "index":index
+            },
+            success:function (res) {
+                if (res.error) {
+                    alert('修改默认地址失败！')
+                }else{
+                    //刷新页面数据
+                    getUserAddress(oUserID);
+                    alert('修改默认地址成功！')
+                }
+            }
+        })
+    }
+
+    //-------------------------------- 删 --------------------------------
+    function removeAddress(oUserID,index){
+        $.ajax({
+            url:'/removeAddress',
+            data:{
+                "oUserID":oUserID,
+                "index":index
+            },
+            success:function (res) {
+                if (res.error) {
+                    alert('删除地址失败！')
+                }else{
+                    //刷新页面数据
+                    if(res.userData){
+                        getUserAddress(oUserID);
+                        alert('删除地址成功！')
+                    }else{
+                        alert('默认地址不能删除！')
+                    }
+                }
+            }
+        })
+    }
+
+
+    /*----------------------------------------------- 当前用户操作本人地址信息 ----------------------------------------*/
     /*----------------------------------------------- 全国地址三级联动 ----------------------------------------*/
+    //改变当前展示的li标签
+    oUl.on('click','li',function () {
+        $(this).parent('ul').parent('div').children('button').children('i').html($(this).children('a').html())
+    });
+    //根据传参创造li标签并插入
+    function createSite(res,ul) {
+        ul.html('')
+        for (var i = 0; i < res.name.length; i ++){
+
+            var oLi = document.createElement('li');
+            oLi.innerHTML = '<a href="javascript:;">'+ res.name[i].name +'</a>';
+            ul.append(oLi);
+        }
+    }
+
+    //获取数据库中的省份信息
+    function getProvince() {
+        //隐藏市区 并重置button 清除下拉ul中的数据
+        oCitySel.css('display','none')
+        oAreaSel.css('display','none')
+        oCitySelNow.html('--请选择--')
+        oAreaSelNow.html('--请选择--')
+        oCitySelUl.html('')
+        oAreaSelUl.html('')
+
+        $.ajax({
+            url:'/getProvince',
+            success:function (res) {
+                if (res.error) {
+                    alert('获取省信息失败！')
+                }else{
+                    //将获取的省市信息创建对应个数的下拉选项 页面加载获取省 修改省获取对应市 修改市获取对应区 获取到了让对应的下拉框显示
+                    createSite(res,oProvinceSelUl)
+                }
+            }
+        })
+    }
+    getProvince();
+
+    //获取数据库中对应的城市信息
+    function getCity(oProv) {
+        $.ajax({
+            url:'/getCity',
+            data:{
+                "oProv":oProv
+            },
+            success:function (res) {
+                if (res.error) {
+                    alert('获取市信息失败！')
+                }else{
+                    //将获取的省市信息创建对应个数的下拉选项 页面加载获取省 修改省获取对应市 修改市获取对应区 获取到了让对应的下拉框显示
+                    if (res.name.length) {
+                        createSite(res,oCitySelUl)
+                    }else {
+                        oCitySel.css('display','none')
+                    }
+                }
+            }
+        })
+    }
+    oProvinceSelNow.bind('DOMNodeInserted',function() {
+        var oProv = oProvinceSelNow.html()
+        oCitySel.css('display','inline-block')
+        oAreaSel.css('display','none')
+        oCitySelNow.html('--请选择--')
+        oAreaSelNow.html('--请选择--')
+        oCitySelUl.html('')
+        oAreaSelUl.html('')
+        getCity(oProv);
+    });
+
+    //获取数据库中对应的地区信息
+    function getArea(oCity) {
+        $.ajax({
+            url:'/getArea',
+            data:{
+                "oCity":oCity
+            },
+            success:function (res) {
+                if (res.error) {
+                    alert('获取区信息失败！')
+                }else{
+                    //将获取的省市信息创建对应个数的下拉选项 页面加载获取省 修改省获取对应市 修改市获取对应区 获取到了让对应的下拉框显示
+                    if (res.name.length) {
+                        createSite(res,oAreaSelUl)
+                    }else {
+                        oAreaSel.css('display','none')
+                    }
+                }
+            }
+        })
+    }
+    oCitySelNow.bind('DOMNodeInserted',function() {
+        var oCity = oCitySelNow.html()
+        if (oCity != '--请选择--'){
+            oAreaSel.css('display','inline-block')
+            getArea(oCity);
+        }
+    });
+    /*----------------------------------------------- 全国地址三级联动 ----------------------------------------*/
+
 </script>
 </html>
