@@ -28,11 +28,6 @@ h2{
     border: 1px solid @col9;
     background: @col9;
 }
-#c1{
-    img{
-        width: 150px;
-    }
-}
 .personmsg-edit-head-big{
     float: left;
     padding-right: 70px;
@@ -70,14 +65,28 @@ h2{
 }
 .personmsg-edit-head-info{
     margin-top: 20px;
-    div{
+    ul{
         width: 300px;
         margin-top: 10px;
-        img{
-            width: 55px;
-            margin-right: 16px;
+        li{
+            float: left;
+            margin: 2px;
+            img{
+                width: 55px;
+                margin-right: 16px;
+            }
         }
     }
 
 }
-
+//裁剪工具
+.personmsg-edit-head-mask{
+    width: 200px;
+    height: 200px;
+    background: @bgcol3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: move;
+    //display: none;
+}

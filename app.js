@@ -6,9 +6,10 @@ var bodyParser=require('body-parser');
 //引入ejs
 var ejs=require('ejs');
 //引入短信
-// var AV = require('leanengine');
+var AV = require('leanengine');
 //引入路由
-
+//引入路由
+var personhomeRouter=require('./routers/personhomeRouter');
 //创建服务
 var server=express();
 //配置浏览器访问的静态文件目录
@@ -23,6 +24,10 @@ server.set('view engine','html');
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 //设置路由
+server.use(personhomeRouter);
+server.get("/login",function(req,res){
+    res.render("login");
+});
 server.get("/home",function(req,res){
     res.render("home");
 });
@@ -62,5 +67,43 @@ server.get("/orderdetails",function(req,res){
 server.get("/address",function(req,res){
     res.render("address");
 });
+server.get("/wjy_aftersale",function(req,res){
+    res.render("wjy_aftersale");
+});
+server.get("/mycollection",function(req,res){
+    res.render("mycollection");
+});
+server.get("/cart",function(req,res){
+    res.render("cart");
+});
+server.use(AV.express());
+//短信验证
+AV.init({
+    appId:'FlkPgG9tjcdCIz1BuawHKEPL-gzGzoHsz',
+    appKey:'nzbitzpAQPVfa1KqiBFuHnqY',
+    masterKey:'DYRBTI6mydxxVYcGURqeTRgH',
+    serverURLs:'https://flkpgg9t.lc-cn-n1-shared.com'
+});
+server.post('/getCode',function (req,res) {
+    AV.Cloud.requestSmsCode({
+        mobilePhoneNumber: req.body.phone,  // 目标手机号
+        name:'maomao',  //主题
+        op:'验证码',//内容
+        ttl:5  //验证码的有效时间  分钟
+    }).then(function(){
+        res.send({error:0})
+    }, function(err){
+        res.send({error:1,msg:err})
+    });
+});
+//检测验证码和手机号是否匹配
+server.post('/testPhone',function (req,res) {
+    AV.Cloud.verifySmsCode(req.body.code, req.body.phone).then(function(){
+        res.send({error:0})
+    }, function(err){
+        res.send({error:1,msg:err})
+    });
+});
+
 //给服务配置端口号
 server.listen(893);

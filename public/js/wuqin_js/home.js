@@ -1,35 +1,5 @@
 
-/*--------------下拉菜单--------------*/
-
-
-var oJc=$('.jc');
-var oJc1=$('#jcxiala');
-
-oJc.mouseenter(function () {
-    oJc1.css({
-        'display':'block'
-    });
-    oJc.css('color','skyblue');
-
-});
-oJc.mouseleave(function () {
-    oJc1.css('display','none');
-    oJc.css('color','#444444');
-});
-
-var oSc=$('.sc');
-var oSc1=$('#scxiala');
-
-oSc.mouseenter(function () {
-    oSc1.css('display','block');
-});
-oSc.mouseleave(function () {
-    oSc1.css('display','none');
-});
-
-
 // ---------------------------轮播图
-
 var aImg=$('.clsfyCt2 img');
 var n=0;
 var timer;
@@ -86,8 +56,20 @@ $('.clAll').mouseleave(function () {
 });
 // ---------------------------------------悬浮在li上下边框变色
 var aTwoMenuChildren=$('.twoMenu>div');
-$('#ul1 li').mouseover(function () {
+$('#ul1 li').mouseover(showTwo);
+aTwoMenuChildren.mouseover(showTwo);
+
+function showTwo() {
+    $(this).css('border-right','2px solid white');
     aTwoMenuChildren.eq($(this).index()).css('display','block');
+
+    if(aTwoMenuChildren.eq($(this).index()).prop('display')=='block'){
+        $(this).css({
+            'border-top':'0.1px solid green',
+            'border-bottom':'0.1px solid green',
+            'border-right':'none'
+        });
+    }
     if($(this).index()==0){
         $(this).css({
             'border-bottom':'0.1px solid green',
@@ -111,9 +93,13 @@ $('#ul1 li').mouseover(function () {
         }
     }
 
-});
+};
 // -------------------------------------移出li时li的样式恢复，二级菜单消失
-$('#ul1 li').mouseout(function () {
+$('#ul1 li').mouseout(hideTwo);
+aTwoMenuChildren.mouseout(hideTwo);
+
+function hideTwo() {
+    $(this).css('border-right','2px solid #e0e0e0');
     aTwoMenuChildren.eq($(this).index()).css('display','none');
     if($(this).index()==$(this).siblings().length){
         $(this).css({
@@ -129,7 +115,7 @@ $('#ul1 li').mouseout(function () {
             'border-right':'none'
         });
     }
-});
+};
 // ---------------------悬浮在li上让二级菜单显示
 
 

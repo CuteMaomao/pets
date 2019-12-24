@@ -9,11 +9,46 @@
     <link rel="stylesheet" href="../fonts/wuqin_font/iconfont.css">
 </head>
 <body>
-<%-include ('header.html')-%>
-<%-include ('index.html')-%>
 <!------------------------------最顶部----------------------------->
-
-
+   <%-include("top.html")-%>
+   <%-include("index.html")-%>
+    <!-----------------------------搜索栏那一块------------------------>
+   <!-- <section class="nav">
+        <div class="logo">
+            <a href="home.html">
+                <img src="../images/wuqin_image/logo.png" alt="logo" />
+                <img src="../images/wuqin_image/title_green.png" alt="玖宠">
+             </a>
+        </div>
+        <div class="searchs">
+            <input type="text" placeholder="请输入您想要的宝贝">
+            <button type="button">搜索</button>
+            <p>热门搜索:&nbsp;&nbsp;</p>
+            <ul>
+                <li><a href="#">宝贝1</a></li>
+                <li><a href="#" class="ulA">宝贝2</a></li>
+                <li><a href="#" class="ulA">宝贝3</a></li>
+                <li><a href="#" class="ulA">宝贝4</a></li>
+                <li><a href="#" class="ulA">宝贝5</a></li>
+            </ul>
+        </div>
+        <div class="cart">
+            <span class="iconfont">&#xe502;</span>
+            <p>&nbsp;&nbsp;<a href="#">购物车<span>(1)</span></a></p>
+        </div>
+    </section>
+    &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;公共导航部分-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;
+    <section class="classify">
+        <p>商品分类</p>
+        <ul class="classLi">
+            <li><img src="../images/wuqin_image/gutou.png" alt=""><a href="#">玖宠主粮</a></li>
+            <li><img src="../images/wuqin_image/gutou.png" alt=""><a href="#">玖宠零食</a></li>
+            <li><img src="../images/wuqin_image/gutou.png" alt=""><a href="#">玖宠医疗</a></li>
+            <li><img src="../images/wuqin_image/gutou.png" alt=""><a href="#">玖宠日用</a></li>
+            <li><img src="../images/wuqin_image/gutou.png" alt=""><a href="#">玖宠生活</a></li>
+            <li><img src="../images/wuqin_image/gutou.png" alt=""><a href="#">清仓特价</a></li>
+        </ul>
+    </section>-->
 <!---------------------------分隔线--------------------->
     <!---------------主体部分--------------->
     <section class="contentBlock">
@@ -21,19 +56,20 @@
         <div class="clsfyContent">
             <!----------------------左侧导航们--------------->
             <div class="clsfyCt1">
-               <ul id="ul" style="padding-left: 0;padding-right: 0;">
-                    <li><span>主粮</span><span>零食</span><span>></span></li>
-                    <li><span>玩具</span><span>清洁</span><span>></span></li>
-                    <li><span>保健</span><span>护理</span><span>></span></li>
-                    <li><span>生活</span><span>牵引</span><span>></span></li>
-                    <li><span>洗澡</span><span>服饰</span><span>></span></li>
-                    <li><span>美容</span><span>窝垫</span><span>></span></li>
+
+               <ul id="ul1" style="padding-left: 0;padding-right: 0;">
+                    <li><span>主粮</span><span>零食</span><span class="right">></span></li>
+                    <li><span>玩具</span><span>清洁</span><span class="right">></span></li>
+                    <li><span>保健</span><span>护理</span><span class="right">></span></li>
+                    <li><span>生活</span><span>牵引</span><span class="right">></span></li>
+                    <li><span>洗澡</span><span>服饰</span><span class="right">></span></li>
+                    <li><span>美容</span><span>窝垫</span><span class="right">></span></li>
                     <li><span style="color:orangered" class="iconfont" >&#xe60c;</span><span id="sale1">正在进行的品牌特卖</span> <span id="sale2" style="background-color: rgb(251,96,3)" class="badge">24</span></li>
                 </ul>
                 <!-------------------二级菜单们------------------>
                 <div class="twoMenu">
                     <!------------------主粮，零食---------------->
-                    <div class="one">
+                    <div  class="one">
                         <div class="part1">
                             <div class="title1">
                                 <img src="../images/wuqin_image/zhuliangTitle.jpg" alt="二级菜单狗狗主粮">
@@ -71,7 +107,7 @@
 
                                 <div class="row4">
                                      <span>冻干狗粮</span>
-                                     <img src="../wuqin_image/donggan.jpg" alt="冻干狗粮">
+                                     <img src="../images/wuqin_image/donggan.jpg" alt="冻干狗粮">
                                      <a href="#"><span>鸡肉冻干</span></a>
                                      <a href="#"><span>牛肉冻干</span></a>
                                      <a href="#"><span>羊肉冻干</span></a>
@@ -710,8 +746,8 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
 
             <!--------------------轮播图们---------------->
@@ -760,9 +796,9 @@
             </div>
         </div>
     </section>
-    <!------------------内容第一部分---狗狗主食-------------->
+    <!------------------内容第一部分---玖宠主食-------------->
     <section class="ctPart1">
-        <p><span style="color:green;font-size: 20px;" class="iconfont">&#xe514;</span>&nbsp;狗狗主粮</p>
+        <p><span style="color:green;font-size: 20px;" class="iconfont">&#xe514;</span>&nbsp;玖宠主粮</p>
         <!--------------------内容框------------->
         <div class="part1Ct">
             <!-----------------左侧图片---------------->
@@ -811,9 +847,9 @@
              </div>
         </div>
     </section>
-    <!------------------内容第二部分---狗狗零食----------->
+    <!------------------内容第二部分---玖宠零食----------->
     <section class="ctPart1">
-        <p><span style="color:green;font-size: 20px;" class="iconfont">&#xe607;</span>&nbsp;狗狗零食</p>
+        <p><span style="color:green;font-size: 20px;" class="iconfont">&#xe607;</span>&nbsp;玖宠零食</p>
         <!--------------------内容框------------->
         <div class="part1Ct">
             <!-----------------左侧图片---------------->
@@ -862,9 +898,9 @@
              </div>
         </div>
     </section>
-    <!------------------内容第三部分---狗狗医疗----------->
+    <!------------------内容第三部分---玖宠医疗----------->
     <section class="ctPart1">
-        <p><span style="color:green;font-size: 20px;" class="iconfont">&#xe60b;</span>&nbsp;狗狗保健&医疗</p>
+        <p><span style="color:green;font-size: 20px;" class="iconfont">&#xe60b;</span>&nbsp;玖宠医疗</p>
         <!--------------------内容框------------->
         <div class="part1Ct">
             <!-----------------左侧图片---------------->
@@ -913,9 +949,9 @@
              </div>
         </div>
     </section>
-    <!------------------内容第四部分---狗狗日用----------->
+    <!------------------内容第四部分---玖宠日用----------->
     <section class="ctPart1">
-        <p><span style="color:green;font-size: 20px;" class="iconfont">&#xe50c;</span>&nbsp;狗狗日用</p>
+        <p><span style="color:green;font-size: 20px;" class="iconfont">&#xe50c;</span>&nbsp;玖宠日用</p>
         <!--------------------内容框------------->
         <div class="part1Ct">
             <!-----------------左侧图片---------------->
@@ -964,9 +1000,9 @@
              </div>
         </div>
     </section>
-    <!------------------内容第五部分---狗狗牵引&服饰&玩具----------->
+    <!------------------内容第五部分---玖宠生活----------->
     <section class="ctPart1">
-        <p><span style="color:green;font-size: 20px;" class="iconfont">&#xe610;</span>&nbsp;狗狗牵引&服饰&玩具</p>
+        <p><span style="color:green;font-size: 20px;" class="iconfont">&#xe610;</span>&nbsp;玖宠生活</p>
         <!--------------------内容框------------->
         <div class="part1Ct">
             <!-----------------左侧图片---------------->
@@ -1015,7 +1051,8 @@
              </div>
         </div>
     </section>
-<%-include('footer.html')-%>
+<!---------------------------尾部------------------------>
+<%-include("footer.html")-%>
 </body>
 <script src="../js/wuqin_js/home.js"></script>
 </html>

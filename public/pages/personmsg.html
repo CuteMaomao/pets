@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="../css/personmsg.css">
 </head>
 <body>
-<%-include ('header.html')-%>
 <%-include ('personnav.html')-%>
 <div class="personmsg">
     <h2>
@@ -16,9 +15,9 @@
         <div class="form-head">
             <label>当前头像：</label>
             <div class="personmsg-head">
-                <img class="personmsg-head-img" src="../images/huangqian/girl.jpg">
+                <img class="personmsg-head-img" src="">
                 <div class="personmsg-head-edit">
-                    <a href="/personmsg_edit_head">编辑头像</a>
+                    <a href="javascript:void(0)" onclick="jumponhead()">编辑头像</a>
                 </div>
             </div>
         </div>
@@ -41,7 +40,7 @@
         </div>
         <div class="personmsg-date">
             <label>生日：</label>
-            <select class="personmsg-year">
+            <select id="selectYear" class="personmsg-year">
                 <option>1996</option>
                 <option>1997</option>
                 <option>1998</option>
@@ -67,7 +66,7 @@
                 <option>2018</option>
                 <option>2019</option>
             </select><span>年</span>
-            <select class="personmsg-month">
+            <select id="selectMonth" class="personmsg-month">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -81,7 +80,7 @@
                 <option>11</option>
                 <option>12</option>
             </select><span>月</span>
-            <select class="personmsg-day">
+            <select id="selectDay" class="personmsg-day">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -117,16 +116,152 @@
         </div>
         <div class="personmsg-phone-all">
             <label>手机号码：</label>
-            <div class="personmsg-phone">186****5738</div>
+            <div class="personmsg-phone"></div>
             <div class="personmsg-phone-edit">
-                <a class="btn-style" href="/personmsg_edit_phone_one">修改</a>
+                <a class="btn-style" href="javascript:void(0)" onclick="jumpon()">修改</a>
             </div>
         </div>
         <div class="personmsg-btn-save">
-            <button class="btn-style">保存</button>
+            <button id="savePerBtn" class="btn-style" href="javascript:void(0)" onclick="init()">保存</button>
         </div>
     </form>
 </div>
 <%-include ('footer.html')-%>
 </body>
+<script>
+    //获取地址栏参数
+    function getUrl() {
+        var url = decodeURI(location.search); //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            var strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+    var json=getUrl();
+    var username=json.username;
+    //页面初始数据
+    function inirPage() {
+        $.ajax({
+            url:'/getPersonHomeData',
+            data:{
+                username:username
+            },
+            success:function (res) {
+                console.log(res.data)
+                //页面数据展示
+                //判断地址栏是否有图片
+                if (json.headurl){
+                    $('.personmsg-head-img').attr('src',json.headurl);
+                } else {
+                    $('.personmsg-head-img').attr('src',res.data[0].headurl);
+                }
+                $('.personmsg-name').text(res.data[0].username);
+                if (json.othername){
+                    $('.personmsg-othername').val(json.othername);
+                } else {
+                    $('.personmsg-othername').val(res.data[0].othername);
+                }
+                var sex=res.data[0].sex;
+                $.each($("input:radio"),function () {
+                    if ($(this).val()==sex){
+                        $(this).attr('checked','true');
+                    }
+                })
+                //生日
+                var birthday;
+                if (json.birthday){
+                    birthday=json.birthday;
+                }else {
+                    birthday=res.data[0].birthday;
+                }
+                var birArr=birthday.split('-');
+                $('#selectYear option').each(function(){
+                    if ($(this).val()==birArr[0]){
+                        $(this).attr('selected','true');
+                    }
+                })
+                $('#selectMonth option').each(function(){
+                    if ($(this).val()==birArr[1]){
+                        $(this).attr('selected','true');
+                    }
+                })
+                $('#selectDay option').each(function(){
+                    if ($(this).val()==birArr[2]){
+                        $(this).attr('selected','true');
+                    }
+                })
+                //手机号 判断地址栏是否有手机号
+                if (json.phone){
+                    $('.personmsg-phone').text(json.phone);
+                } else {
+                    var phone=res.data[0].phone;
+                    $('.personmsg-phone').text(phone);
+                }
+            }
+        })
+    }
+    inirPage();
+    function jumpon(){
+        location.href='/personmsg_edit_phone_one?username='+username+'&headurl='+$('.personmsg-head-img').attr('src')+'&phone='+$('.personmsg-phone').text();
+    }
+    function jumponhead(){
+        location.href='/personmsg_edit_head?username='+username+'&headurl='+$('.personmsg-head-img').attr('src')+'&phone='+$('.personmsg-phone').text();
+    }
+    function init(){
+        location.href='/personmsg?username='+username+'&othername='+json.othername+'&headurl='+json.headurl+'&birthday='+json.birthday+'&phone='+json.phone;
+    }
+    //保存
+    $('#savePerBtn').click(function () {
+        init();
+        var headurl=$('.personmsg-head-img').attr('src');
+        var othername=$('.personmsg-othername').val();
+        var sex;
+        for (var i=0;i<$("input:radio").length;i++){
+            if ($(this).eq(i).attr('checked')) {
+                sex=$(this).val();
+            }
+        }
+        var year;
+        var month;
+        var day;
+        for (var i=0;i<$('#selectYear option').length;i++){
+            if ($(this).eq(i).attr('selected')) {
+                year=$(this).val();
+            }
+        }
+        for (var i=0;i<$('#selectMonth option').length;i++){
+            if ($(this).eq(i).attr('selected')) {
+                month=$(this).val();
+            }
+        }
+        for (var i=0;i<$('#selectDay option').length;i++){
+            if ($(this).eq(i).attr('selected')) {
+                day=$(this).val();
+            }
+        }
+        var birthday=year+'-'+month+'-'+day;
+        var phone=$('.personmsg-phone').text();
+        console.log(headurl,othername,sex,birthday,phone)
+        $.ajax({
+            url:'/editPerson',
+            data:{
+                headurl:headurl,
+                username:username,
+                othername:othername,
+                sex:sex,
+                birthday:birthday,
+                phone:phone
+            },
+            success:function (res) {
+                //页面数据展示
+                inirPage();
+            }
+        })
+    });
+</script>
 </html>

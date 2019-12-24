@@ -9,11 +9,7 @@ body {
 }
 a {
   text-decoration: none;
-  display: block;
-}
-ul,
-li {
-  text-align: center;
+  display: inline-block;
 }
 button,
 input {
@@ -167,8 +163,10 @@ a {
 .order-box ul > li {
   height: 100px;
 }
-.order-box ul > li ul > li:not(.order-box-pay) {
+.order-box ul > li ul > li {
   float: left;
+}
+.order-box ul > li ul > li:not(.order-box-pay) {
   height: 100px;
   line-height: 100px;
   margin-right: 80px;
@@ -176,7 +174,20 @@ a {
 .order-box ul > li ul .order-box-info a:hover {
   color: #33CA97;
 }
-.order-box ul > li img {
+#orderImgBox {
+  width: 80px;
+  height: 100px;
+  position: relative;
+}
+#orderImgBox > li {
+  width: 80px;
+  height: 100px;
+  line-height: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#orderImgBox > li img {
   width: 80px;
   height: 60px;
   vertical-align: middle;

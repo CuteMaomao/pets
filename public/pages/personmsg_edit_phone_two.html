@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="../css/personmsg_edit_phone.css">
 </head>
 <body>
-<%-include ('header.html')-%>
 <%-include ('personnav.html')-%>
 <div class="personmsg-edit-phone">
     <h2>
@@ -15,7 +14,7 @@
     <form>
         <div class="personmsg-edit-phone-all">
             <label>新手机号码：</label>
-            <input type="number" class="input-style">
+            <input id="newPhone" type="number" class="input-style">
             <div class="getcode">
                 <a class="btn-style" href="#">获取验证码</a>
             </div>
@@ -25,10 +24,29 @@
             <input type="text" class="input-style" style="margin-left: 96px">
         </div>
         <div class="next" style="margin-left: 96px">
-            <a class="btn-style" href="/personmsg">确定</a>
+            <a class="btn-style" href="javascript:void(0)" onclick="jumpon()">确定</a>
         </div>
     </form>
 </div>
 <%-include ('footer.html')-%>
 </body>
+<script>
+    //获取地址栏参数
+    function getUrl() {
+        var url = decodeURI(location.search); //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            var strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+    var json=getUrl();
+    function jumpon(){
+        location.href='/personmsg?username='+json.username+'&headurl='+json.headurl+'&phone='+$('#newPhone').val();
+    }
+</script>
 </html>

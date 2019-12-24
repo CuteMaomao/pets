@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>个人中心-首页-修改头像</title>
     <link rel="stylesheet" href="../css/personmsg_edit_head.css">
+    <script src="../js/personmsg_edit_head.js"></script>
+    <script src="../util/jquery-3.4.1.min.js"></script>
 </head>
 <body>
-<%-include ('header.html')-%>
 <%-include ('personnav.html')-%>
 <div class="personmsg-edit-head">
     <h2>
@@ -20,20 +21,19 @@
             <input id="uploadimg" type="file">
             <div class="personmsg-edit-head-info">
                 <h5>推荐头像</h5>
-                <div>
-                    <img src="../images/huangqian/bh1.jpg">
-                    <img src="../images/huangqian/bh2.jpg">
-                    <img src="../images/huangqian/bh3.jpg">
-                    <img src="../images/huangqian/bh4.jpg">
-                </div>
-                <div>
-                    <img src="../images/huangqian/gh1.jpg">
-                    <img src="../images/huangqian/gh2.jpg">
-                    <img src="../images/huangqian/gh3.jpg">
-                    <img src="../images/huangqian/gh4.jpg">
-                </div>
+                <ul id="infoHeadList">
+                    <li><img src="../images/huangqian/bh1.jpg"></li>
+                    <li><img src="../images/huangqian/bh2.jpg"></li>
+                    <li><img src="../images/huangqian/bh3.jpg"></li>
+                    <li><img src="../images/huangqian/bh4.jpg"></li>
+                    <li><img src="../images/huangqian/gh1.jpg"></li>
+                    <li><img src="../images/huangqian/gh2.jpg"></li>
+                    <li><img src="../images/huangqian/gh3.jpg"></li>
+                    <li><img src="../images/huangqian/gh4.jpg"></li>
+                </ul>
             </div>
-            <button id="saveHeadBtn">保存</button>
+            <div class="personmsg-edit-head-mask" id="mask"></div>
+            <button id="saveHeadBtn" onclick="jumpon()">保存</button>
         </div>
         <div class="personmsg-edit-head-look">
             <h5>效果预览</h5>
@@ -51,12 +51,79 @@
 <%-include ('footer.html')-%>
 </body>
 <script>
-    var c1=document.getElementById('c1');
-    var gd=c1.getContext('2d');
+    var canvas1=document.getElementById('c1');
+    var gd=canvas1.getContext('2d');
     var oImg=new Image();
     oImg.src='../images/huangqian/no-head.png';
+    oImg.setAttribute('width','150');
     oImg.onload = function(){
         gd.drawImage(oImg,80,80);
+    }
+    var gd2 = canvas1.getContext('2d');
+    var oFile = document.getElementById('uploadimg');
+    oFile.addEventListener('change', function () {
+        var reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload = function() {
+            oImg.src = event.target.result;
+            oImg.onload = function(){
+                gd2.drawImage(oImg,0,0,400,400);
+            }
+        };
+    });
+    //推荐头像
+    $("#infoHeadList li").each(function(){
+        $(this).click(function(){
+            var src=$(this).children(0).attr('src');
+            var gd3 = canvas1.getContext('2d');
+            oImg.src=src;
+            oImg.setAttribute('width','150');
+            oImg.onload = function(){
+                gd3.drawImage(oImg,0,0,400,400);
+            }
+        })
+    })
+
+    //上传图片之后出现裁剪工具
+    //判断canvas的图片
+    var oMask = document.getElementById("mask");
+    if (oImg.src!='../images/huangqian/no-head.png') {
+
+    }
+    //拖拽
+    oMask.onmousedown=function () {
+        var disX=event.clientX-oMask.offsetLeft;
+        var disY=event.clientY-oMask.offsetTop;
+
+        document.onmousemove=function () {
+            var l=event.clientX-disX;
+            var t=event.clientY-disY;
+
+            oMask.style.left=l+'px';
+            oMask.style.top=t+'px';
+        };
+
+        document.onmouseup=function () {
+            document.onmousemove=null;
+            document.onmouseup=null;
+        };
+    };
+    //传图片参数
+    function getUrl() {
+        var url = decodeURI(location.search);
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            var strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+    var json=getUrl();
+    function jumpon(){
+        location.href='/personmsg?username='+json.username+'&headurl='+oImg.src+'&phone='+json.phone;
     }
 </script>
 </html>

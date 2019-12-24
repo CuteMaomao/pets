@@ -16,75 +16,190 @@
     </style>
 </head>
 <body>
-<input type="file" id="file"><button id="btn">上传</button>
-<canvas id="c1"></canvas>
-<div class="mark" id="mark"></div>
-<canvas id="c3"></canvas>
+<div name="container" style="height:px;width:px;border:#BB px solid;text-align:center">
+    <canvas id="canvas" style="z-index: 999; " height="" width=""></canvas>
+</div>
+<!--预览-->
+<div name="display" style="height:px;width:px;border:#BB px solid;position:absolute;left:px;top:px;">
+    <canvas id="canvas_dp" style="z-index: ; " height="" width=""></canvas>
+</div>
+<!--上传-->
+<input id="myfileInput" type="file" accept="image/gif, image/jpeg, image/x-png"/>
 <script src="../util/jquery-3.4.1.min.js"></script>
 <script>
-    var canvas1 = document.getElementById("c1")
-    var oMark = document.getElementById("mark")
-    var canvas3= document.getElementById("c3")
-    var btn= document.getElementById("btn")
-    canvas1.height = 300;
-    canvas1.width=300;
-    canvas3.height=100;
-    canvas3.width=100;
-    var gd1 = canvas1.getContext("2d");
-    var srcX = oMark.offsetLeft-canvas1.getBoundingClientRect().left;
-    var srcY = oMark.offsetTop-canvas1.getBoundingClientRect().top;
-    var sWidth = oMark.offsetWidth;
-    var sHeight = oMark.offsetHeight;
-    //上传图片
-    var oF=document.getElementById('file');
-    var src;
-    var oImg = new Image();
-    btn.onclick=function () {
-        //创建文件阅读器
-        var oFReader=new FileReader();
-        //读取文件
-        oFReader.readAsDataURL(oF.files[0])
-        //等待文件读取完毕的时候
-        oFReader.onloadend=function () {
-            src = event.target.result;
-            oImg.src = src;
+    var canvas = document.getElementById('canvas'),
+        context = canvas.getContext('d'),
+        canvas = document.getElementById('canvas_dp'),
+        context = canvas.getContext('d'),
+        image = new Image(),//document.getElementById('myimg'),
+        imageData,
+        scale,//缩放比例
+        rubberbandRectangle = {left:,top:,width:,height:},
+        resize = ;
+    oldRubberbandRectangle = {};
+    dragging = false,
+        extending = false,
+        mousedown = {};
+    // Functions.....................................................
+    function windowToCanvas(canvas, x, y) {
+        var canvasRectangle = canvas.getBoundingClientRect();
+        return {
+            x: x - canvasRectangle.left,
+            y: y - canvasRectangle.top
+        };
+    }
+    //将截取的图片画在小的canvas中
+    function captureCanvasPixels() {
+        context.drawImage(image,rubberbandRectangle.left/scale,rubberbandRectangle.top/scale,rubberbandRectangle.width/scale,rubberbandRectangle.height/scale,,,,);
+    }
+    function drawRubberband() {
+        context.save();
+        context.beginPath();//开始新的路径
+        rect(rubberbandRectangle.left,
+            rubberbandRectangle.top,
+            rubberbandRectangle.width,
+            rubberbandRectangle.height);
+        context.fillStyle='rgba(,,,.)';
+        addRectanglePath();
+        context.fill();//填充路径
+        context.fillStyle='rgba(,,,)';
+        captureCanvasPixels();//将选取的图像copy到预览canvas中
+        context.beginPath();
+        context.strokeStyle = '#';
+        context.lineWidth = .;
+        context.arc(rubberbandRectangle.left+rubberbandRectangle.width,rubberbandRectangle.top+rubberbandRectangle.height,,,Math.PI*,true);
+        context.fill();//填充路径
+        context.stroke();//填充路径
+        context.restore();
+    }
+    function rect(x, y, w, h, direction){
+        if(direction){//逆时针
+            context.moveTo(x, y);
+            context.lineTo(x, y + h);
+            context.lineTo(x + w, y + h);
+            context.lineTo(x + w, y);
+        }else{//顺时针
+            context.moveTo(x, y);
+            context.lineTo(x + w, y);
+            context.lineTo(x + w, y + h);
+            context.lineTo(x, y + h);
+        }
+        context.closePath();
+    }
+    function addRectanglePath(){
+        rect(,,canvas.width,canvas.height,true);
+    }
+    function startDragging(loc){
+        mousedown.x = loc.x;
+        mousedown.y = loc.y;
+        oldRubberbandRectangle.left = rubberbandRectangle.left;
+        oldRubberbandRectangle.top = rubberbandRectangle.top;
+    }
+    function updateRubberbandRectangle(loc){
+        var left = oldRubberbandRectangle.left + loc.x-mousedown.x;
+        var top = oldRubberbandRectangle.top + loc.y - mousedown.y;
+        rubberbandRectangle.left = (left<) ? : left;
+        rubberbandRectangle.top = (top < ) ? : top;
+        if(rubberbandRectangle.left + rubberbandRectangle.width > image.width * scale)rubberbandRectangle.left = image.width * scale - rubberbandRectangle.width;
+        if(rubberbandRectangle.top + rubberbandRectangle.height > image.height * scale)rubberbandRectangle.top = image.height * scale - rubberbandRectangle.height;
+        drawRubberband();
+    }
+    function startExtendSelection(loc){
+        mousedown.x = loc.x;
+        mousedown.y = loc.y;
+        oldRubberbandRectangle.width = rubberbandRectangle.width;
+        oldRubberbandRectangle.height = rubberbandRectangle.height;
+    }
+    function extendSelection(loc){
+        var width = parseInt(oldRubberbandRectangle.width) + parseInt(loc.x)-parseInt(mousedown.x);
+        var height = parseInt(parseInt(oldRubberbandRectangle.height) * parseInt(width)/parseInt(oldRubberbandRectangle.width));
+        rubberbandRectangle.width = width;
+        rubberbandRectangle.height = height;
+        drawRubberband();
+    }
+    function clearRubberbandRectangle(){
+        context.clearRect(, , canvas.width, canvas.height);
+        context.putImageData(imageData, ,);
+    }
+    // Event handlers...............................................
+    canvas.onmousedown = function(e){
+        e.preventDefault();
+        var loc = windowToCanvas(canvas, e.clientX, e.clientY);
+        if(rubberbandRectangle.left < loc.x && rubberbandRectangle.top < loc.y && (rubberbandRectangle.left + rubberbandRectangle.width) > loc.x && (rubberbandRectangle.top + rubberbandRectangle.height) > loc.y){
+            dragging = true;
+            startDragging(loc);
+        }else if((rubberbandRectangle.left + rubberbandRectangle.width - ) < loc.x && (rubberbandRectangle.top + rubberbandRectangle.height - ) < loc.y && (rubberbandRectangle.left + rubberbandRectangle.width +) > loc.x && (rubberbandRectangle.top + rubberbandRectangle.height + ) > loc.y){
+            extending = true;
+            startExtendSelection(loc);
         }
     }
-    //拖拽
-    var disX=0;
-    var disY=0;
-    function fnMove() {
-        oMark.style.left=event.clientX-disX+'px';
-        oMark.style.top=event.clientY-disY+'px';
-    }
-
-    function fnUp() {
-        $(document).off('mousemove',fnMove);
-        $(document).off('mouseup',fnUp);
-    }
-    oMark.onmousedown=function () {
-        disX=event.offsetX;
-        disY=event.offsetY;
-        $(document).on('mousemove',fnMove);
-        $(document).on('mouseup',fnUp);
-    }
-    var canvas2 = document.createElement("canvas")
-    var gd2=canvas2.getContext("2d")
-    oImg.onload = function(){
-        gd1.drawImage(oImg,0,0,canvas1.width,canvas1.height);
-        var dataImg = gd1.getImageData(srcX,srcY,sWidth,sHeight)
-        canvas2.width = sWidth;
-        canvas2.height = sHeight;
-        gd2.putImageData(dataImg,0,0,0,0,canvas2.width,canvas2.height)
-        var img2 = canvas2.toDataURL("image/*");
-        var gd3=canvas3.getContext("2d")
-        var img3 = new Image();
-        img3.src = img2;
-        img3.onload  = function(){
-            gd3.drawImage(img3,0,0,canvas3.width,canvas3.height)
+    canvas.onmousemove = function (e) {
+        e.preventDefault();
+        var loc = windowToCanvas(canvas, e.clientX, e.clientY);
+        if(rubberbandRectangle.left < loc.x && rubberbandRectangle.top < loc.y && (rubberbandRectangle.left + rubberbandRectangle.width) > loc.x && (rubberbandRectangle.top + rubberbandRectangle.height) > loc.y){
+            canvas.style.cursor='move';
+        }else if((rubberbandRectangle.left + rubberbandRectangle.width - ) < loc.x && (rubberbandRectangle.top + rubberbandRectangle.height - ) < loc.y && (rubberbandRectangle.left + rubberbandRectangle.width +) > loc.x && (rubberbandRectangle.top + rubberbandRectangle.height + ) > loc.y){
+            canvas.style.cursor='nw-resize';
+        }else{
+            canvas.style.cursor='';
         }
-
+        if (dragging) {
+            clearRubberbandRectangle();
+            updateRubberbandRectangle(loc);
+        }
+        if(extending){
+            canvas.style.cursor='nw-resize';
+            clearRubberbandRectangle();
+            extendSelection(loc);
+        }
     }
+    canvas.onmouseup = function(e){
+        e.preventDefault();
+        dragging = false;
+        extending = false;
+    }
+    // Initialization..............................................
+    var myfileInput = document.getElementById('myfileInput');
+    myfileInput.onchange=function(){
+        setImage(myfileInput);
+    };
+    function setImage(fileObj){
+        if (fileObj.files && fileObj.files[]) {
+            //火狐下，谷歌下都是支持的
+            image.src = window.URL.createObjectURL(fileObj.files[]);
+        } else {
+            alert('对不起，您的浏览器不支持');
+        }
+    }
+    image.src = '';
+    image.onload = function () {
+        console.log(image);
+        var w,h;
+        //计算图片缩放比例
+        if(image.width>canvas.width){
+            console.log();
+            w = canvas.width;
+            h = canvas.width*image.height/image.width
+        }else if(image.height>canvas.height){
+            console.log();
+            h = canvas.height;
+            w = canvas.height*image.width/mage.height
+        }else if(image.width/image.height >= canvas.width/canvas.height){
+            console.log();
+            w = canvas.width;
+            h = canvas.width*image.height/image.width;
+        }else if(image.width/image.height < canvas.width/canvas.height){
+            console.log();
+            w = canvas.height*image.width/image.height
+            h = canvas.height;
+        }
+        scale = w/image.width;
+        context.clearRect(,,canvas.width,canvas.height);
+        context.drawImage(image, , ,w, h);
+        console.log( w+':'+h+'###'+canvas.width+':'+canvas.height);
+        imageData= context.getImageData(, , canvas.width, canvas.height);
+        drawRubberband();
+    };
 </script>
 </body>
 </html>

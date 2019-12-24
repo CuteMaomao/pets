@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>order</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        button,input{
+            border: 1px solid #666666;
+            outline: none;
+            margin: 0;
+            padding: 0;
+        }
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+        .clearfix:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .red{
+            color: red;
+        }
+        .green{
+            color: green;
+        }
+        .blue{
+            color: blue;
+        }
+        .gray{
+            color: gray;
+        }
+        body{
+            width: 1200px;
+            /*margin: 0 auto;*/
+            /*!*padding-left: 158px;*!*/
+            /*padding-top: 77px;*/
+        }
+        /*边距注释*/
+        #orderPageContent{
+            width: 885px;
+            /*background-color: red;*/
+            padding-left: 222px;
+            /*margin-top: 20px;*/
+            margin-left: 65px;
+        }
+        #orderPageContent .headerLabel{
+            padding-left: 20px;
+            height: 60px;
+            padding-right: 20px;
+            /*background-color: red;*/
+            padding-top: 20px;
+            position: relative;
+        }
+        #orderPageContent .line{
+            height: 0;
+            background: #666666;
+            border: 1px solid #666666;
+            position: absolute;
+            width: 885px;
+            top: 66px;
+            z-index: 0;
+        }
+        #orderPageContent .category .lableBox{
+            border: 2px solid #666666;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 18px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        #orderPageContent .category .lableBox span{
+            color: red;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        #orderPageContent .category .lableBox.active{
+            border-bottom: none;
+            height: 26px;
+            background-color: white;
+            position: relative;
+            z-index: 999;
+        }
+        #orderPageContent .recycle{
+            line-height: 50px;
+            font-size: 14px;
+            color: #999999;
+        }
+        #orderPageContent section{
+            margin-top: 20px;
+            margin-left: 20px;
+            /*background-color: red;*/
+            /*height: 30px;*/
+        }
+        #orderPageContent .searchSingle input{
+            display: block;
+            float: left;
+            width: 300px;
+            height: 30px;
+            border: 1px solid #DDD;
+            margin: 0;!important;
+        }
+        .searchBox{
+            width: 800px;
+        }
+        #orderPageContent .searchSingle div{
+            display: inline-block;
+            width: 50px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            background:#DDD ;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        #orderBox{
+            /*padding: 0 70px 0 130px;*/
+            /*background-color: red;*/
+        }
+        #orderPageContent .orderPage{
+            height: 200px;
+            border: 1px solid #AED8FF;
+            border-radius: 2px;
+            width: 900px;
+            background-color: #ffffff;
+        }
+        #orderPageContent .orderPage .content{
+            font-size: 14px;
+        }
+        #orderPageContent .orderPage .title{
+            height: 40px;
+            border-bottom: 1px solid #AED8FF;
+            border-top: none;
+            padding: 0 5px 0 20px;
+            line-height: 40px;
+            background-color: #EAF8FF;
+        }
+
+        #orderPageContent .orderNum{
+            margin-right: 20px;
+        }
+        #orderPageContent .orderTime{
+            color: #999999;
+            font-size: 12px;
+            margin-right: 20px;
+        }
+        #orderPageContent .orderPage .del{
+            margin-right: 10px;
+            font-size: 14px;
+            color: #999999;
+            cursor: pointer;
+        }
+        #orderPageContent .orderPage .del:hover{
+            color: blue;
+        }
+        #orderPageContent .imgBoxAll{
+            /*background-color: red;*/
+            height: 70px;
+            padding: 45px 15px 45px 30px;
+            width: 320px;
+        }
+        #orderPageContent .imgBoxSingle{
+            width: 70px;
+            height: 70px;
+            /*background-color: cyan;*/
+            margin-right: 5px;
+            overflow: hidden;
+        }
+        #orderPageContent .imgBoxSingle img{
+            width: 100%;
+        }
+        #orderPageContent .orderReName{
+            /*background-color: red;*/
+            width: 120px;
+            line-height: 160px;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+            margin-right: 10px;
+            text-align: center;
+        }
+        #orderPageContent .orderPrice{
+            /*background-color: red;*/
+            width: 120px;
+            line-height: 160px;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+            font-weight: 600;
+            color: red;
+            margin-right: 10px;
+        }
+        #orderPageContent .orderDetails{
+            line-height: 160px;
+            margin-left: 10px;
+        }
+        #orderPageContent .orderPage{
+            margin: 10px 0 0 0;
+        }
+        #orderPageContent .status{
+        }
+        #orderPageContent .status #status{
+            width: 140px;
+            height: 160px;
+            line-height: 160px;
+            text-align: center;
+            margin-left: 50px;
+         }
+        #orderPageContent .revocation{
+            height: 160px;
+            line-height: 160px;
+            vertical-align: center;
+            float: right;
+            margin-right: 10px;
+        }
+        #orderPageContent #revBtn{
+            background: none;
+            display: block;
+            width: 90px;
+            border: none;
+            height: 20px;
+            color: #868686;
+            cursor: pointer;
+        }
+        #orderPageContent #revBtn:hover{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <%-include ('personnav.html')-%>
+    <div id="orderPageContent">
+        <div class="headerLabel">
+            <div class="category">
+                <div class="lableBox active">售后记录</div>
+            </div>
+            <div class="line"></div>
+        </div>
+        <section>
+            <div class="searchBox">
+                <div class="searchSingle">
+                    <input placeholder="请输入要搜索的订单号" type="text">
+                    <div>搜索</div>
+                </div>
+            </div>
+        </section>
+        <section id="orderBox">
+            <div class="orderPage">
+                <div class="title">
+                    <div class="orderNum fl">订单编号：10000000<span></span></div>
+                    <div class="orderTime fl">
+                        <span class="timeState">售后申请时间：</span>
+                        <span class="time">2019-12-01 01：59:59</span>
+                    </div>
+                    <div class="fr del">
+                        <span>删除售后记录</span>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="imgBoxAll fl">
+                        <div class="imgBoxSingle fl">
+                            <img src="../images/wjy_imgs/163216_295048.jpg" alt="">
+                        </div>
+                        <div class="imgBoxSingle fl">
+                            <img src="../images/wjy_imgs/163216_295048.jpg" alt="">
+                        </div>
+                        <div class="imgBoxSingle fl">
+                            <img src="../images/wjy_imgs/163216_295048.jpg" alt="">
+                        </div>
+                        <div class="imgBoxSingle fl">
+                            <img src="../images/wjy_imgs/163216_295048.jpg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="orderPrice fl">
+                        ￥<span>180000.00</span>
+                    </div>
+                    <div class="orderDetails fl ">
+                        <a href="/orderdetails">订单详情</a>
+                    </div>
+                    <div class="status fl">
+                        <div id="status">待审核/已完成/已拒绝</div>
+                    </div>
+                    <div class="revocation">
+                        <a id="revBtn">撤销售后申请</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <%-include ('footer.html')-%>
+</body>
+</html>
