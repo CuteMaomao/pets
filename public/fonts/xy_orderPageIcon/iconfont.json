@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "749605",
+      "name": "放大镜",
+      "font_class": "zoom",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "1156524",
+      "name": "垃圾桶 删除",
+      "font_class": "shanchu",
+      "unicode": "e6c5",
+      "unicode_decimal": 59077
+    },
+    {
+      "icon_id": "4777233",
+      "name": "时间 历史记录 计时 钟表 线性",
+      "font_class": "shijian",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "10189828",
+      "name": "撤销",
+      "font_class": "chexiao",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    }
+  ]
+}

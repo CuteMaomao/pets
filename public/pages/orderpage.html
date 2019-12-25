@@ -6,6 +6,7 @@
     <script src="../util/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="../util/bootstrap-3.3.7/dist/css/bootstrap.css">
     <script src="../util/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+
     <style>
         *{
             margin: 0;
@@ -75,24 +76,24 @@
         #orderPageContent .category{
             width: 900px;
         }
-        #orderPageContent .category .lableBox{
+        #orderPageContent .category .labelBox{
             border: 2px solid #666666;
             border-top-right-radius: 10px;
             border-top-left-radius: 10px;
             display: inline-block;
             padding: 10px 20px;
             font-size: 16px;
-            height: 24px;
+            height: 48px;
             margin-right: 10px;
         }
-        #orderPageContent .category .lableBox span{
+        #orderPageContent .category .labelBox span{
             color: red;
             font-size: 16px;
             font-weight: bold;
         }
-        #orderPageContent .category .lableBox.active{
+        #orderPageContent .category .labelBox.active{
             border-bottom: none;
-            height: 26px;
+            height: 48px;
             background-color: white;
             position: relative;
             z-index: 999;
@@ -154,7 +155,7 @@
             /*background-color: red;*/
             height: 70px;
             padding: 45px 15px 45px 30px;
-            width: 320px;
+            width: 360px;
         }
         #orderPageContent .imgBoxSingle{
             width: 70px;
@@ -196,6 +197,13 @@
         #orderPageContent .orderPage{
             margin: 10px 0 0 0;
         }
+        #orderPageContent .orderPage .title .fr span{
+            opacity: 0;
+            color: #666;
+        }
+        #orderPageContent .orderPage:hover .title .fr span{
+            opacity: 1;
+        }
         #orderPageContent .orderPage .btnBox{
             width: 150px;
             padding: 10px 20px 0 20px;
@@ -208,64 +216,95 @@
             display: none;
             margin: 0 auto;
         }
-        #orderPageContent .orderPage .btnBox div{
+        #orderPageContent .orderPage .btnBox > div{
             display: none;
         }
-        #orderPageContent .orderPage .btnBox .paymentTime{
+        #orderPageContent .orderPage .btnBox button,#orderPageContent .orderPage .btnBox > div{
+            display: none;
+        }
+        #orderPageContent .orderPage .btnBox.orderState1 button.orderBtn{
+            display: block;
+            margin-top: 20px;
+        }
+        #orderPageContent .orderPage .btnBox button.orderBtn{
+            font-size: 16px;
+            line-height: 16px;
+        }
+        #orderPageContent .orderPage .btnBox.orderState1 > .paymentTime{
+            display: block;
+            font-size: 12px;
+            color: red;
+            margin-top: 35px;
+        }
+        #orderPageContent .orderPage .btnBox.orderState1 > .paymentTime span{
             display: block;
             font-size: 14px;
             color: red;
             margin-top: 35px;
         }
-        #orderPageContent .orderPage .btnBox button.state-payment{
+        #orderPageContent .orderPage .btnBox.orderState2 button.orderBtn,
+        #orderPageContent .orderPage .btnBox.orderState3 button.orderBtn,
+        #orderPageContent .orderPage .btnBox.orderState4 button.orderBtn{
             display: block;
-            margin-top: 10px;
+            margin-top: 50px;
         }
-        /*#orderPageContent .orderPage .btnBox button.state-deliver{*/
-            /*display: block;*/
-            /*margin-top: 50px;*/
-        /*}*/
-        /*.orderPage .btnBox button.state-confirm{*/
-            /*display: block;*/
-        /*}*/
-        #orderPageContent .orderPage .btnBox button.viewLogisticsBtn{
-            margin-top: 26px;
+        #orderPageContent .orderPage .btnBox.orderState5 > .paymentTime,
+        #orderPageContent .orderPage .btnBox.orderState6 > .paymentTime,
+        #orderPageContent .orderPage .btnBox.orderState7 > .paymentTime{
+            display: block;
+            font-size: 14px;
+            color: #999999;
+            margin-top: 60px;
         }
-        #orderPageContent .orderPage .btnBox button.confirmBtn{
-            margin-top: 10px;
-        }
+
         .searchSingle{
             height: 32px;
             overflow: hidden;
             position: relative;
+            margin-top: 40px;
+            margin-bottom: 10px;
         }
         .searchBtn{
             /*background-color: red;*/
             display: inline-block;
-            height: 100%;
-            border: 1px solid #fff;
+            height: 30px;
+            width: 50px;
+            border: 1px solid #999;
             position: absolute;
+            line-height: 30px;
+            text-align: center;
+            font-size: 16px;
+            color: #fff;
+            background-color: #33CA97;
         }
         .searchIpt{
-            border: 1px solid green;
+            border: 1px solid #999;
             font-size: 16px;
             padding-left: 10px;
             /*background-color: green;*/
         }
+        #pageBox {
+            width: 100%;
+            height: 100px;
+        }
+        #pageBox ul.pagination{
+            width: 100%;
+        }
     </style>
+    <link rel="stylesheet" href="../fonts/xy_orderPageIcon/iconfont.css">
 </head>
 <body>
     <%-include ('header.html')-%>
     <%-include ('personnav.html')-%>
-    <div id="orderPageContent">
+    <div id="orderPageContent" class="clearfix">
         <div class="headerLabel">
             <div class="category">
-                <div class="lableBox active">所有订单</div>
-                <div class="lableBox">待付款 <span>1</span></div>
-                <div class="lableBox">待发货 <span>12</span></div>
-                <div class="lableBox">待收货 <span>1</span></div>
-                <div class="lableBox">待评价 <span>1</span></div>
-                <div class="fr recycle"><span></span>订单回收站</div>
+                <div class="labelBox active" id="allOrder">所有订单</div>
+                <div class="labelBox" id="WaitingForPaymentOrder">待付款 <span class="orderNumBoxSpan">1</span></div>
+                <div class="labelBox" id="toBeShippedOrder">待发货 <span class="orderNumBoxSpan">12</span></div>
+                <div class="labelBox" id="toBeReceivedOrder">待收货 <span class="orderNumBoxSpan">1</span></div>
+                <div class="labelBox" id="toBeRemarkOrder">待评价 <span class="orderNumBoxSpan">1</span></div>
+                <div class="fr recycle" id="recycleBinOrder"><span class="iconfont icon-shanchu"></span>订单回收站</div>
             </div>
             <div class="line"></div>
         </div>
@@ -289,7 +328,7 @@
                         <span class="red">未付款</span>
                     </div>
                     <div class="fr">
-                        <span>删除</span>
+                        <span class="iconfont icon-shanchu"></span>
                     </div>
                 </div>
                 <div class="content">
@@ -322,9 +361,7 @@
                             <span class="time">01时40分50秒</span>
                         </div>
                         <button class="paymentBtn state-payment">付款</button>
-                        <button class="reminderBtn state-deliver">提醒发货</button>
-                        <button class="viewLogisticsBtn state-confirm">查看物流</button>
-                        <button class="confirmBtn state-confirm">确认收货</button>
+
                     </div>
                 </div>
             </div>
@@ -339,7 +376,7 @@
                         <span class="red">未付款</span>
                     </div>
                     <div class="fr">
-                        <span>删除</span>
+                        <span class="iconfont icon-shanchu"></span>
                     </div>
                 </div>
                 <div class="content">
@@ -371,22 +408,470 @@
                             <span></span>
                             <span class="time">01时40分50秒</span>
                         </div>
-                        <button class="paymentBtn state-payment">付款</button>
-                        <button class="reminderBtn state-deliver">提醒发货</button>
                         <button class="viewLogisticsBtn state-confirm">查看物流</button>
                         <button class="confirmBtn state-confirm">确认收货</button>
                     </div>
                 </div>
             </div>
         </section>
+        <section>
+            <div id="pageBox">
+                <nav aria-label="Page navigation" class="navigation">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="javascript:;">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">提示</h4>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelModelBtn">取消</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="confirmModelBtn">确定</button>
+                </div>
+            </div>
+        </div>
     </div>
     <%-include ('footer.html')-%>
 </body>
 <script >
+
+    //订单状态栏
+    var allOrder = $('#allOrder')
+    var WaitingForPaymentOrder = $('#WaitingForPaymentOrder')
+    var toBeShippedOrder = $('#toBeShippedOrder')
+    var toBeReceivedOrder = $('#toBeReceivedOrder')
+    var toBeRemarkOrder = $('#toBeRemarkOrder')
+    var recycleBinOrder = $('#recycleBinOrder')
+
     var oLabelBox = $('.category div')
+
+    var oOrderBox = $('#orderBox')  //订单盒子
+    //按钮  模态框的取消和确认
+    var cancelModelBtn = $('#cancelModelBtn')
+    var confirmModelBtn = $('#confirmModelBtn')
+    //向后台发送的数据  render
+    var oUserID = 12345678;
+    var orderTypeNeed = 'All'  //当前所需要的页码 默认为所有订单
+    var orderIsDel = 0        //订单是否删除 默认为未删除0
+    var orderPageNow = 1        //当前页码 默认为1
     oLabelBox.click(function () {
         $(this).siblings().removeClass('active')
         $(this).addClass('active')
     })
+    /********************************************** 点击事件获取当前所需要的订单状态 ************************************************/
+    allOrder.click(function () {
+        orderTypeNeed = 'All'
+        orderIsDel = 0
+        getOrderAll(oUserID,orderTypeNeed,orderIsDel,orderPageNow)
+    })
+    WaitingForPaymentOrder.click(function () {
+        orderTypeNeed = '1'
+        orderIsDel = 0
+        getOrderAll(oUserID,orderTypeNeed,orderIsDel,orderPageNow)
+    })
+    toBeShippedOrder.click(function () {
+        orderTypeNeed = '2'
+        orderIsDel = 0
+        getOrderAll(oUserID,orderTypeNeed,orderIsDel,orderPageNow)
+    })
+    toBeReceivedOrder.click(function () {
+        orderTypeNeed = '3'
+        orderIsDel = 0
+        getOrderAll(oUserID,orderTypeNeed,orderIsDel,orderPageNow)
+    })
+    toBeRemarkOrder.click(function () {
+        orderTypeNeed = '4'
+        orderIsDel = 0
+        getOrderAll(oUserID,orderTypeNeed,orderIsDel,orderPageNow)
+    })
+    recycleBinOrder.click(function () {
+        //回收站中已删除的所有订单
+        orderTypeNeed = 'All'
+        orderIsDel = 2
+        getOrderAll(oUserID,orderTypeNeed,orderIsDel,orderPageNow)
+    })
+    /********************************************** 点击事件获取当前状态 ************************************************/
+
+    /********************************************** 渲染数据 ************************************************/
+
+    getOrderAll(oUserID,orderTypeNeed,orderIsDel,orderPageNow)
+    //render
+    function getOrderAll(oUserID,orderTypeNeed,orderIsDel,orderPageNow) {
+        $.ajax({
+            url:'/getOrderAll',
+            //向后台发送：当前用户ID  当前所需订单类型 是否已经删除 当前页码
+            data:{
+                "oUserID":oUserID,
+                "orderTypeNeed":orderTypeNeed,
+                "orderIsDel":orderIsDel,
+                "orderPageNow":orderPageNow,
+            },
+            success:function (res) {
+                if (res.error) {
+                    alert('获取用户地址信息失败！')
+                }else{
+                    //将当前用户的地址信息传出
+                    createOrder(res)
+                }
+            }
+        })
+    }
+    //创建订单
+    function createOrder(res) {
+        //创建订单
+        oOrderBox.html('')
+        // res.userData.length
+        for (var i = 0; i < res.userData.length; i ++){
+
+            var orderTime = createTime(res.userData[i].time);           //订单时间          函数  根据时间戳转化为到秒的时间
+            var orderStyleCode = res.userData[i].orderStyle;    //订单状态码
+            var orderStyleName = createOrderStyleName(res.userData[i].orderStyle);    //订单状态          函数  根据状态码判断当前状态名字
+            var addressName = creatOrderUserName(res.userData[i].address);      //收货人姓名        函数   截取字符串 ，11位数 前的一段
+
+            var oLi = document.createElement('div');
+            oLi.innerHTML = '<div class="title">\n' +
+                '                    <div class="orderNum fl">订单编号：'+ res.userData[i].orderNumber +'<span></span></div>\n' +
+                '                    <div class="orderTime fl">\n' +
+                '                        <span class="timeState">下单时间：</span>\n' +
+                '                        <span class="time">'+ orderTime +'</span>\n' +
+                '                    </div>\n' +
+                '                    <div class="oderState fl">\n' +
+                '                        <span class="red">'+ orderStyleName +'</span>\n' +
+                '                    </div>\n' +
+                '                    <div class="fr delOrNotDelBtn">\n' +
+                '                        <span class="iconfont icon-shanchu"></span>\n' +
+                '                    </div>\n' +
+                '                </div>\n' +
+                '                <div class="content">\n' +
+                '                    <div class="imgBoxAll fl">\n' +
+                '                        <div class="imgBoxSingle fl">\n' +
+                '                            <img src="../images/xy/adimg_02.jpg" alt="">\n' +
+                '                        </div>\n' +
+                '                        <div class="imgBoxSingle fl">\n' +
+                '                            <img src="../images/xy/adimg_02.jpg" alt="">\n' +
+                '                        </div>\n' +
+                '                        <div class="imgBoxSingle fl">\n' +
+                '                            <img src="../images/xy/adimg_02.jpg" alt="">\n' +
+                '                        </div>\n' +
+                '                        <div class="imgBoxSingle fl">\n' +
+                '                            <img src="../images/xy/adimg_02.jpg" alt="">\n' +
+                '                        </div>\n' +
+                '                    </div>\n' +
+                '                    <div class="orderReName fl">\n' +
+                '                        <span>'+ addressName +'</span>\n' +
+                '                    </div>\n' +
+                '                    <div class="orderPrice fl">\n' +
+                '                        ￥<span>'+ res.userData[i].price +'</span>\n' +
+                '                    </div>\n' +
+                '                    <div class="orderDetails fl ">\n' +
+                '                        <a href="javascript:;">订单详情</a>\n' +
+                '                    </div>\n' +
+                '                    <div class="btnBox fr orderStateBtn orderState1">\n' +
+                '                        <div class="paymentTime">\n' +
+                '                            <span class="time"> 01时40分50秒</span>\n' +
+                '                        </div>\n' +
+                '                        <button type="button" class="orderBtn btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">去付款</button>\n' +
+                '                    </div>\n' +
+                '                </div>'
+            //根据订单的状态动态创建按钮
+            $(oLi).find('.btnBox').removeClass("orderState1").removeClass("orderState2").removeClass("orderState3").removeClass("orderState4").removeClass("orderState5").removeClass("orderState6").removeClass("orderState7");
+            $(oLi).find('.btnBox').find('.paymentTime').find('span').removeClass()
+            $(oLi).find('.btnBox').find('.orderBtn').attr('orderNumIndex',res.userData[i].orderNumber).attr('orderStyleCodeIndex',orderStyleCode)
+
+            //根据状态改变按钮内容 改变模态框内容
+            if (orderStyleCode == 1){
+                $(oLi).find('.btnBox').addClass("orderState1")
+                $(oLi).find('.btnBox').find('.paymentTime').find('span').addClass('iconfont icon-shijian')
+                $(oLi).find('.btnBox').find('.orderBtn').html('去付款')
+            }else if(orderStyleCode == 2){
+                $(oLi).find('.btnBox').addClass("orderState2")
+                $(oLi).find('.btnBox').find('.paymentTime').find('span').removeClass('iconfont').removeClass(' icon-shijian')
+                $(oLi).find('.btnBox').find('.orderBtn').html('提醒发货')
+            }else if(orderStyleCode == 3){
+                $(oLi).find('.btnBox').addClass("orderState3")
+                $(oLi).find('.btnBox').find('.paymentTime').find('span').removeClass('iconfont').removeClass(' icon-shijian')
+                $(oLi).find('.btnBox').find('.orderBtn').html('确认收货')
+            }else if(orderStyleCode == 4){
+                $(oLi).find('.btnBox').addClass("orderState4")
+                $(oLi).find('.btnBox').find('.paymentTime').find('span').removeClass('iconfont').removeClass(' icon-shijian')
+                $(oLi).find('.btnBox').find('.orderBtn').html('去评价')
+            }else if(orderStyleCode == 5){
+                $(oLi).find('.btnBox').addClass("orderState5")
+                $(oLi).find('.btnBox').find('.paymentTime').find('span').removeClass('iconfont').removeClass(' icon-shijian')
+                $(oLi).find('.btnBox').find('.paymentTime').find('span').html('已取消')
+            }else if(orderStyleCode == 6){
+                $(oLi).find('.btnBox').addClass("orderState6")
+                $(oLi).find('.btnBox').find('.paymentTime').find('span').removeClass('iconfont').removeClass(' icon-shijian')
+                $(oLi).find('.btnBox').find('.paymentTime').find('span').html('已退款')
+            }else if(orderStyleCode == 7){
+                $(oLi).find('.btnBox').addClass("orderState7")
+                $(oLi).find('.btnBox').find('.paymentTime').find('span').removeClass('iconfont').removeClass(' icon-shijian')
+                $(oLi).find('.btnBox').find('.paymentTime').find('span').html('已完成')
+            }
+            $(oLi).addClass('orderPage')
+
+            var $oDiv = $(oLi).find('.imgBoxSingle')
+            $oDiv.html('')
+            //循环渲染四张图片
+            if (res.userData[i].goodsInfo.length < 4){
+                for(var j = 0; j < res.userData[i].goodsInfo.length; j ++){
+                    var oImg = document.createElement('img');
+                    $(oImg).attr('src',res.userData[i].goodsInfo[j].img)
+                    $(oImg).attr('imgIndex',res.userData[i].goodsInfo[j].goodsId)
+                    $($oDiv).eq(j).append(oImg)
+                }
+            } else{
+                for(var j = 0; j < 4; j ++){
+                    var oImg = document.createElement('img');
+                    $(oImg).attr('src',res.userData[i].goodsInfo[j].img)
+                    $(oImg).attr('imgIndex',res.userData[i].goodsInfo[j].goodsId)
+                    $($oDiv).eq(j).append(oImg)
+                }
+            }
+            //给订单加下标
+            $(oLi).attr('index',res.userData[i].orderNumber)
+            //修改右上角小图标
+            if (orderIsDel == 2){
+                $(oLi).find('.title').find('.fr').find('span').removeClass().addClass('iconfont icon-chexiao')
+                $(oLi).find('.title').find('.fr').attr('delCode','delCode1')
+            }else{
+                $(oLi).find('.title').find('.fr').find('span').removeClass().addClass('iconfont icon-shanchu')
+                $(oLi).find('.title').find('.fr').attr('delCode','delCode2')
+            }
+            oOrderBox.append(oLi);
+        }
+        //根据订单条数创建分页
+        createPageTurning(res.userData.length)
+    }
+    //创建分页
+    function createPageTurning(num) {
+
+        $(".navigation").html('');
+
+        //根据传递的参数判断有几页
+        if (num >= 0 && num <= 5){
+            //无数据或数据不足 均不创建分页
+        }else{
+            var oUl = document.createElement('ul')
+            $(oUl).addClass('pagination')
+            var oLiLeft = document.createElement('li')
+            $(oLiLeft).attr('index','left')
+            $(oLiLeft).html('<a href="javascript:;" aria-label="Previous">\n' +
+                '                                <span aria-hidden="true">&laquo;</span>\n' +
+                '                            </a>')
+            $(oUl).append(oLiLeft)
+            for (var i = 0; i < Math.ceil(num/5); i ++){
+                var oLi = document.createElement('li')
+                $(oLi).attr('index',(i+1))
+                $(oLi).html('<a href="javascript:;">'+ (i+1) +'</a>')
+                $(oUl).append(oLi)
+            }
+            var oLiRight = document.createElement('li')
+            $(oLiRight).attr('index','right')
+            $(oLiRight).html('<a href="javascript:;" aria-label="Previous">\n' +
+                '                                <span aria-hidden="true">&raquo;</span>\n' +
+                '                            </a>')
+            $(oUl).append(oLiRight)
+            $(".navigation").append(oUl);
+        }
+    }
+    $('.navigation').on('click','li',function () {
+        if ($(this).attr('index') == 'left' && orderPageNow > 1){
+            orderPageNow --;
+        }else if($(this).attr('index') == 'right' && orderPageNow < $($(this).parents('ul').find('li')[$(this).parents('ul').find('li').length-2]).attr('index')){
+            orderPageNow ++;
+        }else if($(this).attr('index') != 'left' && $(this).attr('index') != 'right'){
+            orderPageNow = $(this).find('a').html()
+        }
+        console.log(orderPageNow);
+        getOrderAll(oUserID,orderTypeNeed,orderIsDel,orderPageNow)
+    })
+
+    
+    //时间戳转时间
+    function createTime(data) {
+        let date = new Date(data);
+        let year = date.getFullYear();
+        let month = date.getMonth()+1;
+        let day = date.getDate();
+        let hour = date.getHours();
+        let minute = date.getMinutes();
+        let second = date.getSeconds();
+        month = month < 10 ? "0"+month:month;
+        day = day < 10 ? "0"+day:day;
+        hour = hour < 10 ? "0"+hour:hour;
+        minute = minute < 10 ? "0"+minute:minute;
+        second = second < 10 ? "0"+second:second;
+
+        var d = year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+        return d;
+    }
+    //订单码转订单文字
+    function createOrderStyleName(num) {
+        var oOrderStyleName;
+        if (num == 1){
+            oOrderStyleName = '待付款'
+        }else if(num == 2){
+            oOrderStyleName = '待发货'
+        }else if(num == 3){
+            oOrderStyleName = '待收货'
+        }else if(num == 4){
+            oOrderStyleName = '待评价'
+        }else if(num == 5){
+            oOrderStyleName = '交易取消'
+        }else if(num == 6){
+            oOrderStyleName = '交易关闭'
+        }else if(num == 7){
+            oOrderStyleName = '交易成功'
+        }
+        return oOrderStyleName;
+    }
+    //订单收货人
+    function creatOrderUserName(str) {
+        return str.split("，")[0]
+    }
+    getOrderTypeNum(oUserID)
+    function getOrderTypeNum(oUserID) {
+        $.ajax({
+            url:'/getOrderTypeNum',
+            //向后台发送：当前用户ID  当前所需订单类型 是否已经删除 当前页码
+            data:{
+                "oUserID":oUserID,
+            },
+            success:function (res) {
+                if (res.error) {
+                    alert('获取订单数量失败！')
+                }else{
+                    //将当前所有订单的数量传出
+                    showOrderNum(res.userData)
+                    // console.log(res.userData);
+                }
+            }
+        })
+    }
+    function showOrderNum(arr){
+        for (var i = 0; i < arr.length; i ++){
+            $('.orderNumBoxSpan').eq(i).html(arr[i])
+        }
+    }
+    /********************************************** 渲染数据 ************************************************/
+    /********************************************** 模态框内容 ************************************************/
+    var $modalContent = $('.modal-body')
+    function modelChange(orderNumberNow,orderStyleNow){
+        //传入参数 订单编号 + 订单当前状态
+        if (orderStyleNow == 1){
+            $modalContent.html('是否确认付款')
+            cancelModelBtn.show()
+        }else if(orderStyleNow == 2){
+            $modalContent.html('已经帮您提醒卖家发货啦~')
+            cancelModelBtn.hide()
+        }else if(orderStyleNow == 3){
+            $modalContent.html('是否确认收货')
+            cancelModelBtn.show()
+        }else if(orderStyleNow == 4){
+            $modalContent.html('是否确定跳转到评价页面')
+            cancelModelBtn.show()
+        }
+    }
+    var orderNumberNow
+    var orderStyleNow
+    oOrderBox.on('click','.orderBtn',function () {
+        orderNumberNow = $(this).attr('orderNumIndex')
+        orderStyleNow = $(this).attr('orderStyleCodeIndex')
+        modelChange(orderNumberNow,orderStyleNow)
+    })
+    /********************************************** 模态框内容 ************************************************/
+    /********************************************** 改变订单状态 ************************************************/
+    function orderStyleChange(oUserID,orderNumberNow,orderStyleNow) {
+        var timeTag = new Date().getTime()
+        $.ajax({
+            url:'/orderStyleChange',
+            //向后台发送：当前用户ID  订单编号 订单当前状态
+            data:{
+                "oUserID":oUserID,
+                "orderNumberNow":orderNumberNow,
+                "orderStyleNow":orderStyleNow,
+                "timeTag": timeTag
+            },
+            success:function (res) {
+                if (res.error) {
+                    alert('修改订单状态失败！')
+                }else{
+                    //刷新当前订单
+                    getOrderAll(oUserID,'All',0,1)
+                }
+            }
+        })
+    }
+    confirmModelBtn.click(function () {
+        //点击模态框中的确认按钮
+        if (orderStyleNow == 1 || orderStyleNow == 3){
+            orderStyleChange(oUserID,orderNumberNow,orderStyleNow)
+        }
+        // console.log(orderStyleNow);
+        orderStyleNow == 1 && alert('付款成功');
+        orderStyleNow == 3 && alert('确认收货成功');
+    })
+    /********************************************** 改变订单状态 ************************************************/
+    /********************************************** 删除/恢复订单 ************************************************/
+    function delOrNotDel(oUserID,orderNumberNow,delCode) {
+        $.ajax({
+            url:'/delOrNotDel',
+            //向后台发送：当前用户ID  当前订单编号 操作码
+            data:{
+                "oUserID":oUserID,
+                "orderNumberNow":orderNumberNow,
+                "delCode":delCode,
+            },
+            success:function (res) {
+                if (res.error) {
+                    alert('获取用户地址信息失败！')
+                }else{
+                    alert('操作成功！')
+                    getOrderAll(oUserID,'All',0,1)
+                }
+            }
+        })
+    }
+    oOrderBox.on('click','.delOrNotDelBtn',function () {
+        var orderNumberNow = $(this).parents('.orderPage').find('button').attr('orderNumIndex')
+        var orderStyleCodeIndex = $(this).parents('.orderPage').find('button').attr('orderStyleCodeIndex')
+        var delCode = $(this).attr('delCode')
+        // console.log(orderNumberNow,delCode,orderStyleCodeIndex);
+        if (orderStyleCodeIndex >= 5){
+            delOrNotDel(oUserID,orderNumberNow,delCode)
+        } else{
+            alert('未完成订单不能删除')
+        }
+    })
+    /********************************************** 删除/恢复订单 ************************************************/
+
+
 </script>
 </html>
